@@ -1,0 +1,238 @@
+Necesito que desarrolles "machine-hmi-edge", una aplicación HMI web industrial que se ejecutará en Raspberry Pi 3 (ARMv7) para monitorizar y controlar un PLC vía OPC UA.
+
+ARQUITECTURA GENERAL:
+- Backend: Node.js + Express con WebSocket
+- Frontend: React + Vite (SPA)
+- Protocolo industrial: OPC UA (cliente)
+- Base de datos: SQLite para históricos
+- Despliegue: Backend como servicio systemd, frontend como archivos estáticos servidos por Express
+
+REQUISITOS FUNCIONALES:
+
+1. BACKEND (Node.js + Express):
+
+Estructura de módulos:
+```
+backend/
+├── src/
+│   ├── server.js              # Punto de entrada
+│   ├── config/
+│   │   └── index.js           # Carga de .env
+│   ├── opcua/
+│   │   └── opcuaClient.js     # Cliente OPC UA persistente
+│   ├── stores/
+│   │   ├── tagStore.js        # Map<string, TagValue> en memoria
+│   │   ├── alarmStore.js      # Gestión alarmas activas
+│   │   └── historyStore.js    # Persistencia SQLite
+│   ├── auth/
+│   │   ├── authMiddleware.js  # Validación JWT
+│   │   └── authService.js     # Login por PIN
+│   ├── routes/
+│   │   ├── tags.js            # GET /api/tags, /api/tags/:name
+│   │   ├── commands.js        # POST /api/cmd
+│   │   ├── alarms.js          # GET /api/alarms
+│   │   ├── history.js         # GET /api/history
+│   │   └── auth.js            # POST /api/login, GET /api/me
+│   └── websocket/
+│       └── wsHandler.js       # Gestión WebSocket /ws
+├── .env.example
+├── package.json
+└── README.md
+```
+
+Configuración (.env):
+```
+OPCUA_ENDPOINT=opc.tcp://192.168.1.10:4840
+POLLING_RATE_MS=1000
+LOG_INTERVAL_MS=5000
+JWT_SECRET=change_me_in_production
+PORT=8080
+PIN_OPERATOR=1111
+PIN_MAINTENANCE=2222
+NODE_ENV=production
+```
+
+MODELOS DE DATOS:
+```typescript
+// TagValue
+{
+  name: string,           // "MachineSpeed"
+  value: number | boolean | string,
+  quality: "good" | "bad" | "uncertain",
+  timestamp: number       // ms epoch
+}
+
+// AlarmEntry
+{
+  id: string,            // "ALM_OVERTEMP"
+  active: boolean,
+  message: string,
+  since: number          // ms epoch
+}
+
+// HistorySample
+{
+  timestamp: number,
+  data: {
+    [tagName: string]: number
+  }
+}
+```
+
+API REST (todas bajo /api):
+
+- GET /api/tags → Lista todos los tags actuales
+- GET /api/tags/:name → Tag específico
+- POST /api/cmd → Enviar comando (requiere rol maintenance)
+  Body: { command: "START"|"STOP"|"RESET_ALARMS"|"SET_SETPOINT", params?: {...} }
+- GET /api/alarms → Lista alarmas activas
+- GET /api/history?tag=X&from=...&to=... → Histórico
+- POST /api/login → Body: { pin: "1234" } → Response: { token, role }
+- GET /api/me → Response: { role } (requiere token)
+
+WebSocket (/ws):
+- Autenticación vía token en query string o primer mensaje
+- Mensajes servidor→cliente:
+  * { type: "tag_update", payload: TagValue }
+  * { type: "alarm_update", payload: AlarmEntry }
+- Implementar heartbeat cada 30s
+
+OPC UA:
+- Cliente persistente con reconexión automática (backoff exponencial)
+- Configuración de tags vía archivo JSON:
+```json
+{
+  "pollingRateMs": 1000,
+  "tags": {
+    "MachineSpeed": { "nodeId": "ns=2;s=Machine.Speed", "loggable": true },
+    "TemperatureZone1": { "nodeId": "ns=2;s=Heater.Zone1.Temperature", "loggable": true },
+    "Alarm_Overtemp": { "nodeId": "ns=2;s=Alarms.Overtemp", "loggable": false, "alarm": true }
+  }
+}
+```
+- Lectura cíclica: actualiza tagStore y emite cambios por WebSocket
+- Escritura: valida rol y límites antes de escribir al PLC
+- Histórico: cada LOG_INTERVAL_MS guarda tags "loggable" en SQLite (retención 24h)
+
+Autenticación:
+- JWT con rol (operator/maintenance)
+- Middleware que inyecta req.user = { role }
+- Endpoints de escritura requieren maintenance
+
+2. FRONTEND (React + Vite):
+
+Estructura:
+```
+frontend/
+├── src/
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── components/
+│   │   ├── Login.jsx           # PIN pad
+│   │   ├── Dashboard.jsx       # Tags en vivo
+│   │   ├── Alarms.jsx          # Lista alarmas
+│   │   ├── Commands.jsx        # Mandos (solo maintenance)
+│   │   ├── History.jsx         # Gráfica histórico
+│   │   └── Layout.jsx          # Nav + estado conexión
+│   ├── services/
+│   │   ├── apiClient.js        # Fetch con Authorization
+│   │   └── wsClient.js         # WebSocket manager
+│   ├── hooks/
+│   │   ├── useAuth.js          # Context autenticación
+│   │   └── useWebSocket.js     # Hook WebSocket
+│   └── styles/
+│       └── index.css           # Tailwind + estilos táctiles
+├── index.html
+├── vite.config.js
+└── package.json
+```
+
+Pantallas:
+1. Login: Teclado numérico grande para PIN
+2. Dashboard: Cards con valores en tiempo real, indicadores visuales (rojo/verde)
+3. Alarms: Tabla con alarmas activas, timestamp, scroll táctil
+4. Commands: Botones grandes START/STOP/RESET con confirmación modal
+5. History: Gráfica simple (Chart.js o Recharts) con selector de tag y rango
+
+Requisitos UI:
+- Botones mínimo 60x60px
+- Fuentes grandes (16px+)
+- Indicador estado conexión PLC/WS (icono semáforo)
+- Responsive para tablets 10"
+- localStorage para guardar token
+
+3. DESPLIEGUE:
+
+Scripts (añadir a package.json):
+```bash
+# build-frontend.sh
+cd frontend && npm run build && cd ..
+
+# deploy-rpi.sh (ejemplo con rsync)
+rsync -avz --delete backend/ pi@192.168.1.50:/opt/machine-hmi-backend/
+rsync -avz --delete frontend/dist/ pi@192.168.1.50:/opt/machine-hmi-frontend/dist/
+ssh pi@192.168.1.50 "sudo systemctl restart machine-hmi"
+```
+
+Servicio systemd (machine-hmi.service):
+```ini
+[Unit]
+Description=Machine HMI Edge Service
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/opt/machine-hmi-backend
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=10
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
+```
+
+4. DEPENDENCIAS CLAVE:
+
+Backend:
+- express
+- ws (WebSocket)
+- node-opcua
+- jsonwebtoken
+- better-sqlite3
+- dotenv
+- cors
+
+Frontend:
+- react, react-dom, react-router-dom
+- recharts o chart.js (gráficas)
+- tailwindcss
+- lucide-react (iconos)
+
+PRIORIDADES:
+1. Backend funcional con OPC UA simulado (mockup si no hay PLC real)
+2. API REST completa
+3. WebSocket con broadcast de tags
+4. Frontend básico (Login + Dashboard + Alarms)
+5. Histórico y gráficas
+6. Scripts de despliegue
+
+CONSIDERACIONES TÉCNICAS:
+- Código modular y comentado
+- Manejo de errores consistente (try-catch, respuestas JSON estándar)
+- Logging con winston/pino
+- Validación de inputs (express-validator)
+- Graceful shutdown del servidor
+- API debe responder aunque el PLC esté desconectado (quality: "bad")
+
+ENTREGABLES:
+1. Código backend completo y funcional
+2. Código frontend completo y funcional
+3. README con instrucciones de instalación en RPI3
+4. Scripts de build y deploy
+5. Archivo systemd service
+6. .env.example con variables documentadas
+7. Configuración tags.json de ejemplo
+
+Por favor, empieza creando la estructura base del proyecto y el backend con OPC UA mockup para poder testearlo sin PLC real. Luego continuamos con el frontend.
