@@ -3,7 +3,7 @@ nixPkgs = ['nodejs_20', 'python3']
 
 [phases.install]
 cmds = [
-  'cd frontend && npm ci',
+  'cd frontend && npm ci --legacy-peer-deps',
   'cd ../backend && npm ci'
 ]
 
