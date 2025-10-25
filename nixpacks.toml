@@ -1,0 +1,16 @@
+[phases.setup]
+nixPkgs = ['nodejs_20', 'python3']
+
+[phases.install]
+cmds = [
+  'cd frontend && npm ci',
+  'cd ../backend && npm ci'
+]
+
+[phases.build]
+cmds = [
+  'cd frontend && npm run build'
+]
+
+[start]
+cmd = 'cd backend && NODE_ENV=production node src/server.js'
