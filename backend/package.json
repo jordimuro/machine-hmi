@@ -1,0 +1,27 @@
+{
+  "name": "machine-hmi-backend",
+  "version": "1.0.0",
+  "description": "Industrial HMI Backend with OPC UA support",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "NODE_ENV=development node --watch src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["hmi", "opcua", "industrial", "iot"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "node-opcua": "^2.119.0",
+    "pino": "^9.0.0",
+    "pino-pretty": "^11.0.0",
+    "ws": "^8.17.0"
+  }
+}

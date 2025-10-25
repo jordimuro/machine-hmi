@@ -1,0 +1,32 @@
+[Unit]
+Description=Machine HMI Edge Service
+Documentation=https://github.com/your-repo/machine-hmi-edge
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/opt/machine-hmi-backend
+ExecStart=/usr/bin/node src/server.js
+Restart=always
+RestartSec=10
+
+# Environment
+Environment=NODE_ENV=production
+Environment=PORT=8080
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=machine-hmi
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
