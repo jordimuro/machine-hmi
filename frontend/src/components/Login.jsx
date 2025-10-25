@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
 import { Lock } from 'lucide-react';
+import LanguageSelector from './LanguageSelector';
 
 export default function Login() {
+  const { t } = useTranslation();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -22,7 +25,7 @@ export default function Login() {
 
   const handleSubmit = async () => {
     if (pin.length < 4) {
-      setError('PIN must be at least 4 digits');
+      setError(t('auth.pinRequired'));
       return;
     }
 
@@ -32,7 +35,7 @@ export default function Login() {
     try {
       await login(pin);
     } catch (err) {
-      setError('Invalid PIN');
+      setError(t('auth.invalidPin'));
       setPin('');
     } finally {
       setLoading(false);
@@ -51,14 +54,19 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative">
+        {/* Language Selector */}
+        <div className="absolute top-4 right-4">
+          <LanguageSelector />
+        </div>
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
             <Lock className="w-8 h-8 text-primary-600" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Machine HMI</h1>
-          <p className="text-gray-600">Enter your PIN to continue</p>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">{t('app.title')}</h1>
+          <p className="text-gray-600">{t('auth.enterPin')}</p>
         </div>
 
         {/* PIN Display */}
@@ -116,13 +124,13 @@ export default function Login() {
           disabled={loading || pin.length < 4}
           className="btn-primary w-full"
         >
-          {loading ? 'Authenticating...' : 'Login'}
+          {loading ? t('auth.authenticating') : t('auth.login')}
         </button>
 
         {/* Info */}
         <div className="mt-6 text-center text-sm text-gray-500">
-          <p>Default PINs:</p>
-          <p>Operator: 1111 | Maintenance: 2222</p>
+          <p>{t('auth.defaultPins')}:</p>
+          <p>{t('auth.operator')}: 1111 | {t('auth.maintenance')}: 2222</p>
         </div>
       </div>
     </div>

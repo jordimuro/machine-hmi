@@ -1,0 +1,129 @@
+{
+  "app": {
+    "title": "HMI Máquina",
+    "version": "v1.0.0"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "enterPin": "Introduce tu PIN para continuar",
+    "pin": "PIN",
+    "invalidPin": "PIN inválido",
+    "pinRequired": "El PIN debe tener al menos 4 dígitos",
+    "authenticating": "Autenticando...",
+    "defaultPins": "PINs predeterminados",
+    "operator": "Operador",
+    "maintenance": "Mantenimiento"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "alarms": "Alarmas",
+    "history": "Histórico",
+    "commands": "Comandos",
+    "logout": "Cerrar Sesión"
+  },
+  "connection": {
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "connecting": "Conectando..."
+  },
+  "dashboard": {
+    "title": "Vista General del Proceso",
+    "subtitle": "Monitorización en tiempo real de parámetros de máquina",
+    "noTags": "No hay tags disponibles",
+    "checkConnection": "Comprobar conexión OPC UA"
+  },
+  "tags": {
+    "machineSpeed": "Velocidad de Máquina",
+    "temperatureZone1": "Temperatura Zona 1",
+    "temperatureZone2": "Temperatura Zona 2",
+    "pressure": "Presión",
+    "machineRunning": "Máquina en Marcha",
+    "productionCount": "Contador Producción",
+    "setpointSpeed": "Consigna Velocidad",
+    "on": "ENCENDIDO",
+    "off": "APAGADO"
+  },
+  "alarms": {
+    "title": "Alarmas Activas",
+    "allClear": "Todo Correcto",
+    "noActiveAlarms": "No hay alarmas activas",
+    "activeCount": "{{count}} alarma activa",
+    "activeCount_other": "{{count}} alarmas activas",
+    "alarm_overtemp": "Temperatura excedió el límite de seguridad",
+    "alarm_overpressure": "Presión excedió el límite de seguridad",
+    "alarm_emergencystop": "Paro de emergencia activado",
+    "since": "Desde",
+    "duration": "Duración"
+  },
+  "history": {
+    "title": "Tendencias Históricas",
+    "subtitle": "Ver datos históricos del proceso",
+    "selectTag": "Seleccionar Tag",
+    "timeRange": "Rango de Tiempo",
+    "refresh": "Actualizar",
+    "noData": "No hay datos disponibles para el rango seleccionado",
+    "tryDifferentRange": "Intenta seleccionar un rango de tiempo diferente",
+    "noHistoricalData": "No hay datos históricos disponibles",
+    "dataCollectedOverTime": "Los datos se recopilarán automáticamente con el tiempo",
+    "last": "Últimas",
+    "average": "Promedio",
+    "minimum": "Mínimo",
+    "maximum": "Máximo",
+    "oneHour": "1 Hora",
+    "sixHours": "6 Horas",
+    "twelveHours": "12 Horas",
+    "twentyFourHours": "24 Horas"
+  },
+  "commands": {
+    "title": "Comandos de Máquina",
+    "subtitle": "Ejecutar comandos de control (Solo mantenimiento)",
+    "start": "Arrancar Máquina",
+    "stop": "Parar Máquina",
+    "resetAlarms": "Resetear Alarmas",
+    "setSpeed": "Ajustar Velocidad",
+    "startDesc": "Arrancar la operación de la máquina",
+    "stopDesc": "Parar la operación de la máquina",
+    "resetAlarmsDesc": "Borrar todas las alarmas activas",
+    "setSpeedDesc": "Ajustar consigna de velocidad de máquina",
+    "confirmAction": "Confirmar Acción",
+    "confirmMessage": "¿Estás seguro de que quieres ejecutar el comando: {{command}}?",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "commandExecuted": "Comando Ejecutado",
+    "commandFailed": "Comando Fallido",
+    "speedSetpoint": "Ajustar Consigna de Velocidad",
+    "speedRpm": "Velocidad (RPM)",
+    "validRange": "Rango válido: {{min}} - {{max}} RPM",
+    "set": "Establecer",
+    "safetyNotice": "Aviso de Seguridad",
+    "safetyMessage": "Ejecute comandos solo cuando sea seguro hacerlo. Asegúrese de que se sigan los protocolos de seguridad adecuados y que todo el personal esté alejado de la máquina antes de iniciar las operaciones."
+  },
+  "quality": {
+    "good": "Buena",
+    "bad": "Mala",
+    "uncertain": "Incierta"
+  },
+  "time": {
+    "seconds": "{{count}}s",
+    "minutes": "{{count}}m",
+    "hours": "{{count}}h",
+    "days": "{{count}}d"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Añadir",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "import": "Importar",
+    "settings": "Configuración",
+    "help": "Ayuda",
+    "about": "Acerca de"
+  }
+}

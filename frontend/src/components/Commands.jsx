@@ -1,23 +1,24 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import apiClient from '../services/apiClient';
 import { Play, Square, AlertOctagon, Settings, CheckCircle, XCircle } from 'lucide-react';
 
-function ConfirmModal({ isOpen, onClose, onConfirm, command }) {
+function ConfirmModal({ isOpen, onClose, onConfirm, command, t }) {
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">Confirm Action</h3>
+        <h3 className="text-xl font-bold text-gray-800 mb-4">{t('commands.confirmAction')}</h3>
         <p className="text-gray-600 mb-6">
-          Are you sure you want to execute command: <strong>{command}</strong>?
+          {t('commands.confirmMessage', { command })}
         </p>
         <div className="flex gap-4">
           <button onClick={onClose} className="btn-secondary flex-1">
-            Cancel
+            {t('commands.cancel')}
           </button>
           <button onClick={onConfirm} className="btn-primary flex-1">
-            Confirm
+            {t('commands.confirm')}
           </button>
         </div>
       </div>
@@ -25,7 +26,7 @@ function ConfirmModal({ isOpen, onClose, onConfirm, command }) {
   );
 }
 
-function SetpointModal({ isOpen, onClose, onConfirm }) {
+function SetpointModal({ isOpen, onClose, onConfirm, t }) {
   const [value, setValue] = useState('');
 
   const handleConfirm = () => {
@@ -41,11 +42,11 @@ function SetpointModal({ isOpen, onClose, onConfirm }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">Set Speed Setpoint</h3>
+        <h3 className="text-xl font-bold text-gray-800 mb-4">{t('commands.setSpeed')}</h3>
 
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Speed (RPM)
+            {t('commands.speedLabel')}
           </label>
           <input
             type="number"
@@ -57,19 +58,19 @@ function SetpointModal({ isOpen, onClose, onConfirm }) {
             placeholder="0 - 3000"
             autoFocus
           />
-          <p className="text-sm text-gray-500 mt-2">Valid range: 0 - 3000 RPM</p>
+          <p className="text-sm text-gray-500 mt-2">{t('commands.speedRange')}</p>
         </div>
 
         <div className="flex gap-4">
           <button onClick={onClose} className="btn-secondary flex-1">
-            Cancel
+            {t('commands.cancel')}
           </button>
           <button
             onClick={handleConfirm}
             className="btn-primary flex-1"
             disabled={!value || parseFloat(value) < 0 || parseFloat(value) > 3000}
           >
-            Set
+            {t('commands.set')}
           </button>
         </div>
       </div>
@@ -77,7 +78,7 @@ function SetpointModal({ isOpen, onClose, onConfirm }) {
   );
 }
 
-function ResultMessage({ result }) {
+function ResultMessage({ result, t }) {
   if (!result) return null;
 
   const isSuccess = result.success;
@@ -95,7 +96,7 @@ function ResultMessage({ result }) {
       )}
       <div className="flex-1">
         <p className="font-semibold">
-          {isSuccess ? 'Command Executed' : 'Command Failed'}
+          {isSuccess ? t('commands.executed') : t('commands.failed')}
         </p>
         <p className="text-sm">{result.message}</p>
       </div>
@@ -104,6 +105,7 @@ function ResultMessage({ result }) {
 }
 
 export default function Commands() {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [confirmModal, setConfirmModal] = useState({ isOpen: false, command: null });
   const [setpointModal, setSetpointModal] = useState(false);
@@ -147,37 +149,37 @@ export default function Commands() {
   const commands = [
     {
       id: 'START',
-      label: 'Start Machine',
+      label: t('commands.start'),
       icon: Play,
       color: 'btn-success',
-      description: 'Start the machine operation',
+      description: t('commands.startDesc'),
     },
     {
       id: 'STOP',
-      label: 'Stop Machine',
+      label: t('commands.stop'),
       icon: Square,
       color: 'btn-danger',
-      description: 'Stop the machine operation',
+      description: t('commands.stopDesc'),
     },
     {
       id: 'RESET_ALARMS',
-      label: 'Reset Alarms',
+      label: t('commands.resetAlarms'),
       icon: AlertOctagon,
       color: 'btn-secondary',
-      description: 'Clear all active alarms',
+      description: t('commands.resetDesc'),
     },
   ];
 
   return (
     <div className="p-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Machine Commands</h2>
-        <p className="text-gray-600">Execute control commands (Maintenance only)</p>
+        <h2 className="text-2xl font-bold text-gray-800">{t('commands.title')}</h2>
+        <p className="text-gray-600">{t('commands.subtitle')}</p>
       </div>
 
       {result && (
         <div className="mb-6">
-          <ResultMessage result={result} />
+          <ResultMessage result={result} t={t} />
         </div>
       )}
 
@@ -209,8 +211,8 @@ export default function Commands() {
         >
           <Settings className="w-8 h-8" />
           <div className="flex-1">
-            <div className="text-xl font-bold mb-1">Set Speed</div>
-            <div className="text-sm opacity-90">Adjust machine speed setpoint</div>
+            <div className="text-xl font-bold mb-1">{t('commands.setSpeed')}</div>
+            <div className="text-sm opacity-90">{t('commands.setSpeedDesc')}</div>
           </div>
         </button>
       </div>
@@ -220,10 +222,9 @@ export default function Commands() {
         <div className="flex items-start gap-3">
           <AlertOctagon className="w-6 h-6 text-warning-600 flex-shrink-0 mt-1" />
           <div>
-            <h3 className="font-bold text-warning-900 mb-2">Safety Notice</h3>
+            <h3 className="font-bold text-warning-900 mb-2">{t('commands.safetyTitle')}</h3>
             <p className="text-warning-800 text-sm">
-              Only execute commands when it is safe to do so. Ensure proper safety protocols
-              are followed and all personnel are clear of the machine before starting operations.
+              {t('commands.safetyMessage')}
             </p>
           </div>
         </div>
@@ -235,12 +236,14 @@ export default function Commands() {
         onClose={() => setConfirmModal({ isOpen: false, command: null })}
         onConfirm={handleConfirm}
         command={confirmModal.command}
+        t={t}
       />
 
       <SetpointModal
         isOpen={setpointModal}
         onClose={() => setSetpointModal(false)}
         onConfirm={handleSetpointConfirm}
+        t={t}
       />
     </div>
   );

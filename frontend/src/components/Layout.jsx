@@ -1,6 +1,8 @@
 import { Link, useLocation, Outlet } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
 import { useWebSocketStatus } from '../hooks/useWebSocket';
+import LanguageSelector from './LanguageSelector';
 import {
   LayoutDashboard,
   Bell,
@@ -14,15 +16,16 @@ import {
 
 export default function Layout() {
   const location = useLocation();
+  const { t } = useTranslation();
   const { user, logout } = useAuth();
   const wsConnected = useWebSocketStatus();
 
   const navigation = [
-    { name: 'Dashboard', path: '/', icon: LayoutDashboard },
-    { name: 'Alarms', path: '/alarms', icon: Bell },
-    { name: 'History', path: '/history', icon: TrendingUp },
+    { name: t('nav.dashboard'), path: '/', icon: LayoutDashboard },
+    { name: t('nav.alarms'), path: '/alarms', icon: Bell },
+    { name: t('nav.history'), path: '/history', icon: TrendingUp },
     ...(user?.role === 'maintenance'
-      ? [{ name: 'Commands', path: '/commands', icon: Terminal }]
+      ? [{ name: t('nav.commands'), path: '/commands', icon: Terminal }]
       : []),
   ];
 
@@ -32,30 +35,38 @@ export default function Layout() {
       <header className="bg-white shadow-md">
         <div className="px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold text-primary-600">Machine HMI</h1>
+            <h1 className="text-2xl font-bold text-primary-600">{t('app.title')}</h1>
 
             {/* Connection Status */}
             <div className="flex items-center gap-2">
               {wsConnected ? (
                 <>
                   <Wifi className="w-5 h-5 text-success-600" />
-                  <span className="text-sm text-success-600 font-medium">Connected</span>
+                  <span className="text-sm text-success-600 font-medium">
+                    {t('connection.connected')}
+                  </span>
                 </>
               ) : (
                 <>
                   <WifiOff className="w-5 h-5 text-danger-600" />
-                  <span className="text-sm text-danger-600 font-medium">Disconnected</span>
+                  <span className="text-sm text-danger-600 font-medium">
+                    {t('connection.disconnected')}
+                  </span>
                 </>
               )}
             </div>
           </div>
 
-          {/* User Info */}
+          {/* User Info and Language Selector */}
           <div className="flex items-center gap-4">
+            {/* Language Selector */}
+            <LanguageSelector />
+
+            {/* User Info */}
             <div className="flex items-center gap-2">
               <User className="w-5 h-5 text-gray-600" />
               <span className="text-sm font-medium text-gray-700 capitalize">
-                {user?.role}
+                {t(`auth.${user?.role}`)}
               </span>
             </div>
 
@@ -64,7 +75,7 @@ export default function Layout() {
               className="flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors"
             >
               <LogOut className="w-5 h-5" />
-              <span className="font-medium">Logout</span>
+              <span className="font-medium">{t('nav.logout')}</span>
             </button>
           </div>
         </div>
@@ -107,7 +118,7 @@ export default function Layout() {
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 px-4 py-2">
         <div className="flex items-center justify-between text-sm text-gray-600">
-          <span>Machine HMI Edge v1.0.0</span>
+          <span>{t('app.title')} {t('app.version')}</span>
           <span>{new Date().toLocaleString()}</span>
         </div>
       </footer>

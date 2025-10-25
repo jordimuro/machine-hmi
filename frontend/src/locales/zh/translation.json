@@ -1,0 +1,14 @@
+{
+  "app": {"title": "机器人机界面", "version": "v1.0.0"},
+  "auth": {"login": "登录", "enterPin": "输入您的PIN继续", "pin": "PIN码", "invalidPin": "无效的PIN", "pinRequired": "PIN必须至少4位数", "authenticating": "正在验证...", "defaultPins": "默认PIN", "operator": "操作员", "maintenance": "维护"},
+  "nav": {"dashboard": "仪表板", "alarms": "报警", "history": "历史", "commands": "命令", "logout": "登出"},
+  "connection": {"connected": "已连接", "disconnected": "已断开", "connecting": "正在连接..."},
+  "dashboard": {"title": "过程概览", "subtitle": "机器参数实时监控", "noTags": "没有可用标签", "checkConnection": "检查OPC UA连接"},
+  "tags": {"machineSpeed": "机器速度", "temperatureZone1": "温度区域1", "temperatureZone2": "温度区域2", "pressure": "压力", "machineRunning": "机器运行中", "productionCount": "生产计数", "setpointSpeed": "设定速度", "on": "开", "off": "关"},
+  "alarms": {"title": "活动报警", "allClear": "一切正常", "noActiveAlarms": "没有活动报警", "activeCount": "{{count}}个报警活动", "activeCount_other": "{{count}}个报警活动", "alarm_overtemp": "温度超过安全限制", "alarm_overpressure": "压力超过安全限制", "alarm_emergencystop": "紧急停止已激活", "since": "自", "duration": "持续时间"},
+  "history": {"title": "历史趋势", "subtitle": "查看历史过程数据", "selectTag": "选择标签", "timeRange": "时间范围", "refresh": "刷新", "noData": "所选范围内没有数据", "tryDifferentRange": "尝试选择不同的时间范围", "noHistoricalData": "没有历史数据", "dataCollectedOverTime": "数据将随时间自动收集", "last": "最后", "average": "平均", "minimum": "最小值", "maximum": "最大值", "oneHour": "1小时", "sixHours": "6小时", "twelveHours": "12小时", "twentyFourHours": "24小时"},
+  "commands": {"title": "机器命令", "subtitle": "执行控制命令（仅限维护）", "start": "启动机器", "stop": "停止机器", "resetAlarms": "重置报警", "setSpeed": "设置速度", "startDesc": "启动机器操作", "stopDesc": "停止机器操作", "resetAlarmsDesc": "清除所有活动报警", "setSpeedDesc": "调整机器速度设定值", "confirmAction": "确认操作", "confirmMessage": "您确定要执行命令：{{command}}吗？", "cancel": "取消", "confirm": "确认", "commandExecuted": "命令已执行", "commandFailed": "命令失败", "speedSetpoint": "设置速度设定值", "speedRpm": "速度（RPM）", "validRange": "有效范围：{{min}} - {{max}} RPM", "set": "设置", "safetyNotice": "安全提示", "safetyMessage": "仅在安全的情况下执行命令。确保遵循适当的安全协议，并在启动操作之前确保所有人员远离机器。"},
+  "quality": {"good": "良好", "bad": "差", "uncertain": "不确定"},
+  "time": {"seconds": "{{count}}秒", "minutes": "{{count}}分", "hours": "{{count}}时", "days": "{{count}}天"},
+  "common": {"loading": "加载中...", "error": "错误", "success": "成功", "close": "关闭", "save": "保存", "delete": "删除", "edit": "编辑", "add": "添加", "search": "搜索", "filter": "过滤", "export": "导出", "import": "导入", "settings": "设置", "help": "帮助", "about": "关于"}
+}

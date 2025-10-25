@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAlarms } from '../hooks/useWebSocket';
 import apiClient from '../services/apiClient';
 import { AlertTriangle, CheckCircle, Clock } from 'lucide-react';
 
-function AlarmRow({ alarm }) {
+function AlarmRow({ alarm, t }) {
   const duration = Date.now() - alarm.since;
   const seconds = Math.floor(duration / 1000);
   const minutes = Math.floor(seconds / 60);
@@ -31,7 +32,7 @@ function AlarmRow({ alarm }) {
 
       <div className="flex-1 min-w-0">
         <div className="font-semibold text-gray-800">{alarm.id}</div>
-        <div className="text-sm text-gray-600">{alarm.message || 'No description'}</div>
+        <div className="text-sm text-gray-600">{alarm.message || t('alarms.noDescription')}</div>
       </div>
 
       <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -47,6 +48,7 @@ function AlarmRow({ alarm }) {
 }
 
 export default function Alarms() {
+  const { t } = useTranslation();
   const [initialAlarms, setInitialAlarms] = useState([]);
   const [loading, setLoading] = useState(true);
   const alarms = useAlarms(initialAlarms);
@@ -83,9 +85,9 @@ export default function Alarms() {
     <div className="p-6">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Active Alarms</h2>
+          <h2 className="text-2xl font-bold text-gray-800">{t('alarms.title')}</h2>
           <p className="text-gray-600">
-            {alarms.length} {alarms.length === 1 ? 'alarm' : 'alarms'} active
+            {t('alarms.activeCount', { count: alarms.length })}
           </p>
         </div>
 
@@ -99,15 +101,15 @@ export default function Alarms() {
       {alarms.length === 0 ? (
         <div className="card text-center py-12">
           <CheckCircle className="w-16 h-16 text-success-500 mx-auto mb-4" />
-          <p className="text-gray-800 text-lg font-semibold">All Clear</p>
-          <p className="text-gray-600 text-sm mt-2">No active alarms</p>
+          <p className="text-gray-800 text-lg font-semibold">{t('alarms.allClear')}</p>
+          <p className="text-gray-600 text-sm mt-2">{t('alarms.noActive')}</p>
         </div>
       ) : (
         <div className="space-y-4">
           {alarms
             .sort((a, b) => b.since - a.since)
             .map((alarm) => (
-              <AlarmRow key={alarm.id} alarm={alarm} />
+              <AlarmRow key={alarm.id} alarm={alarm} t={t} />
             ))}
         </div>
       )}

@@ -1,0 +1,14 @@
+{
+  "app": {"title": "マシンHMI", "version": "v1.0.0"},
+  "auth": {"login": "ログイン", "enterPin": "続けるにはPINを入力してください", "pin": "PIN", "invalidPin": "無効なPIN", "pinRequired": "PINは少なくとも4桁必要です", "authenticating": "認証中...", "defaultPins": "デフォルトPIN", "operator": "オペレーター", "maintenance": "メンテナンス"},
+  "nav": {"dashboard": "ダッシュボード", "alarms": "アラーム", "history": "履歴", "commands": "コマンド", "logout": "ログアウト"},
+  "connection": {"connected": "接続済み", "disconnected": "切断済み", "connecting": "接続中..."},
+  "dashboard": {"title": "プロセス概要", "subtitle": "マシンパラメータのリアルタイム監視", "noTags": "利用可能なタグがありません", "checkConnection": "OPC UA接続を確認"},
+  "tags": {"machineSpeed": "マシン速度", "temperatureZone1": "温度ゾーン1", "temperatureZone2": "温度ゾーン2", "pressure": "圧力", "machineRunning": "マシン稼働中", "productionCount": "生産カウント", "setpointSpeed": "設定速度", "on": "オン", "off": "オフ"},
+  "alarms": {"title": "アクティブアラーム", "allClear": "すべて正常", "noActiveAlarms": "アクティブなアラームはありません", "activeCount": "{{count}}件のアラームがアクティブ", "activeCount_other": "{{count}}件のアラームがアクティブ", "alarm_overtemp": "温度が安全限界を超えました", "alarm_overpressure": "圧力が安全限界を超えました", "alarm_emergencystop": "緊急停止が作動しました", "since": "開始", "duration": "継続時間"},
+  "history": {"title": "履歴トレンド", "subtitle": "履歴プロセスデータを表示", "selectTag": "タグを選択", "timeRange": "時間範囲", "refresh": "更新", "noData": "選択した範囲のデータがありません", "tryDifferentRange": "別の時間範囲を選択してみてください", "noHistoricalData": "履歴データがありません", "dataCollectedOverTime": "データは時間とともに自動的に収集されます", "last": "最後", "average": "平均", "minimum": "最小", "maximum": "最大", "oneHour": "1時間", "sixHours": "6時間", "twelveHours": "12時間", "twentyFourHours": "24時間"},
+  "commands": {"title": "マシンコマンド", "subtitle": "制御コマンドを実行（メンテナンスのみ）", "start": "マシン起動", "stop": "マシン停止", "resetAlarms": "アラームリセット", "setSpeed": "速度設定", "startDesc": "マシン操作を開始", "stopDesc": "マシン操作を停止", "resetAlarmsDesc": "すべてのアクティブアラームをクリア", "setSpeedDesc": "マシン速度設定値を調整", "confirmAction": "アクションを確認", "confirmMessage": "コマンドを実行してもよろしいですか：{{command}}？", "cancel": "キャンセル", "confirm": "確認", "commandExecuted": "コマンド実行済み", "commandFailed": "コマンド失敗", "speedSetpoint": "速度設定値を設定", "speedRpm": "速度（RPM）", "validRange": "有効範囲：{{min}} - {{max}} RPM", "set": "設定", "safetyNotice": "安全上の注意", "safetyMessage": "安全な場合にのみコマンドを実行してください。適切な安全プロトコルに従い、操作を開始する前にすべての人員がマシンから離れていることを確認してください。"},
+  "quality": {"good": "良好", "bad": "不良", "uncertain": "不確定"},
+  "time": {"seconds": "{{count}}秒", "minutes": "{{count}}分", "hours": "{{count}}時間", "days": "{{count}}日"},
+  "common": {"loading": "読み込み中...", "error": "エラー", "success": "成功", "close": "閉じる", "save": "保存", "delete": "削除", "edit": "編集", "add": "追加", "search": "検索", "filter": "フィルター", "export": "エクスポート", "import": "インポート", "settings": "設定", "help": "ヘルプ", "about": "について"}
+}

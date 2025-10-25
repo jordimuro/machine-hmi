@@ -42,15 +42,26 @@ backend/src/
 ### Frontend (React + Vite)
 ```
 frontend/src/
-├── main.jsx              # React entry point
+├── main.jsx              # React entry point + i18n init
 ├── App.jsx               # Router and auth guard
+├── i18n.js               # i18next configuration
 ├── components/
 │   ├── Login.jsx         # PIN pad authentication
-│   ├── Layout.jsx        # Nav + connection status
+│   ├── Layout.jsx        # Nav + connection status + language selector
 │   ├── Dashboard.jsx     # Real-time tag cards
 │   ├── Alarms.jsx        # Active alarm list
 │   ├── Commands.jsx      # Control buttons (maintenance)
-│   └── History.jsx       # Recharts graphs
+│   ├── History.jsx       # Recharts graphs
+│   └── LanguageSelector.jsx  # Flag dropdown selector
+├── locales/              # Translation files (8 languages)
+│   ├── en/translation.json   # English
+│   ├── es/translation.json   # Spanish
+│   ├── de/translation.json   # German
+│   ├── it/translation.json   # Italian
+│   ├── fr/translation.json   # French
+│   ├── pl/translation.json   # Polish
+│   ├── zh/translation.json   # Chinese
+│   └── ja/translation.json   # Japanese
 ├── services/
 │   ├── apiClient.js      # REST API wrapper
 │   └── wsClient.js       # WebSocket client with reconnect
@@ -60,12 +71,14 @@ frontend/src/
 ```
 
 **Key Features:**
+- **Multi-language support**: 8 languages with flag selector
 - Touch-optimized UI (60x60px buttons minimum)
 - Real-time updates via WebSocket
 - Responsive for tablets (10"+)
 - Automatic reconnection
 - localStorage token persistence
 - Role-based component rendering
+- Language persistence across sessions
 
 ## Deployment
 
@@ -200,10 +213,11 @@ Returns:
 
 ## File Counts
 - Backend: 15 source files
-- Frontend: 12 source files
+- Frontend: 14 source files (includes i18n + LanguageSelector)
+- Translation files: 8 languages (JSON)
 - Scripts: 5 deployment scripts
-- Config: 7 configuration files
-- Docs: 5 documentation files
+- Config: 8 configuration files (includes i18n.js)
+- Docs: 7 documentation files (includes INTERNATIONALIZATION.md)
 
 ## Dependencies
 
@@ -223,6 +237,9 @@ Returns:
 - react-router-dom: Routing
 - recharts: Data visualization
 - lucide-react: Icons
+- i18next: Internationalization core
+- react-i18next: React bindings for i18n
+- i18next-browser-languagedetector: Language detection
 
 **Dev Dependencies:**
 - @vitejs/plugin-react: Build tooling

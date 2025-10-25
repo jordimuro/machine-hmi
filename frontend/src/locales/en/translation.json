@@ -1,0 +1,129 @@
+{
+  "app": {
+    "title": "Machine HMI",
+    "version": "v1.0.0"
+  },
+  "auth": {
+    "login": "Login",
+    "enterPin": "Enter your PIN to continue",
+    "pin": "PIN",
+    "invalidPin": "Invalid PIN",
+    "pinRequired": "PIN must be at least 4 digits",
+    "authenticating": "Authenticating...",
+    "defaultPins": "Default PINs",
+    "operator": "Operator",
+    "maintenance": "Maintenance"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "alarms": "Alarms",
+    "history": "History",
+    "commands": "Commands",
+    "logout": "Logout"
+  },
+  "connection": {
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "connecting": "Connecting..."
+  },
+  "dashboard": {
+    "title": "Process Overview",
+    "subtitle": "Real-time monitoring of machine parameters",
+    "noTags": "No tags available",
+    "checkConnection": "Check OPC UA connection"
+  },
+  "tags": {
+    "machineSpeed": "Machine Speed",
+    "temperatureZone1": "Temperature Zone 1",
+    "temperatureZone2": "Temperature Zone 2",
+    "pressure": "Pressure",
+    "machineRunning": "Machine Running",
+    "productionCount": "Production Count",
+    "setpointSpeed": "Setpoint Speed",
+    "on": "ON",
+    "off": "OFF"
+  },
+  "alarms": {
+    "title": "Active Alarms",
+    "allClear": "All Clear",
+    "noActiveAlarms": "No active alarms",
+    "activeCount": "{{count}} alarm active",
+    "activeCount_other": "{{count}} alarms active",
+    "alarm_overtemp": "Temperature exceeded safety limit",
+    "alarm_overpressure": "Pressure exceeded safety limit",
+    "alarm_emergencystop": "Emergency stop activated",
+    "since": "Since",
+    "duration": "Duration"
+  },
+  "history": {
+    "title": "Historical Trends",
+    "subtitle": "View historical process data",
+    "selectTag": "Select Tag",
+    "timeRange": "Time Range",
+    "refresh": "Refresh",
+    "noData": "No data available for selected range",
+    "tryDifferentRange": "Try selecting a different time range",
+    "noHistoricalData": "No historical data available",
+    "dataCollectedOverTime": "Data will be collected automatically over time",
+    "last": "Last",
+    "average": "Average",
+    "minimum": "Minimum",
+    "maximum": "Maximum",
+    "oneHour": "1 Hour",
+    "sixHours": "6 Hours",
+    "twelveHours": "12 Hours",
+    "twentyFourHours": "24 Hours"
+  },
+  "commands": {
+    "title": "Machine Commands",
+    "subtitle": "Execute control commands (Maintenance only)",
+    "start": "Start Machine",
+    "stop": "Stop Machine",
+    "resetAlarms": "Reset Alarms",
+    "setSpeed": "Set Speed",
+    "startDesc": "Start the machine operation",
+    "stopDesc": "Stop the machine operation",
+    "resetAlarmsDesc": "Clear all active alarms",
+    "setSpeedDesc": "Adjust machine speed setpoint",
+    "confirmAction": "Confirm Action",
+    "confirmMessage": "Are you sure you want to execute command: {{command}}?",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "commandExecuted": "Command Executed",
+    "commandFailed": "Command Failed",
+    "speedSetpoint": "Set Speed Setpoint",
+    "speedRpm": "Speed (RPM)",
+    "validRange": "Valid range: {{min}} - {{max}} RPM",
+    "set": "Set",
+    "safetyNotice": "Safety Notice",
+    "safetyMessage": "Only execute commands when it is safe to do so. Ensure proper safety protocols are followed and all personnel are clear of the machine before starting operations."
+  },
+  "quality": {
+    "good": "Good",
+    "bad": "Bad",
+    "uncertain": "Uncertain"
+  },
+  "time": {
+    "seconds": "{{count}}s",
+    "minutes": "{{count}}m",
+    "hours": "{{count}}h",
+    "days": "{{count}}d"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "settings": "Settings",
+    "help": "Help",
+    "about": "About"
+  }
+}

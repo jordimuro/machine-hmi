@@ -34,12 +34,21 @@ Frontend will start on http://localhost:3000
 - Open http://localhost:3000
 - Use PIN: `1111` (Operator) or `2222` (Maintenance)
 
+### 6. Change Language (Optional)
+- Click the flag/globe icon in the header (top right)
+- Select from 8 available languages:
+  - 🇬🇧 English | 🇪🇸 Español | 🇩🇪 Deutsch | 🇮🇹 Italiano
+  - 🇫🇷 Français | 🇵🇱 Polski | 🇨🇳 中文 | 🇯🇵 日本語
+- Language changes immediately, no reload needed
+- Your choice is saved in browser
+
 ## What You'll See
 
 - **Dashboard**: Real-time simulated machine data (speed, temperature, pressure, etc.)
 - **Alarms**: Simulated alarms when values exceed thresholds
 - **History**: Historical data graphs (data accumulates over time)
 - **Commands** (Maintenance only): START, STOP, RESET_ALARMS, SET_SETPOINT
+- **Language Selector**: Flag dropdown in header for instant language switching
 
 ## Mock Mode Features
 

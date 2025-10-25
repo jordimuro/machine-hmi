@@ -1,5 +1,37 @@
 # Changelog
 
+## v1.1.0 - 2025-10-25
+
+### Multi-Language Support Added
+
+Added complete internationalization (i18n) with 8 languages.
+
+#### New Features
+- 🌐 **8 Language Support**: English, Spanish, German, Italian, French, Polish, Chinese, Japanese
+- 🎌 **Flag Selector**: Visual language selector with country flags in header
+- 💾 **Persistence**: Language preference saved in localStorage
+- 🔄 **Real-time Switching**: Change language without page reload
+- 🔍 **Auto-detection**: Detects browser language on first load
+- 📝 **Complete Translation**: All UI elements, messages, and labels translated
+
+#### Technical Changes
+- Added `i18next`, `react-i18next`, `i18next-browser-languagedetector`
+- Created translation files for 8 languages in `frontend/src/locales/`
+- Implemented `LanguageSelector` component with dropdown
+- Updated `Layout` component to include language selector
+- Integrated i18n configuration in `main.jsx`
+
+#### Translation Coverage
+- Login screen and authentication
+- Navigation and headers
+- Dashboard tags and values
+- Alarms and messages
+- Historical data interface
+- Commands and confirmations
+- Quality indicators
+- Time formats
+- Common UI elements
+
 ## v1.0.0 - 2025-10-25
 
 ### Initial Release

@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import apiClient from '../services/apiClient';
 import { TrendingUp, Calendar, RefreshCw } from 'lucide-react';
 
-const TIME_RANGES = [
-  { label: '1 Hour', value: 3600000 },
-  { label: '6 Hours', value: 21600000 },
-  { label: '12 Hours', value: 43200000 },
-  { label: '24 Hours', value: 86400000 },
-];
-
 export default function History() {
+  const { t } = useTranslation();
+
+  const TIME_RANGES = [
+    { label: t('time.1hour'), value: 3600000 },
+    { label: t('time.6hours'), value: 21600000 },
+    { label: t('time.12hours'), value: 43200000 },
+    { label: t('time.24hours'), value: 86400000 },
+  ];
   const [availableTags, setAvailableTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState('');
   const [timeRange, setTimeRange] = useState(3600000); // Default: 1 hour
@@ -37,7 +39,7 @@ export default function History() {
       }
     } catch (err) {
       console.error('Failed to load available tags', err);
-      setError('Failed to load available tags');
+      setError(t('history.errorLoadingTags'));
     }
   };
 
@@ -62,7 +64,7 @@ export default function History() {
       setData(chartData);
     } catch (err) {
       console.error('Failed to load history', err);
-      setError('Failed to load history data');
+      setError(t('history.errorLoadingData'));
     } finally {
       setLoading(false);
     }
@@ -77,9 +79,9 @@ export default function History() {
             {new Date(data.timestamp).toLocaleString()}
           </p>
           <p className="text-sm text-primary-600">
-            Value: <span className="font-bold">{data.value.toFixed(2)}</span>
+            {t('history.value')}: <span className="font-bold">{data.value.toFixed(2)}</span>
           </p>
-          <p className="text-xs text-gray-500">Quality: {data.quality}</p>
+          <p className="text-xs text-gray-500">{t('history.quality')}: {data.quality}</p>
         </div>
       );
     }
@@ -91,9 +93,9 @@ export default function History() {
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
           <TrendingUp className="w-7 h-7" />
-          Historical Trends
+          {t('history.title')}
         </h2>
-        <p className="text-gray-600">View historical process data</p>
+        <p className="text-gray-600">{t('history.subtitle')}</p>
       </div>
 
       {/* Controls */}
@@ -102,7 +104,7 @@ export default function History() {
           {/* Tag Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Select Tag
+              {t('history.selectTag')}
             </label>
             <select
               value={selectedTag}
@@ -121,7 +123,7 @@ export default function History() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Calendar className="w-4 h-4 inline mr-1" />
-              Time Range
+              {t('history.timeRange')}
             </label>
             <select
               value={timeRange}
@@ -144,7 +146,7 @@ export default function History() {
               className="btn-primary w-full flex items-center justify-center gap-2"
             >
               <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
-              Refresh
+              {t('history.refresh')}
             </button>
           </div>
         </div>
@@ -158,9 +160,9 @@ export default function History() {
       ) : availableTags.length === 0 ? (
         <div className="card text-center py-12">
           <TrendingUp className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-600 text-lg">No historical data available</p>
+          <p className="text-gray-600 text-lg">{t('history.noData')}</p>
           <p className="text-gray-500 text-sm mt-2">
-            Data will be collected automatically over time
+            {t('history.dataCollected')}
           </p>
         </div>
       ) : loading ? (
@@ -169,13 +171,13 @@ export default function History() {
         </div>
       ) : data.length === 0 ? (
         <div className="card text-center py-12">
-          <p className="text-gray-600 text-lg">No data available for selected range</p>
-          <p className="text-gray-500 text-sm mt-2">Try selecting a different time range</p>
+          <p className="text-gray-600 text-lg">{t('history.noDataRange')}</p>
+          <p className="text-gray-500 text-sm mt-2">{t('history.tryDifferent')}</p>
         </div>
       ) : (
         <div className="card">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">
-            {selectedTag} - Last {TIME_RANGES.find(r => r.value === timeRange)?.label}
+            {selectedTag} - {t('history.last')} {TIME_RANGES.find(r => r.value === timeRange)?.label}
           </h3>
 
           <ResponsiveContainer width="100%" height={400}>
@@ -206,19 +208,19 @@ export default function History() {
           {/* Statistics */}
           <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-200">
             <div className="text-center">
-              <div className="text-sm text-gray-600 mb-1">Average</div>
+              <div className="text-sm text-gray-600 mb-1">{t('history.average')}</div>
               <div className="text-xl font-bold text-gray-800">
                 {(data.reduce((sum, d) => sum + d.value, 0) / data.length).toFixed(2)}
               </div>
             </div>
             <div className="text-center">
-              <div className="text-sm text-gray-600 mb-1">Minimum</div>
+              <div className="text-sm text-gray-600 mb-1">{t('history.minimum')}</div>
               <div className="text-xl font-bold text-gray-800">
                 {Math.min(...data.map(d => d.value)).toFixed(2)}
               </div>
             </div>
             <div className="text-center">
-              <div className="text-sm text-gray-600 mb-1">Maximum</div>
+              <div className="text-sm text-gray-600 mb-1">{t('history.maximum')}</div>
               <div className="text-xl font-bold text-gray-800">
                 {Math.max(...data.map(d => d.value)).toFixed(2)}
               </div>
