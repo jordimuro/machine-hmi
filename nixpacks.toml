@@ -3,13 +3,13 @@ nixPkgs = ['nodejs_20', 'python3']
 
 [phases.install]
 cmds = [
-  'cd frontend && npm ci --legacy-peer-deps',
-  'cd ../backend && npm ci'
+  'npm ci --prefix frontend --legacy-peer-deps',
+  'npm ci --prefix backend'
 ]
 
 [phases.build]
 cmds = [
-  'cd frontend && npm run build'
+  'npm run build --prefix frontend'
 ]
 
 [start]
