@@ -2,6 +2,28 @@
 
 Industrial HMI web application for Raspberry Pi 3 (ARMv7) to monitor and control PLCs via OPC UA.
 
+## 🚀 Quick Deploy to Linux RT (Offline)
+
+**For deploying to Linux RT (ARM) without internet access:**
+
+```bash
+# 1. Run deploy script (on your development machine)
+./deploy.sh
+
+# 2. Copy the 'deploy' folder to your Linux RT via USB/network
+
+# 3. On Linux RT:
+cd deploy/backend
+./reinstall-native-deps.sh  # Recompile for ARM
+nano .env                    # Configure your settings
+cd ..
+./start.sh                   # Start the server
+```
+
+**📖 Full deployment guide**: See [DEPLOYMENT.md](DEPLOYMENT.md) for complete instructions.
+
+---
+
 ## Features
 
 - **Multi-language support**: 8 languages (English, Spanish, German, Italian, French, Polish, Chinese, Japanese)
