@@ -1,86 +1,84 @@
 {
-  "pollingRateMs": 1000,
+  "pollingRateMs": 100,
   "tags": {
     "ActualSpeed": {
-      "nodeId": "ns=4;s=|var|c500.Application.GVL.lrActualSpeed",
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.lrActualSpeed",
       "loggable": true,
       "type": "number",
       "unit": "RPM",
       "min": 0,
-      "max": 5000
+      "max": 5000,
+      "description": "Velocidad actual de la máquina"
     },
-    "MachineSpeed": {
-      "nodeId": "ns=2;s=Machine.Speed",
+    "RandomValue_01": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[1]",
       "loggable": true,
       "type": "number",
-      "unit": "RPM",
-      "min": 0,
-      "max": 3000
+      "unit": "",
+      "description": "Valor aleatorio 1"
     },
-    "TemperatureZone1": {
-      "nodeId": "ns=2;s=Heater.Zone1.Temperature",
+    "RandomValue_02": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[2]",
       "loggable": true,
       "type": "number",
-      "unit": "°C",
-      "min": 0,
-      "max": 300
+      "unit": "",
+      "description": "Valor aleatorio 2"
     },
-    "TemperatureZone2": {
-      "nodeId": "ns=2;s=Heater.Zone2.Temperature",
+    "RandomValue_03": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[3]",
       "loggable": true,
       "type": "number",
-      "unit": "°C",
-      "min": 0,
-      "max": 300
+      "unit": "",
+      "description": "Valor aleatorio 3"
     },
-    "Pressure": {
-      "nodeId": "ns=2;s=System.Pressure",
+    "RandomValue_04": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[4]",
       "loggable": true,
       "type": "number",
-      "unit": "bar",
-      "min": 0,
-      "max": 10
+      "unit": "",
+      "description": "Valor aleatorio 4"
     },
-    "MachineRunning": {
-      "nodeId": "ns=2;s=Machine.Running",
-      "loggable": true,
-      "type": "boolean"
-    },
-    "ProductionCount": {
-      "nodeId": "ns=2;s=Machine.ProductionCount",
+    "RandomValue_05": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[5]",
       "loggable": true,
       "type": "number",
-      "unit": "units"
+      "unit": "",
+      "description": "Valor aleatorio 5"
     },
-    "Alarm_Overtemp": {
-      "nodeId": "ns=2;s=Alarms.Overtemp",
-      "loggable": false,
-      "alarm": true,
-      "type": "boolean",
-      "message": "Temperature exceeded safety limit"
-    },
-    "Alarm_OverPressure": {
-      "nodeId": "ns=2;s=Alarms.OverPressure",
-      "loggable": false,
-      "alarm": true,
-      "type": "boolean",
-      "message": "Pressure exceeded safety limit"
-    },
-    "Alarm_EmergencyStop": {
-      "nodeId": "ns=2;s=Alarms.EmergencyStop",
-      "loggable": false,
-      "alarm": true,
-      "type": "boolean",
-      "message": "Emergency stop activated"
-    },
-    "SetpointSpeed": {
-      "nodeId": "ns=2;s=Machine.SetpointSpeed",
-      "loggable": false,
+    "RandomValue_06": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[6]",
+      "loggable": true,
       "type": "number",
-      "writable": true,
-      "unit": "RPM",
-      "min": 0,
-      "max": 3000
+      "unit": "",
+      "description": "Valor aleatorio 6"
+    },
+    "RandomValue_07": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[7]",
+      "loggable": true,
+      "type": "number",
+      "unit": "",
+      "description": "Valor aleatorio 7"
+    },
+    "RandomValue_08": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[8]",
+      "loggable": true,
+      "type": "number",
+      "unit": "",
+      "description": "Valor aleatorio 8"
+    },
+    "RandomValue_09": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[9]",
+      "loggable": true,
+      "type": "number",
+      "unit": "",
+      "description": "Valor aleatorio 9"
+    },
+    "RandomValue_10": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.RandomValues[10]",
+      "loggable": true,
+      "type": "number",
+      "unit": "",
+      "description": "Valor aleatorio 10"
     }
   }
 }

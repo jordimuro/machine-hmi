@@ -30,9 +30,22 @@
     "title": "Vista General del Proceso",
     "subtitle": "Monitorización en tiempo real de parámetros de máquina",
     "noTags": "No hay tags disponibles",
-    "checkConnection": "Comprobar conexión OPC UA"
+    "checkConnection": "Comprobar conexión OPC UA",
+    "mainVariables": "Variables Principales",
+    "additionalVariables": "Variables Adicionales"
   },
   "tags": {
+    "actualSpeed": "Velocidad Actual",
+    "randomValue_01": "Valor Aleatorio 1",
+    "randomValue_02": "Valor Aleatorio 2", 
+    "randomValue_03": "Valor Aleatorio 3",
+    "randomValue_04": "Valor Aleatorio 4",
+    "randomValue_05": "Valor Aleatorio 5",
+    "randomValue_06": "Valor Aleatorio 6",
+    "randomValue_07": "Valor Aleatorio 7",
+    "randomValue_08": "Valor Aleatorio 8",
+    "randomValue_09": "Valor Aleatorio 9",
+    "randomValue_10": "Valor Aleatorio 10",
     "machineSpeed": "Velocidad de Máquina",
     "temperatureZone1": "Temperatura Zona 1",
     "temperatureZone2": "Temperatura Zona 2",
@@ -109,6 +122,34 @@
     "hours": "{{count}}h",
     "days": "{{count}}d"
   },
+  "variableScanner": {
+    "title": "Explorador de Variables OPC UA",
+    "subtitle": "Escanear y seleccionar variables del servidor OPC UA",
+    "scan": "Escanear Variables",
+    "scanning": "Escaneando...",
+    "scanningMessage": "Explorando variables del servidor OPC UA...",
+    "searchPlaceholder": "Buscar variables...",
+    "foundVariables": "{{count}} variable encontrada",
+    "foundVariables_other": "{{count}} variables encontradas",
+    "selectAll": "Seleccionar Todo",
+    "deselectAll": "Deseleccionar Todo",
+    "selectedCount": "{{count}} variable seleccionada",
+    "selectedCount_other": "{{count}} variables seleccionadas",
+    "addSelected": "Añadir Seleccionadas",
+    "noVariables": "No se encontraron variables. Haz clic en 'Escanear Variables' para buscar.",
+    "startScan": "Iniciar Escaneo",
+    "applicationVariables": "Variables de Aplicación",
+    "variablesOnly": "Solo Variables", 
+    "generalExploration": "Exploración General",
+    "currentPath": "Ruta actual",
+    "explore": "Explorar",
+    "level": "Nivel",
+    "notAccessible": "No accesible",
+    "currentValue": "Valor actual",
+    "path": "Ruta",
+    "arrayElement": "Elemento de Array",
+    "elementOf": "Elemento de"
+  },
   "common": {
     "loading": "Cargando...",
     "error": "Error",
@@ -124,6 +165,7 @@
     "import": "Importar",
     "settings": "Configuración",
     "help": "Ayuda",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "cancel": "Cancelar"
   }
 }

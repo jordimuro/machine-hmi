@@ -95,6 +95,9 @@ class OpcuaClient {
       this.mockMode = false;
       this.reconnectAttempts = 0;
 
+      // Notify WebSocket clients of status change
+      this.notifyStatusChange();
+
       // Initialize tag store with initial values
       await this.readAllTags();
 
@@ -104,6 +107,8 @@ class OpcuaClient {
 
     } catch (error) {
       logger.error({ err: error }, 'Failed to connect to real OPC UA server');
+      this.connected = false;
+      this.notifyStatusChange();
       throw error;
     }
   }
@@ -451,27 +456,401 @@ class OpcuaClient {
   }
 
   /**
-   * Browse OPC UA server nodes (for debugging)
+   * Browse OPC UA server nodes with hierarchical navigation
    */
-  async browseNodes(nodeId = 'RootFolder') {
+  async browseNodes(nodeId = 'RootFolder', options = {}) {
     if (!this.session || this.mockMode) {
       return { error: 'No active OPC UA session or in mock mode' };
     }
 
+    const {
+      recursive = true,
+      maxDepth = 5,
+      currentDepth = 0,
+      includeObjects = true,
+      variablesOnly = false,
+      expandArrays = false
+    } = options;
+
     try {
       const browseResult = await this.session.browse(nodeId);
-      const nodes = browseResult.references?.map(ref => ({
-        nodeId: ref.nodeId.toString(),
-        browseName: ref.browseName.toString(),
-        displayName: ref.displayName?.text || '',
-        nodeClass: ref.nodeClass,
-        typeDefinition: ref.typeDefinition?.toString()
-      })) || [];
+      const nodes = [];
+      const variables = [];
 
-      return { nodes, count: nodes.length };
+      if (browseResult.references) {
+        for (const ref of browseResult.references) {
+          const node = {
+            nodeId: ref.nodeId.toString(),
+            browseName: ref.browseName.toString(),
+            displayName: ref.displayName?.text || ref.browseName.toString(),
+            nodeClass: ref.nodeClass,
+            typeDefinition: ref.typeDefinition?.toString(),
+            isVariable: ref.nodeClass === 2, // NodeClass.Variable = 2
+            isObject: ref.nodeClass === 1,   // NodeClass.Object = 1
+            depth: currentDepth,
+            path: this.buildNodePath(nodeId, ref.browseName.toString())
+          };
+
+          // Si es una variable, obtener información adicional
+          if (node.isVariable) {
+            try {
+              const dataValue = await this.session.readVariableValue(ref.nodeId);
+              node.dataType = this.getDataTypeName(dataValue.dataType);
+              node.value = dataValue.value?.value;
+              node.quality = dataValue.statusCode?.name || 'Unknown';
+              node.accessible = true;
+              variables.push(node);
+            } catch (readError) {
+              node.accessible = false;
+              node.error = readError.message;
+              // Aún agregar variables no accesibles para mostrar en la UI
+              variables.push(node);
+            }
+          }
+
+          // Agregar nodos según las opciones
+          if (!variablesOnly || node.isVariable) {
+            nodes.push(node);
+          }
+
+          // Explorar recursivamente objetos si no hemos alcanzado la profundidad máxima
+          if (recursive && currentDepth < maxDepth && node.isObject) {
+            try {
+              const childResult = await this.browseNodes(
+                ref.nodeId.toString(), 
+                { ...options, currentDepth: currentDepth + 1 }
+              );
+              if (childResult.nodes) {
+                nodes.push(...childResult.nodes);
+                variables.push(...childResult.variables || []);
+              }
+            } catch (childError) {
+              logger.warn({ err: childError, nodeId: ref.nodeId.toString() }, 'Failed to browse child nodes');
+            }
+          }
+        }
+      }
+
+      return { 
+        nodes: variablesOnly ? variables : nodes,
+        variables,
+        count: variablesOnly ? variables.length : nodes.length,
+        variableCount: variables.length,
+        totalScanned: nodes.length,
+        depth: currentDepth
+      };
     } catch (error) {
       logger.error({ err: error, nodeId }, 'Failed to browse nodes');
       return { error: error.message };
+    }
+  }
+
+  /**
+   * Browse specifically for CODESYS Application variables with array expansion
+   */
+  async browseApplicationVariables() {
+    const commonPaths = [
+      'ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application',
+      'ns=4;s=Application'
+    ];
+
+    let allVariables = [];
+
+    // Intentar diferentes rutas comunes para CODESYS
+    for (const path of commonPaths) {
+      try {
+        const result = await this.browseNodes(path, { 
+          recursive: true, 
+          maxDepth: 4, 
+          variablesOnly: true,
+          expandArrays: true
+        });
+        
+        if (result.variables && result.variables.length > 0) {
+          allVariables.push(...result.variables);
+        }
+      } catch (error) {
+        logger.debug({ path, err: error }, 'Failed to browse path');
+      }
+    }
+
+    // Si no encontramos variables en rutas específicas, hacer búsqueda general
+    if (allVariables.length === 0) {
+      try {
+        const result = await this.browseNodes('RootFolder', { 
+          recursive: true, 
+          maxDepth: 6, 
+          variablesOnly: true,
+          expandArrays: true
+        });
+        allVariables = result.variables || [];
+      } catch (error) {
+        logger.error({ err: error }, 'Failed general browse');
+      }
+    }
+
+    // Expandir arrays manualmente si no se expandieron automáticamente
+    const expandedVariables = [];
+    for (const variable of allVariables) {
+      expandedVariables.push(variable);
+      
+      // Si es un array, intentar expandir sus elementos
+      if (this.isArrayVariable(variable)) {
+        const arrayElements = await this.expandArrayVariable(variable);
+        expandedVariables.push(...arrayElements);
+      }
+    }
+
+    // Filtrar variables que parecen ser de aplicación
+    const applicationVariables = expandedVariables.filter(variable => {
+      const nodeId = variable.nodeId.toLowerCase();
+      const displayName = variable.displayName.toLowerCase();
+      
+      return nodeId.includes('application') || 
+             nodeId.includes('gvl') ||
+             displayName.includes('actualspeed') ||
+             displayName.includes('randomvalues') ||
+             displayName.includes('[') || // Elementos de array
+             variable.accessible;
+    });
+
+    return {
+      nodes: applicationVariables,
+      variables: applicationVariables,
+      count: applicationVariables.length,
+      totalScanned: expandedVariables.length
+    };
+  }
+
+  /**
+   * Check if a variable is an array
+   */
+  isArrayVariable(variable) {
+    return variable.displayName.toLowerCase().includes('randomvalues') && 
+           !variable.displayName.includes('[');
+  }
+
+  /**
+   * Expand array variable to show individual elements
+   */
+  async expandArrayVariable(arrayVariable) {
+    const elements = [];
+    const baseName = arrayVariable.displayName;
+    const baseNodeId = arrayVariable.nodeId;
+    
+    // Para RandomValues, intentar expandir elementos del 1 al 20
+    if (baseName.toLowerCase().includes('randomvalues')) {
+      for (let i = 1; i <= 20; i++) {
+        try {
+          const elementNodeId = `${baseNodeId}[${i}]`;
+          
+          // Intentar leer el valor del elemento
+          const dataValue = await this.session.readVariableValue(elementNodeId);
+          
+          elements.push({
+            nodeId: elementNodeId,
+            browseName: `${baseName}[${i}]`,
+            displayName: `${baseName}[${i}]`,
+            nodeClass: 2, // Variable
+            isVariable: true,
+            isArrayElement: true,
+            arrayIndex: i,
+            parentArray: baseName,
+            dataType: this.getDataTypeName(dataValue.dataType),
+            value: dataValue.value?.value,
+            quality: dataValue.statusCode?.name || 'Unknown',
+            accessible: true,
+            depth: (arrayVariable.depth || 0) + 1,
+            path: `${arrayVariable.path || baseName}[${i}]`
+          });
+        } catch (error) {
+          // Si no se puede leer, aún agregar el elemento como no accesible
+          elements.push({
+            nodeId: `${baseNodeId}[${i}]`,
+            browseName: `${baseName}[${i}]`,
+            displayName: `${baseName}[${i}]`,
+            nodeClass: 2,
+            isVariable: true,
+            isArrayElement: true,
+            arrayIndex: i,
+            parentArray: baseName,
+            accessible: false,
+            error: error.message,
+            depth: (arrayVariable.depth || 0) + 1,
+            path: `${arrayVariable.path || baseName}[${i}]`
+          });
+        }
+      }
+    }
+    
+    return elements;
+  }
+
+  /**
+   * Build a readable path for a node
+   */
+  buildNodePath(parentNodeId, browseName) {
+    if (parentNodeId === 'RootFolder') {
+      return browseName;
+    }
+    
+    // Simplificar el path para mostrar solo la parte relevante
+    const parts = parentNodeId.split('.');
+    const lastPart = parts[parts.length - 1] || parentNodeId;
+    return `${lastPart}.${browseName}`;
+  }
+
+  /**
+   * Get human-readable data type name
+   */
+  getDataTypeName(dataType) {
+    if (!dataType) return 'Unknown';
+    
+    const typeMap = {
+      1: 'Boolean',
+      2: 'SByte', 
+      3: 'Byte',
+      4: 'Int16',
+      5: 'UInt16', 
+      6: 'Int32',
+      7: 'UInt32',
+      8: 'Int64',
+      9: 'UInt64',
+      10: 'Float',
+      11: 'Double',
+      12: 'String',
+      13: 'DateTime',
+      15: 'Guid',
+      22: 'Structure'
+    };
+
+    return typeMap[dataType] || `DataType_${dataType}`;
+  }
+
+  /**
+   * Add new variables to monitoring dynamically
+   */
+  async addVariables(newVariables) {
+    const added = [];
+    const skipped = [];
+
+    for (const variable of newVariables) {
+      try {
+        // Generar un nombre único para la variable
+        const tagName = this.generateTagName(variable.displayName, variable.nodeId);
+        
+        // Verificar si ya existe
+        if (this.tagsConfig.tags[tagName]) {
+          skipped.push({ variable, reason: 'Already exists' });
+          continue;
+        }
+
+        // Crear configuración del tag
+        const tagConfig = {
+          nodeId: variable.nodeId,
+          loggable: true,
+          type: this.mapDataType(variable.dataType),
+          description: variable.displayName,
+          unit: this.inferUnit(variable.displayName),
+          accessible: variable.accessible
+        };
+
+        // Agregar al mapa de configuración
+        this.tagsConfig.tags[tagName] = tagConfig;
+        
+        // Inicializar el valor del tag
+        this.tags.set(tagName, {
+          name: tagName,
+          value: null,
+          quality: 'uncertain',
+          timestamp: Date.now(),
+          ...tagConfig
+        });
+
+        added.push({ tagName, variable, config: tagConfig });
+        
+        logger.info({ tagName, nodeId: variable.nodeId }, 'Added new variable to monitoring');
+      } catch (error) {
+        skipped.push({ variable, reason: error.message });
+        logger.warn({ err: error, variable }, 'Failed to add variable');
+      }
+    }
+
+    // Guardar la configuración actualizada
+    if (added.length > 0) {
+      await this.saveTagsConfiguration();
+    }
+
+    return { added, skipped };
+  }
+
+  /**
+   * Generate a unique tag name from display name and node ID
+   */
+  generateTagName(displayName, nodeId) {
+    // Limpiar el nombre para que sea válido como identificador
+    let tagName = displayName
+      .replace(/[^a-zA-Z0-9_]/g, '_')
+      .replace(/_{2,}/g, '_')
+      .replace(/^_|_$/g, '');
+    
+    // Si el nombre está vacío o es muy corto, usar parte del nodeId
+    if (tagName.length < 3) {
+      const nodeIdPart = nodeId.split('.').pop() || nodeId.split('=').pop() || 'Variable';
+      tagName = nodeIdPart.replace(/[^a-zA-Z0-9_]/g, '_');
+    }
+
+    // Asegurar que sea único
+    let uniqueName = tagName;
+    let counter = 1;
+    while (this.tagsConfig.tags[uniqueName]) {
+      uniqueName = `${tagName}_${counter}`;
+      counter++;
+    }
+
+    return uniqueName;
+  }
+
+  /**
+   * Map OPC UA data type to internal type
+   */
+  mapDataType(opcuaDataType) {
+    if (!opcuaDataType) return 'unknown';
+    
+    const typeStr = opcuaDataType.toLowerCase();
+    if (typeStr.includes('bool')) return 'boolean';
+    if (typeStr.includes('int') || typeStr.includes('real') || typeStr.includes('double') || typeStr.includes('float')) return 'number';
+    if (typeStr.includes('string')) return 'string';
+    return 'unknown';
+  }
+
+  /**
+   * Infer unit from variable name
+   */
+  inferUnit(displayName) {
+    const name = displayName.toLowerCase();
+    if (name.includes('temp')) return '°C';
+    if (name.includes('speed') || name.includes('rpm')) return 'RPM';
+    if (name.includes('pressure')) return 'bar';
+    if (name.includes('count') || name.includes('counter')) return 'units';
+    if (name.includes('percent') || name.includes('%')) return '%';
+    return '';
+  }
+
+  /**
+   * Save tags configuration to file
+   */
+  async saveTagsConfiguration() {
+    try {
+      const fs = await import('fs/promises');
+      const path = await import('path');
+      const configPath = path.join(process.cwd(), 'tags.json');
+      
+      await fs.writeFile(configPath, JSON.stringify(this.tagsConfig, null, 2));
+      logger.info('Tags configuration saved successfully');
+    } catch (error) {
+      logger.error({ err: error }, 'Failed to save tags configuration');
+      throw error;
     }
   }
 
@@ -486,6 +865,27 @@ class OpcuaClient {
       tagsCount: Object.keys(this.tagsConfig?.tags || {}).length,
       reconnectAttempts: this.reconnectAttempts
     };
+  }
+
+  /**
+   * Notify WebSocket clients of status change
+   */
+  notifyStatusChange() {
+    // Use setTimeout to avoid circular dependency issues
+    setTimeout(() => {
+      try {
+        // Import wsHandler dynamically
+        import('../websocket/wsHandler.js').then(({ default: wsHandler }) => {
+          const status = this.getStatus();
+          wsHandler.broadcastOpcuaStatus(status);
+        }).catch(() => {
+          // Ignore import errors
+        });
+      } catch (error) {
+        // Ignore errors if wsHandler is not available yet
+        logger.debug({ err: error }, 'Could not notify WebSocket clients of status change');
+      }
+    }, 100);
   }
 
   /**

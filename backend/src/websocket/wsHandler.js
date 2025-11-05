@@ -169,7 +169,32 @@ class WSHandler {
       });
     });
 
+    // Send OPC UA status (import dynamically to avoid circular dependency)
+    try {
+      import('../opcua/opcuaClient.js').then(({ default: opcuaClient }) => {
+        const opcuaStatus = opcuaClient.getStatus();
+        this.sendToClient(client, {
+          type: 'opcua_status',
+          payload: opcuaStatus,
+        });
+      }).catch(() => {
+        // Ignore import errors
+      });
+    } catch (error) {
+      // Ignore errors
+    }
+
     logger.debug({ clientId: client.id, tagsCount: tags.length, alarmsCount: alarms.length }, 'Initial state sent');
+  }
+
+  /**
+   * Broadcast OPC UA status update to all authenticated clients
+   */
+  broadcastOpcuaStatus(status) {
+    this.broadcast({
+      type: 'opcua_status',
+      payload: status,
+    });
   }
 
   /**

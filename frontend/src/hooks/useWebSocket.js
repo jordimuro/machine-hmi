@@ -139,3 +139,73 @@ export function useAlarms(initialAlarms = []) {
 
   return Array.from(alarms.values());
 }
+/**
+ * Hook for complete WebSocket data management
+ */
+export function useWebSocket() {
+  const [data, setData] = useState({
+    tags: {},
+    alarms: [],
+    opcua: {
+      connected: false,
+      endpoint: null,
+      mockMode: false,
+      lastError: null
+    }
+  });
+  const [isConnected, setIsConnected] = useState(wsClient.isConnected());
+
+  useEffect(() => {
+    const handleConnected = () => setIsConnected(true);
+    const handleDisconnected = () => setIsConnected(false);
+    
+    const handleTagUpdate = (tag) => {
+      setData(prev => ({
+        ...prev,
+        tags: {
+          ...prev.tags,
+          [tag.name]: tag
+        }
+      }));
+    };
+
+    const handleAlarmUpdate = (alarm) => {
+      setData(prev => {
+        const alarms = prev.alarms.filter(a => a.id !== alarm.id);
+        if (alarm.active) {
+          alarms.push(alarm);
+        }
+        return {
+          ...prev,
+          alarms
+        };
+      });
+    };
+
+    const handleOpcuaStatus = (status) => {
+      setData(prev => ({
+        ...prev,
+        opcua: {
+          ...prev.opcua,
+          ...status
+        }
+      }));
+    };
+
+    wsClient.on('connected', handleConnected);
+    wsClient.on('disconnected', handleDisconnected);
+    wsClient.on('tag_update', handleTagUpdate);
+    wsClient.on('alarm_update', handleAlarmUpdate);
+    wsClient.on('opcua_status', handleOpcuaStatus);
+
+    return () => {
+      wsClient.off('connected', handleConnected);
+      wsClient.off('disconnected', handleDisconnected);
+      wsClient.off('tag_update', handleTagUpdate);
+      wsClient.off('alarm_update', handleAlarmUpdate);
+      wsClient.off('opcua_status', handleOpcuaStatus);
+    };
+  }, []);
+
+  return { data, isConnected };
+}

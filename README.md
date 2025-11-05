@@ -69,6 +69,26 @@ cd ..
    npm install
    ```
 
+3. **Start development servers**
+   ```bash
+   # From project root
+   ./scripts/dev.sh
+   ```
+
+4. **Access the application**
+   ```bash
+   # Check network access information
+   ./scripts/network-info.sh
+   
+   # Local access:
+   #   Frontend: http://localhost:3000
+   #   Backend API: http://localhost:8080
+   #
+   # Network access (from other devices in same network):
+   #   Frontend: http://[YOUR_IP]:3000
+   #   Backend API: http://[YOUR_IP]:8080
+   ```
+
 3. **Configure backend**
    ```bash
    cd backend
@@ -83,9 +103,43 @@ cd ..
    ```
 
 5. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:8080/api
-   - Default PINs: Operator `1111`, Maintenance `2222`
+   ```bash
+   # Check network access information
+   ./scripts/network-info.sh
+   ```
+   - **Local access:**
+     - Frontend: http://localhost:3000
+     - Backend API: http://localhost:8080/api
+   - **Network access (from other devices):**
+     - Frontend: http://[YOUR_IP]:3000
+     - Backend API: http://[YOUR_IP]:8080/api
+   - **Default PINs:** Operator `1111`, Maintenance `2222`
+
+## Network Access
+
+The HMI application is configured for network access from any device on the same network:
+
+### **Mobile/Tablet Access**
+1. Connect your device to the same WiFi/Ethernet network
+2. Open a web browser
+3. Navigate to http://[YOUR_IP]:3000
+4. Use the touch-friendly interface
+
+### **Network Configuration**
+- Frontend: Listens on all interfaces (0.0.0.0:3000)
+- Backend: Listens on all interfaces (0.0.0.0:8080)
+- OPC UA: Connects to 192.168.68.100:4840
+
+### **Firewall Considerations**
+If you can't access from other devices, check firewall settings:
+```bash
+# macOS
+sudo pfctl -d  # Disable firewall temporarily for testing
+
+# Linux
+sudo ufw allow 3000
+sudo ufw allow 8080
+```
 
 ## Installation on Raspberry Pi
 
