@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
-import { useWebSocketStatus } from '../hooks/useWebSocket';
+import { useWebSocketStatus, useWebSocket } from '../hooks/useWebSocket';
 import LanguageSelector from './LanguageSelector';
 import ThemeSelector from './ThemeSelector';
 import {
@@ -17,14 +17,32 @@ import {
   Activity,
   Menu,
   X,
+  AlertTriangle,
+  CheckCircle,
 } from 'lucide-react';
 
 export default function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
   const location = useLocation();
   const { t } = useTranslation();
   const { user, logout } = useAuth();
   const wsConnected = useWebSocketStatus();
+  const { data } = useWebSocket();
+  
+  // Actualizar la hora cada segundo
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+  
+  // Obtener estado OPC y alarmas de los datos del WebSocket
+  const opcStatus = data.opcua_status || 'disconnected';
+  const alarms = data.alarms || [];
+  const activeAlarms = alarms.filter(alarm => alarm.active);
+  const opcConnected = opcStatus === 'connected';
 
   const navigation = [
     { name: t('nav.dashboard'), path: '/', icon: LayoutDashboard },
@@ -40,8 +58,8 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
-      {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow-md">
+      {/* Fixed Header */}
+      <header className="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
         <div className="px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             {/* Mobile menu button */}
@@ -201,11 +219,61 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-4 py-2">
-        <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-          <span>{t('app.title')} {t('app.version')}</span>
-          <span>{new Date().toLocaleString()}</span>
+      {/* Fixed Footer */}
+      <footer className="sticky bottom-0 z-40 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-4 py-2 shadow-lg">
+        <div className="flex items-center justify-between text-sm">
+          {/* OPC Connection Status */}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              {opcConnected ? (
+                <>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-green-600 dark:text-green-400 font-medium">
+                    OPC-UA Connected
+                  </span>
+                </>
+              ) : (
+                <>
+                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  <span className="text-red-600 dark:text-red-400 font-medium">
+                    OPC-UA Disconnected
+                  </span>
+                </>
+              )}
+            </div>
+            
+            {/* Alarms Status */}
+            <div className="flex items-center gap-2">
+              {activeAlarms.length > 0 ? (
+                <>
+                  <AlertTriangle className="w-4 h-4 text-orange-500" />
+                  <span className="text-orange-600 dark:text-orange-400 font-medium">
+                    {activeAlarms.length} {activeAlarms.length === 1 ? 'Alarma Activa' : 'Alarmas Activas'}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span className="text-green-600 dark:text-green-400 font-medium">
+                    Sin Alarmas
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+          
+          {/* Date and Time */}
+          <div className="text-gray-600 dark:text-gray-400 font-medium">
+            {currentTime.toLocaleString('es-ES', {
+              weekday: 'short',
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit'
+            })}
+          </div>
         </div>
       </footer>
     </div>

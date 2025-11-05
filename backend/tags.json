@@ -1,5 +1,5 @@
 {
-  "pollingRateMs": 100,
+  "pollingRateMs": 500,
   "tags": {
     "ActualSpeed": {
       "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.lrActualSpeed",
