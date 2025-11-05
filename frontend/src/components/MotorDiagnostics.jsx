@@ -57,26 +57,30 @@ const StatusIndicator = ({ active, type = 'default' }) => {
 };
 
 const ValueDisplay = ({ label, value, unit, info = false, warning = false }) => (
-  <div className="flex items-center gap-2 mb-2">
+  <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
     <div className="flex items-center gap-1">
       {info && <div className="w-4 h-4 bg-blue-500 text-white text-xs flex items-center justify-center rounded">i</div>}
-      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 min-w-[140px]">
+      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 sm:min-w-[140px]">
         {label}
       </span>
     </div>
-    <div className={`px-3 py-1 rounded border ${warning ? 'bg-warning-100 border-warning-300' : 'bg-yellow-100 border-yellow-300'} min-w-[80px] text-center`}>
-      <span className="font-mono text-sm">{value}</span>
+    <div className="flex items-center gap-2">
+      <div className={`px-3 py-1 rounded border ${warning ? 'bg-warning-100 border-warning-300' : 'bg-yellow-100 border-yellow-300'} min-w-[80px] text-center`}>
+        <span className="font-mono text-sm">{value}</span>
+      </div>
+      {unit && <span className="text-sm text-gray-600 dark:text-gray-400">{unit}</span>}
     </div>
-    {unit && <span className="text-sm text-gray-600 dark:text-gray-400">{unit}</span>}
   </div>
 );
 
 const StatusDisplay = ({ label, value, active, type = 'default' }) => (
-  <div className="flex items-center gap-2 mb-2">
-    <StatusIndicator active={active} type={type} />
-    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 min-w-[120px]">
-      {label}
-    </span>
+  <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+    <div className="flex items-center gap-2">
+      <StatusIndicator active={active} type={type} />
+      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 sm:min-w-[120px]">
+        {label}
+      </span>
+    </div>
     <div className="px-3 py-1 rounded border bg-yellow-100 border-yellow-300 flex-1">
       <span className="font-mono text-sm">{value}</span>
     </div>
@@ -84,13 +88,15 @@ const StatusDisplay = ({ label, value, active, type = 'default' }) => (
 );
 
 const ModeDisplay = ({ label, value, info = false }) => (
-  <div className="flex items-center gap-2 mb-2">
-    {info && <div className="w-4 h-4 bg-blue-500 text-white text-xs flex items-center justify-center rounded">i</div>}
-    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 min-w-[140px]">
-      {label}
-    </span>
+  <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+    <div className="flex items-center gap-1">
+      {info && <div className="w-4 h-4 bg-blue-500 text-white text-xs flex items-center justify-center rounded">i</div>}
+      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 sm:min-w-[140px]">
+        {label}
+      </span>
+    </div>
     <div className="px-3 py-1 rounded border bg-yellow-100 border-yellow-300 flex-1">
-      <span className="font-mono text-sm">{value}</span>
+      <span className="font-mono text-sm break-all">{value}</span>
     </div>
   </div>
 );
@@ -171,7 +177,7 @@ export default function MotorDiagnostics() {
         </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           
           {/* Left Column - Basic Values */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
@@ -14,9 +15,12 @@ import {
   WifiOff,
   User,
   Activity,
+  Menu,
+  X,
 } from 'lucide-react';
 
 export default function Layout() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { t } = useTranslation();
   const { user, logout } = useAuth();
@@ -39,10 +43,24 @@ export default function Layout() {
       <header className="bg-white dark:bg-gray-800 shadow-md">
         <div className="px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold text-primary-600 dark:text-primary-400">{t('app.title')}</h1>
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+              )}
+            </button>
 
-            {/* Connection Status */}
-            <div className="flex items-center gap-2">
+            <h1 className="text-xl md:text-2xl font-bold text-primary-600 dark:text-primary-400">
+              {t('app.title')}
+            </h1>
+
+            {/* Connection Status - Hidden on small screens */}
+            <div className="hidden sm:flex items-center gap-2">
               {wsConnected ? (
                 <>
                   <Wifi className="w-5 h-5 text-success-600" />
@@ -61,35 +79,36 @@ export default function Layout() {
             </div>
           </div>
 
-          {/* User Info and Language Selector */}
-          <div className="flex items-center gap-4">
+          {/* User Info and Selectors */}
+          <div className="flex items-center gap-2 md:gap-4">
             {/* Theme Selector */}
             <ThemeSelector />
             
             {/* Language Selector */}
             <LanguageSelector />
 
-            {/* User Info */}
-            <div className="flex items-center gap-2">
+            {/* User Info - Hidden on small screens */}
+            <div className="hidden sm:flex items-center gap-2">
               <User className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300 capitalize">
                 {t(`auth.${user?.role}`)}
               </span>
             </div>
 
+            {/* Logout button - Icon only on mobile */}
             <button
               onClick={logout}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg transition-colors"
+              className="flex items-center gap-2 px-2 md:px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg transition-colors"
             >
               <LogOut className="w-5 h-5" />
-              <span className="font-medium">{t('nav.logout')}</span>
+              <span className="hidden md:inline font-medium">{t('nav.logout')}</span>
             </button>
           </div>
         </div>
 
-        {/* Navigation */}
-        <nav className="border-t border-gray-200 dark:border-gray-700">
-          <div className="px-4 flex gap-2">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:block border-t border-gray-200 dark:border-gray-700">
+          <div className="px-4 flex gap-2 overflow-x-auto">
             {navigation.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -99,8 +118,8 @@ export default function Layout() {
                   key={item.path}
                   to={item.path}
                   className={`
-                    flex items-center gap-2 px-6 py-3 font-medium transition-colors
-                    border-b-2 no-select
+                    flex items-center gap-2 px-4 lg:px-6 py-3 font-medium transition-colors
+                    border-b-2 no-select whitespace-nowrap
                     ${
                       isActive
                         ? 'text-primary-600 dark:text-primary-400 border-primary-600 dark:border-primary-400'
@@ -109,12 +128,71 @@ export default function Layout() {
                   `}
                 >
                   <Icon className="w-5 h-5" />
-                  <span>{item.name}</span>
+                  <span className="text-sm lg:text-base">{item.name}</span>
                 </Link>
               );
             })}
           </div>
         </nav>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <div className="px-4 py-2 space-y-1">
+              {navigation.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.path;
+
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`
+                      flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors
+                      no-select
+                      ${
+                        isActive
+                          ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
+                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
+                      }
+                    `}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
+              
+              {/* Connection Status in mobile menu */}
+              <div className="flex items-center gap-3 px-4 py-3 text-sm">
+                {wsConnected ? (
+                  <>
+                    <Wifi className="w-5 h-5 text-success-600" />
+                    <span className="text-success-600 font-medium">
+                      {t('connection.connected')}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <WifiOff className="w-5 h-5 text-danger-600" />
+                    <span className="text-danger-600 font-medium">
+                      {t('connection.disconnected')}
+                    </span>
+                  </>
+                )}
+              </div>
+
+              {/* User info in mobile menu */}
+              <div className="flex items-center gap-3 px-4 py-3 text-sm border-t border-gray-200 dark:border-gray-700">
+                <User className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                <span className="text-gray-700 dark:text-gray-300 capitalize">
+                  {t(`auth.${user?.role}`)}
+                </span>
+              </div>
+            </div>
+          </nav>
+        )}
       </header>
 
       {/* Main Content */}
