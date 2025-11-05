@@ -196,9 +196,9 @@ export default function History() {
               <Line
                 type="monotone"
                 dataKey="value"
-                stroke="#0ea5e9"
+                stroke="#eab308"
                 strokeWidth={2}
-                dot={{ fill: '#0ea5e9', r: 3 }}
+                dot={{ fill: '#eab308', r: 3 }}
                 activeDot={{ r: 5 }}
                 name={selectedTag}
               />

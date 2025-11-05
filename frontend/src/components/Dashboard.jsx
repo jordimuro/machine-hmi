@@ -22,23 +22,23 @@ const TAG_ICONS = {
 
 // Configuración de rangos para los gauges
 const GAUGE_CONFIGS = {
-  ActualSpeed: { min: -5000, max: 5000, unit: 'RPM', color: '#3b82f6' },
-  RandomValue_01: { min: -3000, max: 3000, unit: '', color: '#10b981' },
-  RandomValue_02: { min: -3000, max: 3000, unit: '', color: '#f59e0b' },
-  RandomValue_03: { min: -3000, max: 3000, unit: '', color: '#ef4444' },
-  RandomValue_04: { min: -3000, max: 3000, unit: '', color: '#8b5cf6' },
-  RandomValue_05: { min: -3000, max: 3000, unit: '', color: '#06b6d4' },
-  MachineSpeed: { min: 0, max: 3000, unit: 'RPM', color: '#3b82f6' },
-  TemperatureZone1: { min: 0, max: 300, unit: '°C', color: '#ef4444' },
-  TemperatureZone2: { min: 0, max: 300, unit: '°C', color: '#ef4444' },
-  Pressure: { min: 0, max: 10, unit: 'bar', color: '#f59e0b' },
-  ProductionCount: { min: 0, max: 1000, unit: 'units', color: '#10b981' },
+  ActualSpeed: { min: -5000, max: 5000, unit: 'RPM', color: '#eab308' },
+  RandomValue_01: { min: -3000, max: 3000, unit: '', color: '#ca8a04' },
+  RandomValue_02: { min: -3000, max: 3000, unit: '', color: '#a16207' },
+  RandomValue_03: { min: -3000, max: 3000, unit: '', color: '#facc15' },
+  RandomValue_04: { min: -3000, max: 3000, unit: '', color: '#fde047' },
+  RandomValue_05: { min: -3000, max: 3000, unit: '', color: '#eab308' },
+  MachineSpeed: { min: 0, max: 3000, unit: 'RPM', color: '#eab308' },
+  TemperatureZone1: { min: 0, max: 300, unit: '°C', color: '#f59e0b' },
+  TemperatureZone2: { min: 0, max: 300, unit: '°C', color: '#f59e0b' },
+  Pressure: { min: 0, max: 10, unit: 'bar', color: '#ca8a04' },
+  ProductionCount: { min: 0, max: 1000, unit: 'units', color: '#a16207' },
 };
 
 function GaugeCard({ tag, t }) {
   if (!tag) return null;
 
-  const config = GAUGE_CONFIGS[tag.name] || { min: 0, max: 100, unit: '', color: '#3b82f6' };
+  const config = GAUGE_CONFIGS[tag.name] || { min: 0, max: 100, unit: '', color: '#eab308' };
   
   const getQualityColor = (quality) => {
     switch (quality) {

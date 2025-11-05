@@ -8,7 +8,7 @@ export default function Gauge({
   label = '', 
   size = 120,
   strokeWidth = 8,
-  color = '#3b82f6',
+  color = '#eab308',
   backgroundColor = '#e5e7eb'
 }) {
   const normalizedValue = useMemo(() => {
@@ -31,11 +31,11 @@ export default function Gauge({
   const getColor = () => {
     if (percentage > 80) return '#ef4444'; // Rojo para valores altos
     if (percentage > 60) return '#f59e0b'; // Amarillo para valores medios-altos
-    if (percentage > 40) return '#10b981'; // Verde para valores medios
-    return '#3b82f6'; // Azul para valores bajos
+    if (percentage > 40) return '#ca8a04'; // Amarillo oscuro para valores medios
+    return '#eab308'; // Amarillo para valores bajos
   };
 
-  const dynamicColor = color === '#3b82f6' ? getColor() : color;
+  const dynamicColor = color === '#eab308' ? getColor() : color;
 
   return (
     <div className="flex flex-col items-center">
