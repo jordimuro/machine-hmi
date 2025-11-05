@@ -81,23 +81,28 @@ router.get('/browse', authenticate, async (req, res) => {
     
     let result;
     
-    if (browseType === 'application') {
-      // Búsqueda específica para variables de aplicación CODESYS
-      result = await opcuaClient.browseApplicationVariables();
-    } else if (nodeId) {
-      // Explorar un nodo específico
-      result = await opcuaClient.browseNodes(nodeId, {
-        recursive,
-        maxDepth,
-        variablesOnly: browseType === 'variables'
-      });
+    // Si estamos en modo mock, generar variables simuladas
+    if (status.mockMode) {
+      result = opcuaClient.generateMockBrowseResult(browseType, nodeId);
     } else {
-      // Exploración general desde la raíz
-      result = await opcuaClient.browseNodes('RootFolder', {
-        recursive: true,
-        maxDepth: 3,
-        variablesOnly: browseType === 'variables'
-      });
+      if (browseType === 'application') {
+        // Búsqueda específica para variables de aplicación CODESYS
+        result = await opcuaClient.browseApplicationVariables();
+      } else if (nodeId) {
+        // Explorar un nodo específico
+        result = await opcuaClient.browseNodes(nodeId, {
+          recursive,
+          maxDepth,
+          variablesOnly: browseType === 'variables'
+        });
+      } else {
+        // Exploración general desde la raíz
+        result = await opcuaClient.browseNodes('RootFolder', {
+          recursive: true,
+          maxDepth: 3,
+          variablesOnly: browseType === 'variables'
+        });
+      }
     }
     
     res.json(result);

@@ -32,6 +32,7 @@ export default function Layout() {
     { name: t('nav.alarms'), path: '/alarms', icon: Bell },
     { name: t('nav.history'), path: '/history', icon: TrendingUp },
     { name: t('motorDiagnostics.title'), path: '/motor-diagnostics', icon: Activity },
+    { name: t('opcPerformance.title'), path: '/opc-performance', icon: Activity },
     ...(user?.role === 'maintenance'
       ? [{ name: t('nav.commands'), path: '/commands', icon: Terminal }]
       : []),

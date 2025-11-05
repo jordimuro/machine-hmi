@@ -163,6 +163,10 @@
     "title": "Motor Diagnostics",
     "subtitle": "Real-time motor drive diagnostic information"
   },
+  "opcPerformance": {
+    "title": "OPC Performance",
+    "subtitle": "Real-time performance monitoring of all 20 motors with 23 variables each"
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",
