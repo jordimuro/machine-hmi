@@ -154,9 +154,30 @@ export default function OpcPerformance() {
   const { t } = useTranslation();
   const [motorsData, setMotorsData] = useState(Array(20).fill({}));
   const [lastUpdate, setLastUpdate] = useState(Date.now());
+  const [updateCount, setUpdateCount] = useState(0);
+  const [fps, setFps] = useState(0);
   const { data, isConnected } = useWebSocket();
   const tags = data.tags || {};
   const connected = isConnected;
+
+  // Actualizar timestamp cada 250ms para mostrar actividad en tiempo real
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLastUpdate(Date.now());
+    }, 250);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Calcular FPS (actualizaciones por segundo)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFps(updateCount);
+      setUpdateCount(0);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [updateCount]);
 
   // Actualizar datos de motores cuando cambien los tags
   useEffect(() => {
@@ -185,7 +206,7 @@ export default function OpcPerformance() {
     });
 
     setMotorsData(newMotorsData);
-    setLastUpdate(Date.now());
+    setUpdateCount(prev => prev + 1);
   }, [tags]);
 
   // Calcular estadísticas generales
@@ -300,7 +321,8 @@ export default function OpcPerformance() {
         {/* Footer Info */}
         <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
           <p>Showing {Object.keys(variableConfig).length} variables per motor × {totalMotors} motors = {Object.keys(variableConfig).length * totalMotors} total data points</p>
-          <p>Data updates every 2 seconds</p>
+          <p>Data updates every 250ms (4 Hz) - Performance Test Mode</p>
+          <p className="text-primary-600 dark:text-primary-400 font-medium">FPS: {fps} updates/sec</p>
         </div>
       </div>
     </div>
