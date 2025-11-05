@@ -57,14 +57,91 @@ class OpcuaClient {
 
       logger.info({ endpoint: config.opcua.endpoint }, 'Attempting to connect to OPC UA server');
 
-      // For now, we'll use mock mode by default for development
-      // In production, implement real OPC UA connection here
-      logger.info('Using mock OPC UA mode for development');
-      this.enableMockMode();
+      // Try real OPC UA connection
+      await this.connectReal(opcua);
 
     } catch (error) {
       logger.warn({ err: error }, 'node-opcua not available or connection failed, using mock mode');
       this.enableMockMode();
+    }
+  }
+
+  /**
+   * Connect to real OPC UA server
+   */
+  async connectReal(opcua) {
+    try {
+      // Create OPC UA client
+      this.client = opcua.OPCUAClient.create({
+        applicationName: "Machine HMI Client",
+        connectionStrategy: {
+          initialDelay: 1000,
+          maxRetry: 3
+        },
+        securityMode: opcua.MessageSecurityMode.None,
+        securityPolicy: opcua.SecurityPolicy.None,
+        endpoint_must_exist: false
+      });
+
+      // Connect to server
+      await this.client.connect(config.opcua.endpoint);
+      logger.info('Connected to OPC UA server');
+
+      // Create session
+      this.session = await this.client.createSession();
+      logger.info('OPC UA session created');
+
+      this.connected = true;
+      this.mockMode = false;
+      this.reconnectAttempts = 0;
+
+      // Initialize tag store with initial values
+      await this.readAllTags();
+
+      // Start polling and logging
+      this.startPolling();
+      this.startLogging();
+
+    } catch (error) {
+      logger.error({ err: error }, 'Failed to connect to real OPC UA server');
+      throw error;
+    }
+  }
+
+  /**
+   * Read all tags from OPC UA server
+   */
+  async readAllTags() {
+    if (!this.session) return;
+
+    const nodeIds = Object.entries(this.tagsConfig.tags).map(([tagName, tagConfig]) => ({
+      tagName,
+      nodeId: tagConfig.nodeId
+    }));
+
+    try {
+      const nodesToRead = nodeIds.map(({ nodeId }) => ({
+        nodeId: nodeId,
+        attributeId: 13 // Value attribute
+      }));
+
+      const dataValues = await this.session.read(nodesToRead);
+
+      dataValues.forEach((dataValue, index) => {
+        const { tagName } = nodeIds[index];
+        
+        if (dataValue.statusCode.isGood()) {
+          const value = dataValue.value.value;
+          tagStore.update(tagName, value, 'good');
+          logger.debug({ tagName, value }, 'Tag read successfully');
+        } else {
+          tagStore.update(tagName, null, 'bad');
+          logger.warn({ tagName, statusCode: dataValue.statusCode.toString() }, 'Tag read failed');
+        }
+      });
+
+    } catch (error) {
+      logger.error({ err: error }, 'Failed to read tags from OPC UA server');
     }
   }
 
@@ -126,8 +203,27 @@ class OpcuaClient {
     if (this.mockMode) {
       this.pollTagsMock();
     } else {
-      // Implement real OPC UA polling here
-      // this.pollTagsReal();
+      this.pollTagsReal();
+    }
+  }
+
+  /**
+   * Poll tags from real OPC UA server
+   */
+  async pollTagsReal() {
+    if (!this.session) return;
+
+    try {
+      await this.readAllTags();
+    } catch (error) {
+      logger.error({ err: error }, 'Error polling tags from OPC UA server');
+      
+      // If connection lost, try to reconnect
+      if (error.message.includes('BadConnectionClosed') || error.message.includes('ECONNRESET')) {
+        logger.warn('Connection lost, attempting to reconnect...');
+        this.connected = false;
+        this.scheduleReconnect();
+      }
     }
   }
 
@@ -332,6 +428,54 @@ class OpcuaClient {
   }
 
   /**
+   * Schedule reconnection attempt
+   */
+  scheduleReconnect() {
+    if (this.reconnectTimer) {
+      clearTimeout(this.reconnectTimer);
+    }
+
+    const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), this.maxReconnectDelay);
+    this.reconnectAttempts++;
+
+    logger.info({ delay, attempt: this.reconnectAttempts }, 'Scheduling reconnection attempt');
+
+    this.reconnectTimer = setTimeout(async () => {
+      try {
+        await this.connect();
+      } catch (error) {
+        logger.error({ err: error }, 'Reconnection attempt failed');
+        this.scheduleReconnect();
+      }
+    }, delay);
+  }
+
+  /**
+   * Browse OPC UA server nodes (for debugging)
+   */
+  async browseNodes(nodeId = 'RootFolder') {
+    if (!this.session || this.mockMode) {
+      return { error: 'No active OPC UA session or in mock mode' };
+    }
+
+    try {
+      const browseResult = await this.session.browse(nodeId);
+      const nodes = browseResult.references?.map(ref => ({
+        nodeId: ref.nodeId.toString(),
+        browseName: ref.browseName.toString(),
+        displayName: ref.displayName?.text || '',
+        nodeClass: ref.nodeClass,
+        typeDefinition: ref.typeDefinition?.toString()
+      })) || [];
+
+      return { nodes, count: nodes.length };
+    } catch (error) {
+      logger.error({ err: error, nodeId }, 'Failed to browse nodes');
+      return { error: error.message };
+    }
+  }
+
+  /**
    * Get connection status
    */
   getStatus() {
@@ -340,6 +484,7 @@ class OpcuaClient {
       mockMode: this.mockMode,
       endpoint: config.opcua.endpoint,
       tagsCount: Object.keys(this.tagsConfig?.tags || {}).length,
+      reconnectAttempts: this.reconnectAttempts
     };
   }
 
@@ -362,6 +507,21 @@ class OpcuaClient {
     if (this.reconnectTimer) {
       clearTimeout(this.reconnectTimer);
       this.reconnectTimer = null;
+    }
+
+    // Close OPC UA session and client
+    try {
+      if (this.session) {
+        await this.session.close();
+        this.session = null;
+      }
+      
+      if (this.client) {
+        await this.client.disconnect();
+        this.client = null;
+      }
+    } catch (error) {
+      logger.warn({ err: error }, 'Error during OPC UA cleanup');
     }
 
     this.connected = false;

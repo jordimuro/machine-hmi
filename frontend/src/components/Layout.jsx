@@ -12,6 +12,7 @@ import {
   Wifi,
   WifiOff,
   User,
+  Activity,
 } from 'lucide-react';
 
 export default function Layout() {
@@ -22,6 +23,7 @@ export default function Layout() {
 
   const navigation = [
     { name: t('nav.dashboard'), path: '/', icon: LayoutDashboard },
+    { name: 'OPC-UA ActualSpeed', path: '/opcua', icon: Activity },
     { name: t('nav.alarms'), path: '/alarms', icon: Bell },
     { name: t('nav.history'), path: '/history', icon: TrendingUp },
     ...(user?.role === 'maintenance'

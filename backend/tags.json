@@ -1,6 +1,14 @@
 {
   "pollingRateMs": 1000,
   "tags": {
+    "ActualSpeed": {
+      "nodeId": "ns=4;s=|var|c500.Application.GVL.lrActualSpeed",
+      "loggable": true,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 5000
+    },
     "MachineSpeed": {
       "nodeId": "ns=2;s=Machine.Speed",
       "loggable": true,

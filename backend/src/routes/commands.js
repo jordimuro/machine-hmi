@@ -58,4 +58,19 @@ router.get('/status', authenticate, (req, res) => {
   }
 });
 
+/**
+ * GET /api/cmd/browse?nodeId=xxx
+ * Browse OPC UA server nodes (for debugging)
+ */
+router.get('/browse', authenticate, async (req, res) => {
+  try {
+    const nodeId = req.query.nodeId || 'RootFolder';
+    const result = await opcuaClient.browseNodes(nodeId);
+    res.json(result);
+  } catch (error) {
+    logger.error({ err: error }, 'Browse nodes failed');
+    res.status(500).json({ error: 'Failed to browse nodes' });
+  }
+});
+
 export default router;
