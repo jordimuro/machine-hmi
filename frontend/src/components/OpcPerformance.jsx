@@ -2,93 +2,94 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Activity, Zap, Thermometer, Gauge as GaugeIcon } from 'lucide-react';
 import Gauge from './Gauge';
+import { useWebSocket } from '../hooks/useWebSocket';
 
-// Generar datos simulados para 20 motores con 23 variables cada uno
-const generateMotorData = (motorIndex) => {
-  const baseValues = {
-    // Variables de velocidad y frecuencia
-    actualSpeed: 1400 + Math.random() * 200,
-    setpointSpeed: 1500 + Math.random() * 100,
-    outputFrequency: 49 + Math.random() * 12,
-    frequencySetpoint: 50 + Math.random() * 10,
-    
-    // Variables eléctricas
-    dcBusVoltage: 580 + Math.random() * 40,
-    motorVoltage: 380 + Math.random() * 40,
-    motorCurrent: Math.random() * 50,
-    effectivePower: Math.random() * 30,
-    apparentPower: Math.random() * 35,
-    powerFactor: 0.7 + Math.random() * 0.3,
-    
-    // Variables de torque
-    actualTorque: Math.random() * 100,
-    setpointTorque: Math.random() * 100,
-    internalSetTorque: Math.random() * 100,
-    
-    // Variables de temperatura
-    motorTemperature: 40 + Math.random() * 60,
-    heatsinkTemperature: 45 + Math.random() * 30,
-    ambientTemperature: 20 + Math.random() * 15,
-    
-    // Variables de estado y utilización
-    deviceUtilization: Math.random() * 100,
-    motorUtilization: Math.random() * 100,
-    efficiency: 80 + Math.random() * 15,
-    
-    // Variables de vibración y mantenimiento
-    vibrationLevel: Math.random() * 10,
-    operatingHours: 1000 + Math.random() * 5000,
-    maintenanceCounter: Math.floor(Math.random() * 100),
-    
-    // Variable de estado general
-    overallStatus: 85 + Math.random() * 15
-  };
-  
-  // Añadir variación específica por motor
-  const motorVariation = (motorIndex + 1) * 0.1;
-  Object.keys(baseValues).forEach(key => {
-    if (typeof baseValues[key] === 'number') {
-      baseValues[key] *= (1 + (Math.sin(motorIndex) * motorVariation));
-    }
-  });
-  
-  return baseValues;
+// Mapeo de variables del XML a nombres amigables
+const variableMapping = {
+  lrDCVoltage: 'dcVoltage',
+  lrDCVoltage24: 'dcVoltage24',
+  lrPositionSet: 'positionSet',
+  lrPositionAct: 'positionAct',
+  lrSpeedSet: 'speedSet',
+  lrSpeedAct: 'speedAct',
+  lrTorqueSet: 'torqueSet',
+  lrTorqueAct: 'torqueAct',
+  lrFollowingError: 'followingError',
+  lrMotorVoltage: 'motorVoltage',
+  lrMotorFreq: 'motorFreq',
+  lrMotorCurrent: 'motorCurrent',
+  lrMotorAnglePos: 'motorAnglePos',
+  lrEffectivePower: 'effectivePower',
+  lrHeatsinkTemp: 'heatsinkTemp',
+  lrMotorTemp: 'motorTemp',
+  lrInverterLoad: 'inverterLoad',
+  lrMotorLoad: 'motorLoad',
+  wAxisError: 'axisError',
+  dwDriveError: 'driveError',
+  dwStatus: 'status',
+  dwStatusDigital: 'statusDigital',
+  wDriveType: 'driveType'
 };
 
-// Configuración de las variables con sus rangos y unidades
+// Generar nombres de tags OPC-UA para el array aAxisDiagnostic
+const generateOpcTags = () => {
+  const tags = {};
+  
+  // Para cada motor (1 a 20)
+  for (let motorIndex = 1; motorIndex <= 20; motorIndex++) {
+    // Para cada variable en classDriveDiagnostic
+    Object.keys(variableMapping).forEach(opcVar => {
+      const friendlyName = variableMapping[opcVar];
+      const tagName = `aAxisDiagnostic_${motorIndex}_${friendlyName}`;
+      const nodeId = `ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[${motorIndex}].${opcVar}`;
+      
+      tags[tagName] = {
+        nodeId,
+        motorIndex,
+        variable: friendlyName,
+        opcVariable: opcVar
+      };
+    });
+  }
+  
+  return tags;
+};
+
+const opcTags = generateOpcTags();
+
+// Configuración de las variables basada en el XML classDriveDiagnostic
 const variableConfig = {
-  actualSpeed: { min: 0, max: 2000, unit: 'RPM', color: '#84cc16', label: 'Actual Speed' },
-  setpointSpeed: { min: 0, max: 2000, unit: 'RPM', color: '#65a30d', label: 'Setpoint Speed' },
-  outputFrequency: { min: 0, max: 100, unit: 'Hz', color: '#3b82f6', label: 'Output Freq' },
-  frequencySetpoint: { min: 0, max: 100, unit: 'Hz', color: '#1d4ed8', label: 'Freq Setpoint' },
-  
-  dcBusVoltage: { min: 0, max: 800, unit: 'V', color: '#f59e0b', label: 'DC Bus Voltage' },
-  motorVoltage: { min: 0, max: 500, unit: 'VAC', color: '#d97706', label: 'Motor Voltage' },
-  motorCurrent: { min: 0, max: 100, unit: 'A', color: '#dc2626', label: 'Motor Current' },
-  effectivePower: { min: 0, max: 50, unit: 'kW', color: '#7c3aed', label: 'Effective Power' },
-  apparentPower: { min: 0, max: 60, unit: 'kVA', color: '#5b21b6', label: 'Apparent Power' },
-  powerFactor: { min: 0, max: 1, unit: '', color: '#059669', label: 'Power Factor' },
-  
-  actualTorque: { min: 0, max: 150, unit: 'Nm', color: '#0891b2', label: 'Actual Torque' },
-  setpointTorque: { min: 0, max: 150, unit: 'Nm', color: '#0e7490', label: 'Setpoint Torque' },
-  internalSetTorque: { min: 0, max: 150, unit: 'Nm', color: '#155e75', label: 'Internal Torque' },
-  
-  motorTemperature: { min: 0, max: 120, unit: '°C', color: '#ef4444', label: 'Motor Temp' },
-  heatsinkTemperature: { min: 0, max: 100, unit: '°C', color: '#f97316', label: 'Heatsink Temp' },
-  ambientTemperature: { min: 0, max: 50, unit: '°C', color: '#06b6d4', label: 'Ambient Temp' },
-  
-  deviceUtilization: { min: 0, max: 100, unit: '%', color: '#8b5cf6', label: 'Device Util' },
-  motorUtilization: { min: 0, max: 100, unit: '%', color: '#a855f7', label: 'Motor Util' },
-  efficiency: { min: 0, max: 100, unit: '%', color: '#22c55e', label: 'Efficiency' },
-  
-  vibrationLevel: { min: 0, max: 20, unit: 'mm/s', color: '#f43f5e', label: 'Vibration' },
-  operatingHours: { min: 0, max: 10000, unit: 'h', color: '#64748b', label: 'Op Hours' },
-  maintenanceCounter: { min: 0, max: 200, unit: '', color: '#6b7280', label: 'Maintenance' },
-  
-  overallStatus: { min: 0, max: 100, unit: '%', color: '#10b981', label: 'Overall Status' }
+  dcVoltage: { min: 0, max: 800, unit: 'V', color: '#f59e0b', label: 'DC Voltage' },
+  dcVoltage24: { min: 0, max: 30, unit: 'V', color: '#d97706', label: 'DC 24V' },
+  positionSet: { min: -360, max: 360, unit: '°', color: '#3b82f6', label: 'Pos Set' },
+  positionAct: { min: -360, max: 360, unit: '°', color: '#1d4ed8', label: 'Pos Act' },
+  speedSet: { min: 0, max: 3000, unit: 'RPM', color: '#84cc16', label: 'Speed Set' },
+  speedAct: { min: 0, max: 3000, unit: 'RPM', color: '#65a30d', label: 'Speed Act' },
+  torqueSet: { min: 0, max: 150, unit: 'Nm', color: '#0891b2', label: 'Torque Set' },
+  torqueAct: { min: 0, max: 150, unit: 'Nm', color: '#0e7490', label: 'Torque Act' },
+  followingError: { min: -100, max: 100, unit: '', color: '#f43f5e', label: 'Follow Err' },
+  motorVoltage: { min: 0, max: 500, unit: 'VAC', color: '#7c3aed', label: 'Motor V' },
+  motorFreq: { min: 0, max: 100, unit: 'Hz', color: '#5b21b6', label: 'Motor Freq' },
+  motorCurrent: { min: 0, max: 100, unit: 'A', color: '#dc2626', label: 'Motor I' },
+  motorAnglePos: { min: 0, max: 360, unit: '°', color: '#059669', label: 'Angle Pos' },
+  effectivePower: { min: 0, max: 50, unit: 'kW', color: '#155e75', label: 'Eff Power' },
+  heatsinkTemp: { min: 0, max: 100, unit: '°C', color: '#ef4444', label: 'Heatsink T' },
+  motorTemp: { min: 0, max: 120, unit: '°C', color: '#f97316', label: 'Motor T' },
+  inverterLoad: { min: 0, max: 100, unit: '%', color: '#8b5cf6', label: 'Inv Load' },
+  motorLoad: { min: 0, max: 100, unit: '%', color: '#a855f7', label: 'Motor Load' },
+  axisError: { min: 0, max: 65535, unit: '', color: '#ef4444', label: 'Axis Err' },
+  driveError: { min: 0, max: 4294967295, unit: '', color: '#dc2626', label: 'Drive Err' },
+  status: { min: 0, max: 4294967295, unit: '', color: '#22c55e', label: 'Status' },
+  statusDigital: { min: 0, max: 4294967295, unit: '', color: '#10b981', label: 'Status Dig' },
+  driveType: { min: 0, max: 65535, unit: '', color: '#64748b', label: 'Drive Type' }
 };
 
-const MotorPanel = ({ motorIndex, motorData }) => {
+const MotorPanel = ({ motorIndex, motorData, tags }) => {
+  // Calcular estado general del motor basado en errores
+  const hasErrors = (motorData.axisError || 0) > 0 || (motorData.driveError || 0) > 0;
+  const isRunning = (motorData.speedAct || 0) > 10;
+  const overallStatus = hasErrors ? 'error' : isRunning ? 'running' : 'stopped';
+  
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 border">
       <div className="flex items-center gap-2 mb-4">
@@ -97,40 +98,52 @@ const MotorPanel = ({ motorIndex, motorData }) => {
           Motor {motorIndex + 1}
         </h3>
         <div className={`px-2 py-1 rounded text-xs font-medium ${
-          motorData.overallStatus > 90 ? 'bg-green-100 text-green-800' :
-          motorData.overallStatus > 70 ? 'bg-yellow-100 text-yellow-800' :
-          'bg-red-100 text-red-800'
+          overallStatus === 'error' ? 'bg-red-100 text-red-800' :
+          overallStatus === 'running' ? 'bg-green-100 text-green-800' :
+          'bg-yellow-100 text-yellow-800'
         }`}>
-          {motorData.overallStatus.toFixed(1)}% OK
+          {overallStatus === 'error' ? 'ERROR' :
+           overallStatus === 'running' ? 'RUNNING' : 'STOPPED'}
+        </div>
+        <div className="text-xs text-gray-500 dark:text-gray-400">
+          {(motorData.speedAct || 0).toFixed(0)} RPM
         </div>
       </div>
       
       {/* Grid de gauges pequeños */}
       <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3">
-        {Object.entries(variableConfig).map(([key, config]) => (
-          <div key={key} className="flex flex-col items-center">
-            <div className="w-16 h-16 sm:w-20 sm:h-20">
-              <Gauge
-                value={motorData[key] || 0}
-                min={config.min}
-                max={config.max}
-                unit={config.unit}
-                color={config.color}
-                size="small"
-                showValue={false}
-              />
-            </div>
-            <div className="text-center mt-1">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300 truncate w-16 sm:w-20">
-                {config.label}
+        {Object.entries(variableConfig).map(([key, config]) => {
+          const value = motorData[key];
+          const quality = tags[`aAxisDiagnostic_${motorIndex + 1}_${key}`]?.quality || 'uncertain';
+          
+          return (
+            <div key={key} className="flex flex-col items-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20">
+                <Gauge
+                  value={value || 0}
+                  min={config.min}
+                  max={config.max}
+                  unit={config.unit}
+                  color={quality === 'good' ? config.color : '#9ca3af'}
+                  size="small"
+                  showValue={false}
+                />
               </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">
-                {typeof motorData[key] === 'number' ? motorData[key].toFixed(1) : '0.0'}
-                {config.unit && ` ${config.unit}`}
+              <div className="text-center mt-1">
+                <div className="text-xs font-medium text-gray-700 dark:text-gray-300 truncate w-16 sm:w-20">
+                  {config.label}
+                </div>
+                <div className={`text-xs ${quality === 'good' ? 'text-gray-500 dark:text-gray-400' : 'text-red-500'}`}>
+                  {value !== null && value !== undefined ? 
+                    (typeof value === 'number' ? value.toFixed(1) : value.toString()) : 
+                    '--'
+                  }
+                  {config.unit && value !== null && value !== undefined && ` ${config.unit}`}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -138,37 +151,45 @@ const MotorPanel = ({ motorIndex, motorData }) => {
 
 export default function OpcPerformance() {
   const { t } = useTranslation();
-  const [motorsData, setMotorsData] = useState([]);
+  const [motorsData, setMotorsData] = useState(Array(20).fill({}));
   const [lastUpdate, setLastUpdate] = useState(Date.now());
+  const { tags, connected } = useWebSocket();
 
-  // Generar datos iniciales
+  // Actualizar datos de motores cuando cambien los tags
   useEffect(() => {
-    const initialData = Array.from({ length: 20 }, (_, index) => 
-      generateMotorData(index)
-    );
-    setMotorsData(initialData);
-  }, []);
+    if (!tags || Object.keys(tags).length === 0) return;
 
-  // Actualizar datos cada 2 segundos
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMotorsData(prevData => 
-        prevData.map((_, index) => generateMotorData(index))
-      );
-      setLastUpdate(Date.now());
-    }, 2000);
+    const newMotorsData = Array(20).fill(null).map((_, motorIndex) => {
+      const motorData = {};
+      
+      // Para cada variable, buscar el tag correspondiente
+      Object.keys(variableConfig).forEach(variable => {
+        const tagName = `aAxisDiagnostic_${motorIndex + 1}_${variable}`;
+        const tag = tags[tagName];
+        
+        if (tag) {
+          motorData[variable] = tag.value;
+        }
+      });
+      
+      return motorData;
+    });
 
-    return () => clearInterval(interval);
-  }, []);
+    setMotorsData(newMotorsData);
+    setLastUpdate(Date.now());
+  }, [tags]);
 
   // Calcular estadísticas generales
   const totalMotors = motorsData.length;
-  const activeMotors = motorsData.filter(motor => motor.actualSpeed > 100).length;
-  const avgEfficiency = motorsData.length > 0 
-    ? motorsData.reduce((sum, motor) => sum + motor.efficiency, 0) / motorsData.length 
+  const activeMotors = motorsData.filter(motor => (motor.speedAct || 0) > 10).length;
+  const motorsWithErrors = motorsData.filter(motor => 
+    (motor.axisError || 0) > 0 || (motor.driveError || 0) > 0
+  ).length;
+  const avgMotorLoad = motorsData.length > 0 
+    ? motorsData.reduce((sum, motor) => sum + (motor.motorLoad || 0), 0) / motorsData.length 
     : 0;
   const avgTemperature = motorsData.length > 0
-    ? motorsData.reduce((sum, motor) => sum + motor.motorTemperature, 0) / motorsData.length
+    ? motorsData.reduce((sum, motor) => sum + (motor.motorTemp || 0), 0) / motorsData.length
     : 0;
 
   return (
@@ -192,6 +213,15 @@ export default function OpcPerformance() {
             <div className="text-sm text-gray-500 dark:text-gray-400">
               Last Update: {new Date(lastUpdate).toLocaleTimeString()}
             </div>
+          </div>
+        </div>
+
+        {/* Connection Status */}
+        <div className="mb-4">
+          <div className={`px-4 py-2 rounded-lg text-sm font-medium ${
+            connected ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+          }`}>
+            {connected ? '🟢 Connected to OPC-UA Server' : '🔴 Disconnected from OPC-UA Server'}
           </div>
         </div>
 
@@ -223,24 +253,24 @@ export default function OpcPerformance() {
           
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
             <div className="flex items-center gap-2">
-              <Activity className="w-5 h-5 text-primary-600" />
+              <Activity className="w-5 h-5 text-red-600" />
               <div>
                 <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                  {avgEfficiency.toFixed(1)}%
+                  {motorsWithErrors}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Avg Efficiency</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Motors w/ Errors</div>
               </div>
             </div>
           </div>
           
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
             <div className="flex items-center gap-2">
-              <Thermometer className="w-5 h-5 text-red-600" />
+              <Thermometer className="w-5 h-5 text-orange-600" />
               <div>
                 <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                   {avgTemperature.toFixed(1)}°C
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Avg Temperature</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Avg Motor Temp</div>
               </div>
             </div>
           </div>
@@ -253,6 +283,7 @@ export default function OpcPerformance() {
               key={index}
               motorIndex={index}
               motorData={motorData}
+              tags={tags}
             />
           ))}
         </div>

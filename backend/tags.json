@@ -79,6 +79,4146 @@
       "type": "number",
       "unit": "",
       "description": "Valor aleatorio 10"
+    },
+    "aAxisDiagnostic_1_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 1 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_1_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 1 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_1_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 1 - Position Setpoint"
+    },
+    "aAxisDiagnostic_1_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 1 - Position Actual"
+    },
+    "aAxisDiagnostic_1_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 1 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_1_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 1 - Speed Actual"
+    },
+    "aAxisDiagnostic_1_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 1 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_1_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 1 - Torque Actual"
+    },
+    "aAxisDiagnostic_1_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 1 - Following Error"
+    },
+    "aAxisDiagnostic_1_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 1 - Motor Voltage"
+    },
+    "aAxisDiagnostic_1_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 1 - Motor Frequency"
+    },
+    "aAxisDiagnostic_1_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 1 - Motor Current"
+    },
+    "aAxisDiagnostic_1_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 1 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_1_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 1 - Effective Power"
+    },
+    "aAxisDiagnostic_1_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 1 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_1_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 1 - Motor Temperature"
+    },
+    "aAxisDiagnostic_1_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 1 - Inverter Load"
+    },
+    "aAxisDiagnostic_1_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 1 - Motor Load"
+    },
+    "aAxisDiagnostic_1_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 1 - Axis Error Code"
+    },
+    "aAxisDiagnostic_1_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 1 - Drive Error Code"
+    },
+    "aAxisDiagnostic_1_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 1 - Drive Status"
+    },
+    "aAxisDiagnostic_1_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 1 - Digital Status"
+    },
+    "aAxisDiagnostic_1_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[1].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 1 - Drive Type"
+    },
+    "aAxisDiagnostic_2_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 2 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_2_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 2 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_2_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 2 - Position Setpoint"
+    },
+    "aAxisDiagnostic_2_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 2 - Position Actual"
+    },
+    "aAxisDiagnostic_2_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 2 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_2_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 2 - Speed Actual"
+    },
+    "aAxisDiagnostic_2_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 2 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_2_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 2 - Torque Actual"
+    },
+    "aAxisDiagnostic_2_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 2 - Following Error"
+    },
+    "aAxisDiagnostic_2_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 2 - Motor Voltage"
+    },
+    "aAxisDiagnostic_2_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 2 - Motor Frequency"
+    },
+    "aAxisDiagnostic_2_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 2 - Motor Current"
+    },
+    "aAxisDiagnostic_2_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 2 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_2_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 2 - Effective Power"
+    },
+    "aAxisDiagnostic_2_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 2 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_2_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 2 - Motor Temperature"
+    },
+    "aAxisDiagnostic_2_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 2 - Inverter Load"
+    },
+    "aAxisDiagnostic_2_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 2 - Motor Load"
+    },
+    "aAxisDiagnostic_2_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 2 - Axis Error Code"
+    },
+    "aAxisDiagnostic_2_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 2 - Drive Error Code"
+    },
+    "aAxisDiagnostic_2_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 2 - Drive Status"
+    },
+    "aAxisDiagnostic_2_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 2 - Digital Status"
+    },
+    "aAxisDiagnostic_2_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[2].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 2 - Drive Type"
+    },
+    "aAxisDiagnostic_3_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 3 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_3_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 3 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_3_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 3 - Position Setpoint"
+    },
+    "aAxisDiagnostic_3_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 3 - Position Actual"
+    },
+    "aAxisDiagnostic_3_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 3 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_3_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 3 - Speed Actual"
+    },
+    "aAxisDiagnostic_3_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 3 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_3_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 3 - Torque Actual"
+    },
+    "aAxisDiagnostic_3_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 3 - Following Error"
+    },
+    "aAxisDiagnostic_3_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 3 - Motor Voltage"
+    },
+    "aAxisDiagnostic_3_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 3 - Motor Frequency"
+    },
+    "aAxisDiagnostic_3_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 3 - Motor Current"
+    },
+    "aAxisDiagnostic_3_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 3 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_3_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 3 - Effective Power"
+    },
+    "aAxisDiagnostic_3_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 3 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_3_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 3 - Motor Temperature"
+    },
+    "aAxisDiagnostic_3_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 3 - Inverter Load"
+    },
+    "aAxisDiagnostic_3_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 3 - Motor Load"
+    },
+    "aAxisDiagnostic_3_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 3 - Axis Error Code"
+    },
+    "aAxisDiagnostic_3_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 3 - Drive Error Code"
+    },
+    "aAxisDiagnostic_3_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 3 - Drive Status"
+    },
+    "aAxisDiagnostic_3_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 3 - Digital Status"
+    },
+    "aAxisDiagnostic_3_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[3].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 3 - Drive Type"
+    },
+    "aAxisDiagnostic_4_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 4 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_4_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 4 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_4_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 4 - Position Setpoint"
+    },
+    "aAxisDiagnostic_4_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 4 - Position Actual"
+    },
+    "aAxisDiagnostic_4_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 4 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_4_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 4 - Speed Actual"
+    },
+    "aAxisDiagnostic_4_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 4 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_4_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 4 - Torque Actual"
+    },
+    "aAxisDiagnostic_4_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 4 - Following Error"
+    },
+    "aAxisDiagnostic_4_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 4 - Motor Voltage"
+    },
+    "aAxisDiagnostic_4_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 4 - Motor Frequency"
+    },
+    "aAxisDiagnostic_4_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 4 - Motor Current"
+    },
+    "aAxisDiagnostic_4_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 4 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_4_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 4 - Effective Power"
+    },
+    "aAxisDiagnostic_4_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 4 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_4_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 4 - Motor Temperature"
+    },
+    "aAxisDiagnostic_4_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 4 - Inverter Load"
+    },
+    "aAxisDiagnostic_4_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 4 - Motor Load"
+    },
+    "aAxisDiagnostic_4_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 4 - Axis Error Code"
+    },
+    "aAxisDiagnostic_4_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 4 - Drive Error Code"
+    },
+    "aAxisDiagnostic_4_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 4 - Drive Status"
+    },
+    "aAxisDiagnostic_4_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 4 - Digital Status"
+    },
+    "aAxisDiagnostic_4_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[4].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 4 - Drive Type"
+    },
+    "aAxisDiagnostic_5_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 5 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_5_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 5 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_5_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 5 - Position Setpoint"
+    },
+    "aAxisDiagnostic_5_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 5 - Position Actual"
+    },
+    "aAxisDiagnostic_5_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 5 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_5_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 5 - Speed Actual"
+    },
+    "aAxisDiagnostic_5_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 5 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_5_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 5 - Torque Actual"
+    },
+    "aAxisDiagnostic_5_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 5 - Following Error"
+    },
+    "aAxisDiagnostic_5_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 5 - Motor Voltage"
+    },
+    "aAxisDiagnostic_5_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 5 - Motor Frequency"
+    },
+    "aAxisDiagnostic_5_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 5 - Motor Current"
+    },
+    "aAxisDiagnostic_5_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 5 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_5_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 5 - Effective Power"
+    },
+    "aAxisDiagnostic_5_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 5 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_5_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 5 - Motor Temperature"
+    },
+    "aAxisDiagnostic_5_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 5 - Inverter Load"
+    },
+    "aAxisDiagnostic_5_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 5 - Motor Load"
+    },
+    "aAxisDiagnostic_5_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 5 - Axis Error Code"
+    },
+    "aAxisDiagnostic_5_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 5 - Drive Error Code"
+    },
+    "aAxisDiagnostic_5_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 5 - Drive Status"
+    },
+    "aAxisDiagnostic_5_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 5 - Digital Status"
+    },
+    "aAxisDiagnostic_5_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[5].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 5 - Drive Type"
+    },
+    "aAxisDiagnostic_6_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 6 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_6_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 6 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_6_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 6 - Position Setpoint"
+    },
+    "aAxisDiagnostic_6_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 6 - Position Actual"
+    },
+    "aAxisDiagnostic_6_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 6 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_6_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 6 - Speed Actual"
+    },
+    "aAxisDiagnostic_6_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 6 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_6_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 6 - Torque Actual"
+    },
+    "aAxisDiagnostic_6_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 6 - Following Error"
+    },
+    "aAxisDiagnostic_6_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 6 - Motor Voltage"
+    },
+    "aAxisDiagnostic_6_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 6 - Motor Frequency"
+    },
+    "aAxisDiagnostic_6_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 6 - Motor Current"
+    },
+    "aAxisDiagnostic_6_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 6 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_6_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 6 - Effective Power"
+    },
+    "aAxisDiagnostic_6_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 6 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_6_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 6 - Motor Temperature"
+    },
+    "aAxisDiagnostic_6_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 6 - Inverter Load"
+    },
+    "aAxisDiagnostic_6_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 6 - Motor Load"
+    },
+    "aAxisDiagnostic_6_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 6 - Axis Error Code"
+    },
+    "aAxisDiagnostic_6_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 6 - Drive Error Code"
+    },
+    "aAxisDiagnostic_6_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 6 - Drive Status"
+    },
+    "aAxisDiagnostic_6_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 6 - Digital Status"
+    },
+    "aAxisDiagnostic_6_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[6].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 6 - Drive Type"
+    },
+    "aAxisDiagnostic_7_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 7 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_7_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 7 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_7_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 7 - Position Setpoint"
+    },
+    "aAxisDiagnostic_7_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 7 - Position Actual"
+    },
+    "aAxisDiagnostic_7_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 7 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_7_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 7 - Speed Actual"
+    },
+    "aAxisDiagnostic_7_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 7 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_7_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 7 - Torque Actual"
+    },
+    "aAxisDiagnostic_7_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 7 - Following Error"
+    },
+    "aAxisDiagnostic_7_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 7 - Motor Voltage"
+    },
+    "aAxisDiagnostic_7_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 7 - Motor Frequency"
+    },
+    "aAxisDiagnostic_7_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 7 - Motor Current"
+    },
+    "aAxisDiagnostic_7_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 7 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_7_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 7 - Effective Power"
+    },
+    "aAxisDiagnostic_7_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 7 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_7_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 7 - Motor Temperature"
+    },
+    "aAxisDiagnostic_7_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 7 - Inverter Load"
+    },
+    "aAxisDiagnostic_7_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 7 - Motor Load"
+    },
+    "aAxisDiagnostic_7_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 7 - Axis Error Code"
+    },
+    "aAxisDiagnostic_7_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 7 - Drive Error Code"
+    },
+    "aAxisDiagnostic_7_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 7 - Drive Status"
+    },
+    "aAxisDiagnostic_7_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 7 - Digital Status"
+    },
+    "aAxisDiagnostic_7_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[7].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 7 - Drive Type"
+    },
+    "aAxisDiagnostic_8_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 8 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_8_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 8 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_8_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 8 - Position Setpoint"
+    },
+    "aAxisDiagnostic_8_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 8 - Position Actual"
+    },
+    "aAxisDiagnostic_8_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 8 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_8_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 8 - Speed Actual"
+    },
+    "aAxisDiagnostic_8_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 8 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_8_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 8 - Torque Actual"
+    },
+    "aAxisDiagnostic_8_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 8 - Following Error"
+    },
+    "aAxisDiagnostic_8_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 8 - Motor Voltage"
+    },
+    "aAxisDiagnostic_8_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 8 - Motor Frequency"
+    },
+    "aAxisDiagnostic_8_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 8 - Motor Current"
+    },
+    "aAxisDiagnostic_8_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 8 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_8_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 8 - Effective Power"
+    },
+    "aAxisDiagnostic_8_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 8 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_8_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 8 - Motor Temperature"
+    },
+    "aAxisDiagnostic_8_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 8 - Inverter Load"
+    },
+    "aAxisDiagnostic_8_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 8 - Motor Load"
+    },
+    "aAxisDiagnostic_8_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 8 - Axis Error Code"
+    },
+    "aAxisDiagnostic_8_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 8 - Drive Error Code"
+    },
+    "aAxisDiagnostic_8_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 8 - Drive Status"
+    },
+    "aAxisDiagnostic_8_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 8 - Digital Status"
+    },
+    "aAxisDiagnostic_8_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[8].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 8 - Drive Type"
+    },
+    "aAxisDiagnostic_9_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 9 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_9_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 9 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_9_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 9 - Position Setpoint"
+    },
+    "aAxisDiagnostic_9_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 9 - Position Actual"
+    },
+    "aAxisDiagnostic_9_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 9 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_9_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 9 - Speed Actual"
+    },
+    "aAxisDiagnostic_9_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 9 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_9_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 9 - Torque Actual"
+    },
+    "aAxisDiagnostic_9_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 9 - Following Error"
+    },
+    "aAxisDiagnostic_9_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 9 - Motor Voltage"
+    },
+    "aAxisDiagnostic_9_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 9 - Motor Frequency"
+    },
+    "aAxisDiagnostic_9_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 9 - Motor Current"
+    },
+    "aAxisDiagnostic_9_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 9 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_9_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 9 - Effective Power"
+    },
+    "aAxisDiagnostic_9_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 9 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_9_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 9 - Motor Temperature"
+    },
+    "aAxisDiagnostic_9_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 9 - Inverter Load"
+    },
+    "aAxisDiagnostic_9_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 9 - Motor Load"
+    },
+    "aAxisDiagnostic_9_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 9 - Axis Error Code"
+    },
+    "aAxisDiagnostic_9_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 9 - Drive Error Code"
+    },
+    "aAxisDiagnostic_9_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 9 - Drive Status"
+    },
+    "aAxisDiagnostic_9_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 9 - Digital Status"
+    },
+    "aAxisDiagnostic_9_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[9].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 9 - Drive Type"
+    },
+    "aAxisDiagnostic_10_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 10 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_10_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 10 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_10_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 10 - Position Setpoint"
+    },
+    "aAxisDiagnostic_10_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 10 - Position Actual"
+    },
+    "aAxisDiagnostic_10_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 10 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_10_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 10 - Speed Actual"
+    },
+    "aAxisDiagnostic_10_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 10 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_10_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 10 - Torque Actual"
+    },
+    "aAxisDiagnostic_10_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 10 - Following Error"
+    },
+    "aAxisDiagnostic_10_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 10 - Motor Voltage"
+    },
+    "aAxisDiagnostic_10_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 10 - Motor Frequency"
+    },
+    "aAxisDiagnostic_10_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 10 - Motor Current"
+    },
+    "aAxisDiagnostic_10_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 10 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_10_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 10 - Effective Power"
+    },
+    "aAxisDiagnostic_10_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 10 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_10_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 10 - Motor Temperature"
+    },
+    "aAxisDiagnostic_10_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 10 - Inverter Load"
+    },
+    "aAxisDiagnostic_10_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 10 - Motor Load"
+    },
+    "aAxisDiagnostic_10_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 10 - Axis Error Code"
+    },
+    "aAxisDiagnostic_10_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 10 - Drive Error Code"
+    },
+    "aAxisDiagnostic_10_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 10 - Drive Status"
+    },
+    "aAxisDiagnostic_10_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 10 - Digital Status"
+    },
+    "aAxisDiagnostic_10_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[10].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 10 - Drive Type"
+    },
+    "aAxisDiagnostic_11_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 11 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_11_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 11 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_11_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 11 - Position Setpoint"
+    },
+    "aAxisDiagnostic_11_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 11 - Position Actual"
+    },
+    "aAxisDiagnostic_11_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 11 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_11_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 11 - Speed Actual"
+    },
+    "aAxisDiagnostic_11_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 11 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_11_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 11 - Torque Actual"
+    },
+    "aAxisDiagnostic_11_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 11 - Following Error"
+    },
+    "aAxisDiagnostic_11_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 11 - Motor Voltage"
+    },
+    "aAxisDiagnostic_11_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 11 - Motor Frequency"
+    },
+    "aAxisDiagnostic_11_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 11 - Motor Current"
+    },
+    "aAxisDiagnostic_11_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 11 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_11_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 11 - Effective Power"
+    },
+    "aAxisDiagnostic_11_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 11 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_11_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 11 - Motor Temperature"
+    },
+    "aAxisDiagnostic_11_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 11 - Inverter Load"
+    },
+    "aAxisDiagnostic_11_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 11 - Motor Load"
+    },
+    "aAxisDiagnostic_11_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 11 - Axis Error Code"
+    },
+    "aAxisDiagnostic_11_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 11 - Drive Error Code"
+    },
+    "aAxisDiagnostic_11_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 11 - Drive Status"
+    },
+    "aAxisDiagnostic_11_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 11 - Digital Status"
+    },
+    "aAxisDiagnostic_11_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[11].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 11 - Drive Type"
+    },
+    "aAxisDiagnostic_12_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 12 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_12_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 12 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_12_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 12 - Position Setpoint"
+    },
+    "aAxisDiagnostic_12_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 12 - Position Actual"
+    },
+    "aAxisDiagnostic_12_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 12 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_12_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 12 - Speed Actual"
+    },
+    "aAxisDiagnostic_12_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 12 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_12_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 12 - Torque Actual"
+    },
+    "aAxisDiagnostic_12_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 12 - Following Error"
+    },
+    "aAxisDiagnostic_12_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 12 - Motor Voltage"
+    },
+    "aAxisDiagnostic_12_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 12 - Motor Frequency"
+    },
+    "aAxisDiagnostic_12_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 12 - Motor Current"
+    },
+    "aAxisDiagnostic_12_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 12 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_12_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 12 - Effective Power"
+    },
+    "aAxisDiagnostic_12_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 12 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_12_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 12 - Motor Temperature"
+    },
+    "aAxisDiagnostic_12_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 12 - Inverter Load"
+    },
+    "aAxisDiagnostic_12_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 12 - Motor Load"
+    },
+    "aAxisDiagnostic_12_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 12 - Axis Error Code"
+    },
+    "aAxisDiagnostic_12_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 12 - Drive Error Code"
+    },
+    "aAxisDiagnostic_12_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 12 - Drive Status"
+    },
+    "aAxisDiagnostic_12_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 12 - Digital Status"
+    },
+    "aAxisDiagnostic_12_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[12].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 12 - Drive Type"
+    },
+    "aAxisDiagnostic_13_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 13 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_13_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 13 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_13_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 13 - Position Setpoint"
+    },
+    "aAxisDiagnostic_13_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 13 - Position Actual"
+    },
+    "aAxisDiagnostic_13_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 13 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_13_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 13 - Speed Actual"
+    },
+    "aAxisDiagnostic_13_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 13 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_13_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 13 - Torque Actual"
+    },
+    "aAxisDiagnostic_13_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 13 - Following Error"
+    },
+    "aAxisDiagnostic_13_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 13 - Motor Voltage"
+    },
+    "aAxisDiagnostic_13_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 13 - Motor Frequency"
+    },
+    "aAxisDiagnostic_13_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 13 - Motor Current"
+    },
+    "aAxisDiagnostic_13_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 13 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_13_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 13 - Effective Power"
+    },
+    "aAxisDiagnostic_13_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 13 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_13_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 13 - Motor Temperature"
+    },
+    "aAxisDiagnostic_13_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 13 - Inverter Load"
+    },
+    "aAxisDiagnostic_13_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 13 - Motor Load"
+    },
+    "aAxisDiagnostic_13_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 13 - Axis Error Code"
+    },
+    "aAxisDiagnostic_13_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 13 - Drive Error Code"
+    },
+    "aAxisDiagnostic_13_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 13 - Drive Status"
+    },
+    "aAxisDiagnostic_13_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 13 - Digital Status"
+    },
+    "aAxisDiagnostic_13_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[13].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 13 - Drive Type"
+    },
+    "aAxisDiagnostic_14_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 14 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_14_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 14 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_14_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 14 - Position Setpoint"
+    },
+    "aAxisDiagnostic_14_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 14 - Position Actual"
+    },
+    "aAxisDiagnostic_14_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 14 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_14_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 14 - Speed Actual"
+    },
+    "aAxisDiagnostic_14_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 14 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_14_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 14 - Torque Actual"
+    },
+    "aAxisDiagnostic_14_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 14 - Following Error"
+    },
+    "aAxisDiagnostic_14_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 14 - Motor Voltage"
+    },
+    "aAxisDiagnostic_14_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 14 - Motor Frequency"
+    },
+    "aAxisDiagnostic_14_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 14 - Motor Current"
+    },
+    "aAxisDiagnostic_14_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 14 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_14_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 14 - Effective Power"
+    },
+    "aAxisDiagnostic_14_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 14 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_14_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 14 - Motor Temperature"
+    },
+    "aAxisDiagnostic_14_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 14 - Inverter Load"
+    },
+    "aAxisDiagnostic_14_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 14 - Motor Load"
+    },
+    "aAxisDiagnostic_14_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 14 - Axis Error Code"
+    },
+    "aAxisDiagnostic_14_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 14 - Drive Error Code"
+    },
+    "aAxisDiagnostic_14_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 14 - Drive Status"
+    },
+    "aAxisDiagnostic_14_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 14 - Digital Status"
+    },
+    "aAxisDiagnostic_14_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[14].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 14 - Drive Type"
+    },
+    "aAxisDiagnostic_15_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 15 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_15_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 15 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_15_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 15 - Position Setpoint"
+    },
+    "aAxisDiagnostic_15_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 15 - Position Actual"
+    },
+    "aAxisDiagnostic_15_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 15 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_15_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 15 - Speed Actual"
+    },
+    "aAxisDiagnostic_15_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 15 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_15_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 15 - Torque Actual"
+    },
+    "aAxisDiagnostic_15_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 15 - Following Error"
+    },
+    "aAxisDiagnostic_15_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 15 - Motor Voltage"
+    },
+    "aAxisDiagnostic_15_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 15 - Motor Frequency"
+    },
+    "aAxisDiagnostic_15_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 15 - Motor Current"
+    },
+    "aAxisDiagnostic_15_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 15 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_15_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 15 - Effective Power"
+    },
+    "aAxisDiagnostic_15_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 15 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_15_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 15 - Motor Temperature"
+    },
+    "aAxisDiagnostic_15_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 15 - Inverter Load"
+    },
+    "aAxisDiagnostic_15_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 15 - Motor Load"
+    },
+    "aAxisDiagnostic_15_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 15 - Axis Error Code"
+    },
+    "aAxisDiagnostic_15_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 15 - Drive Error Code"
+    },
+    "aAxisDiagnostic_15_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 15 - Drive Status"
+    },
+    "aAxisDiagnostic_15_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 15 - Digital Status"
+    },
+    "aAxisDiagnostic_15_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[15].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 15 - Drive Type"
+    },
+    "aAxisDiagnostic_16_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 16 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_16_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 16 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_16_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 16 - Position Setpoint"
+    },
+    "aAxisDiagnostic_16_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 16 - Position Actual"
+    },
+    "aAxisDiagnostic_16_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 16 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_16_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 16 - Speed Actual"
+    },
+    "aAxisDiagnostic_16_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 16 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_16_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 16 - Torque Actual"
+    },
+    "aAxisDiagnostic_16_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 16 - Following Error"
+    },
+    "aAxisDiagnostic_16_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 16 - Motor Voltage"
+    },
+    "aAxisDiagnostic_16_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 16 - Motor Frequency"
+    },
+    "aAxisDiagnostic_16_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 16 - Motor Current"
+    },
+    "aAxisDiagnostic_16_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 16 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_16_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 16 - Effective Power"
+    },
+    "aAxisDiagnostic_16_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 16 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_16_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 16 - Motor Temperature"
+    },
+    "aAxisDiagnostic_16_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 16 - Inverter Load"
+    },
+    "aAxisDiagnostic_16_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 16 - Motor Load"
+    },
+    "aAxisDiagnostic_16_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 16 - Axis Error Code"
+    },
+    "aAxisDiagnostic_16_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 16 - Drive Error Code"
+    },
+    "aAxisDiagnostic_16_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 16 - Drive Status"
+    },
+    "aAxisDiagnostic_16_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 16 - Digital Status"
+    },
+    "aAxisDiagnostic_16_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[16].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 16 - Drive Type"
+    },
+    "aAxisDiagnostic_17_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 17 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_17_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 17 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_17_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 17 - Position Setpoint"
+    },
+    "aAxisDiagnostic_17_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 17 - Position Actual"
+    },
+    "aAxisDiagnostic_17_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 17 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_17_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 17 - Speed Actual"
+    },
+    "aAxisDiagnostic_17_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 17 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_17_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 17 - Torque Actual"
+    },
+    "aAxisDiagnostic_17_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 17 - Following Error"
+    },
+    "aAxisDiagnostic_17_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 17 - Motor Voltage"
+    },
+    "aAxisDiagnostic_17_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 17 - Motor Frequency"
+    },
+    "aAxisDiagnostic_17_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 17 - Motor Current"
+    },
+    "aAxisDiagnostic_17_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 17 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_17_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 17 - Effective Power"
+    },
+    "aAxisDiagnostic_17_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 17 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_17_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 17 - Motor Temperature"
+    },
+    "aAxisDiagnostic_17_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 17 - Inverter Load"
+    },
+    "aAxisDiagnostic_17_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 17 - Motor Load"
+    },
+    "aAxisDiagnostic_17_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 17 - Axis Error Code"
+    },
+    "aAxisDiagnostic_17_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 17 - Drive Error Code"
+    },
+    "aAxisDiagnostic_17_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 17 - Drive Status"
+    },
+    "aAxisDiagnostic_17_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 17 - Digital Status"
+    },
+    "aAxisDiagnostic_17_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[17].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 17 - Drive Type"
+    },
+    "aAxisDiagnostic_18_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 18 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_18_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 18 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_18_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 18 - Position Setpoint"
+    },
+    "aAxisDiagnostic_18_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 18 - Position Actual"
+    },
+    "aAxisDiagnostic_18_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 18 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_18_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 18 - Speed Actual"
+    },
+    "aAxisDiagnostic_18_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 18 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_18_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 18 - Torque Actual"
+    },
+    "aAxisDiagnostic_18_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 18 - Following Error"
+    },
+    "aAxisDiagnostic_18_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 18 - Motor Voltage"
+    },
+    "aAxisDiagnostic_18_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 18 - Motor Frequency"
+    },
+    "aAxisDiagnostic_18_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 18 - Motor Current"
+    },
+    "aAxisDiagnostic_18_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 18 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_18_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 18 - Effective Power"
+    },
+    "aAxisDiagnostic_18_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 18 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_18_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 18 - Motor Temperature"
+    },
+    "aAxisDiagnostic_18_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 18 - Inverter Load"
+    },
+    "aAxisDiagnostic_18_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 18 - Motor Load"
+    },
+    "aAxisDiagnostic_18_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 18 - Axis Error Code"
+    },
+    "aAxisDiagnostic_18_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 18 - Drive Error Code"
+    },
+    "aAxisDiagnostic_18_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 18 - Drive Status"
+    },
+    "aAxisDiagnostic_18_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 18 - Digital Status"
+    },
+    "aAxisDiagnostic_18_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[18].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 18 - Drive Type"
+    },
+    "aAxisDiagnostic_19_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 19 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_19_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 19 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_19_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 19 - Position Setpoint"
+    },
+    "aAxisDiagnostic_19_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 19 - Position Actual"
+    },
+    "aAxisDiagnostic_19_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 19 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_19_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 19 - Speed Actual"
+    },
+    "aAxisDiagnostic_19_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 19 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_19_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 19 - Torque Actual"
+    },
+    "aAxisDiagnostic_19_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 19 - Following Error"
+    },
+    "aAxisDiagnostic_19_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 19 - Motor Voltage"
+    },
+    "aAxisDiagnostic_19_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 19 - Motor Frequency"
+    },
+    "aAxisDiagnostic_19_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 19 - Motor Current"
+    },
+    "aAxisDiagnostic_19_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 19 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_19_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 19 - Effective Power"
+    },
+    "aAxisDiagnostic_19_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 19 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_19_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 19 - Motor Temperature"
+    },
+    "aAxisDiagnostic_19_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 19 - Inverter Load"
+    },
+    "aAxisDiagnostic_19_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 19 - Motor Load"
+    },
+    "aAxisDiagnostic_19_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 19 - Axis Error Code"
+    },
+    "aAxisDiagnostic_19_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 19 - Drive Error Code"
+    },
+    "aAxisDiagnostic_19_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 19 - Drive Status"
+    },
+    "aAxisDiagnostic_19_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 19 - Digital Status"
+    },
+    "aAxisDiagnostic_19_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[19].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 19 - Drive Type"
+    },
+    "aAxisDiagnostic_20_dcVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrDCVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 800,
+      "description": "Motor 20 - DC Bus Voltage"
+    },
+    "aAxisDiagnostic_20_dcVoltage24": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrDCVoltage24",
+      "loggable": false,
+      "type": "number",
+      "unit": "V",
+      "min": 0,
+      "max": 30,
+      "description": "Motor 20 - DC 24V Voltage"
+    },
+    "aAxisDiagnostic_20_positionSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrPositionSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 20 - Position Setpoint"
+    },
+    "aAxisDiagnostic_20_positionAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrPositionAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": -360,
+      "max": 360,
+      "description": "Motor 20 - Position Actual"
+    },
+    "aAxisDiagnostic_20_speedSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrSpeedSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 20 - Speed Setpoint"
+    },
+    "aAxisDiagnostic_20_speedAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrSpeedAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "RPM",
+      "min": 0,
+      "max": 3000,
+      "description": "Motor 20 - Speed Actual"
+    },
+    "aAxisDiagnostic_20_torqueSet": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrTorqueSet",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 20 - Torque Setpoint"
+    },
+    "aAxisDiagnostic_20_torqueAct": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrTorqueAct",
+      "loggable": false,
+      "type": "number",
+      "unit": "Nm",
+      "min": 0,
+      "max": 150,
+      "description": "Motor 20 - Torque Actual"
+    },
+    "aAxisDiagnostic_20_followingError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrFollowingError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": -100,
+      "max": 100,
+      "description": "Motor 20 - Following Error"
+    },
+    "aAxisDiagnostic_20_motorVoltage": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrMotorVoltage",
+      "loggable": false,
+      "type": "number",
+      "unit": "VAC",
+      "min": 0,
+      "max": 500,
+      "description": "Motor 20 - Motor Voltage"
+    },
+    "aAxisDiagnostic_20_motorFreq": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrMotorFreq",
+      "loggable": false,
+      "type": "number",
+      "unit": "Hz",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 20 - Motor Frequency"
+    },
+    "aAxisDiagnostic_20_motorCurrent": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrMotorCurrent",
+      "loggable": false,
+      "type": "number",
+      "unit": "A",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 20 - Motor Current"
+    },
+    "aAxisDiagnostic_20_motorAnglePos": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrMotorAnglePos",
+      "loggable": false,
+      "type": "number",
+      "unit": "°",
+      "min": 0,
+      "max": 360,
+      "description": "Motor 20 - Motor Angle Position"
+    },
+    "aAxisDiagnostic_20_effectivePower": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrEffectivePower",
+      "loggable": false,
+      "type": "number",
+      "unit": "kW",
+      "min": 0,
+      "max": 50,
+      "description": "Motor 20 - Effective Power"
+    },
+    "aAxisDiagnostic_20_heatsinkTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrHeatsinkTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 20 - Heatsink Temperature"
+    },
+    "aAxisDiagnostic_20_motorTemp": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrMotorTemp",
+      "loggable": false,
+      "type": "number",
+      "unit": "°C",
+      "min": 0,
+      "max": 120,
+      "description": "Motor 20 - Motor Temperature"
+    },
+    "aAxisDiagnostic_20_inverterLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrInverterLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 20 - Inverter Load"
+    },
+    "aAxisDiagnostic_20_motorLoad": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].lrMotorLoad",
+      "loggable": false,
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "description": "Motor 20 - Motor Load"
+    },
+    "aAxisDiagnostic_20_axisError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].wAxisError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 20 - Axis Error Code"
+    },
+    "aAxisDiagnostic_20_driveError": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].dwDriveError",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 20 - Drive Error Code"
+    },
+    "aAxisDiagnostic_20_status": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].dwStatus",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 20 - Drive Status"
+    },
+    "aAxisDiagnostic_20_statusDigital": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].dwStatusDigital",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 4294967295,
+      "description": "Motor 20 - Digital Status"
+    },
+    "aAxisDiagnostic_20_driveType": {
+      "nodeId": "ns=4;s=|var|CODESYS Control for Raspberry Pi SL.Application.GVL.aAxisDiagnostic[20].wDriveType",
+      "loggable": false,
+      "type": "number",
+      "unit": "",
+      "min": 0,
+      "max": 65535,
+      "description": "Motor 20 - Drive Type"
     }
   }
 }
