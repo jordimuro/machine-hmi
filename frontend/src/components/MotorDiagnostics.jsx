@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Activity, AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
+import { Activity, AlertTriangle, CheckCircle, XCircle, ChevronDown } from 'lucide-react';
+import { useWebSocket } from '../hooks/useWebSocket';
 
 // Función para generar valores aleatorios simulados
 const generateRandomValues = () => ({
@@ -149,9 +150,48 @@ const UtilizationChart = ({ title, value, maxValue = 120 }) => (
 
 export default function MotorDiagnostics() {
   const { t } = useTranslation();
+  const [selectedMotor, setSelectedMotor] = useState(1);
   const [data, setData] = useState(generateRandomValues());
+  const { data: wsData } = useWebSocket();
+  const tags = wsData.tags || {};
 
-  // Actualizar datos cada 2 segundos
+  // Generar opciones de motores (1-20)
+  const motorOptions = Array.from({ length: 20 }, (_, i) => ({
+    value: i + 1,
+    label: `Motor ${i + 1}`
+  }));
+
+  // Obtener datos reales del motor seleccionado desde OPC-UA
+  const getMotorData = (motorIndex) => {
+    const motorData = {};
+    
+    // Mapear variables OPC-UA a datos de diagnóstico
+    const tagPrefix = `aAxisDiagnostic_${motorIndex}_`;
+    
+    motorData.dcVoltage = tags[`${tagPrefix}dcVoltage`]?.value || 0;
+    motorData.speedSet = tags[`${tagPrefix}speedSet`]?.value || 0;
+    motorData.speedAct = tags[`${tagPrefix}speedAct`]?.value || 0;
+    motorData.torqueSet = tags[`${tagPrefix}torqueSet`]?.value || 0;
+    motorData.torqueAct = tags[`${tagPrefix}torqueAct`]?.value || 0;
+    motorData.motorVoltage = tags[`${tagPrefix}motorVoltage`]?.value || 0;
+    motorData.motorCurrent = tags[`${tagPrefix}motorCurrent`]?.value || 0;
+    motorData.effectivePower = tags[`${tagPrefix}effectivePower`]?.value || 0;
+    motorData.heatsinkTemp = tags[`${tagPrefix}heatsinkTemp`]?.value || 0;
+    motorData.motorTemp = tags[`${tagPrefix}motorTemp`]?.value || 0;
+    motorData.motorLoad = tags[`${tagPrefix}motorLoad`]?.value || 0;
+    motorData.inverterLoad = tags[`${tagPrefix}inverterLoad`]?.value || 0;
+    motorData.axisError = tags[`${tagPrefix}axisError`]?.value || 0;
+    motorData.driveError = tags[`${tagPrefix}driveError`]?.value || 0;
+    motorData.status = tags[`${tagPrefix}status`]?.value || 0;
+    
+    return motorData;
+  };
+
+  const motorData = getMotorData(selectedMotor);
+  const isRunning = motorData.speedAct > 10;
+  const hasErrors = motorData.axisError > 0 || motorData.driveError > 0;
+
+  // Actualizar datos simulados cada 2 segundos (para valores que no vienen del OPC)
   useEffect(() => {
     const interval = setInterval(() => {
       setData(generateRandomValues());
@@ -164,15 +204,50 @@ export default function MotorDiagnostics() {
     <div className="p-6 bg-gray-100 dark:bg-gray-900 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <Activity className="w-8 h-8 text-primary-600 dark:text-primary-400" />
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
-              {t('motorDiagnostics.title')}
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              {t('motorDiagnostics.subtitle')}
-            </p>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <Activity className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+                {t('motorDiagnostics.title')}
+              </h1>
+              <p className="text-gray-600 dark:text-gray-400">
+                {t('motorDiagnostics.subtitle')}
+              </p>
+            </div>
+          </div>
+          
+          {/* Motor Selector */}
+          <div className="flex items-center gap-3">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Seleccionar Motor:
+            </label>
+            <div className="relative">
+              <select
+                value={selectedMotor}
+                onChange={(e) => setSelectedMotor(parseInt(e.target.value))}
+                className="appearance-none bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 pr-8 text-sm font-medium text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              >
+                {motorOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+            </div>
+            
+            {/* Motor Status Indicator */}
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-700">
+              <div className={`w-3 h-3 rounded-full ${
+                hasErrors ? 'bg-red-500' : 
+                isRunning ? 'bg-green-500 animate-pulse' : 
+                'bg-yellow-500'
+              }`} />
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                {hasErrors ? 'ERROR' : isRunning ? 'RUNNING' : 'STOPPED'}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -185,15 +260,15 @@ export default function MotorDiagnostics() {
               Basic Parameters
             </h3>
             
-            <ValueDisplay label="DC bus voltage" value={data.dcBusVoltage} unit="V" info />
-            <ValueDisplay label="Frequency setpoint" value={data.frequencySetpoint} unit="Hz" info />
-            <ValueDisplay label="Output frequency motor" value={data.outputFrequencyMotor} unit="Hz" info />
-            <ValueDisplay label="Internal set torque" value={data.internalSetTorque} unit="Nm" info />
-            <ValueDisplay label="Actual torque" value={data.actualTorque} unit="Nm" info />
-            <ValueDisplay label="Motor voltage" value={data.motorVoltage} unit="VAC" info />
-            <ValueDisplay label="Motor current" value={data.motorCurrent} unit="A" info />
-            <ValueDisplay label="Effective power" value={data.effectivePower} unit="kW" info />
-            <ValueDisplay label="Apparent power" value={data.apparentPower} unit="kVA" info />
+            <ValueDisplay label="DC bus voltage" value={motorData.dcVoltage?.toFixed(1) || '0.0'} unit="V" info />
+            <ValueDisplay label="Speed setpoint" value={motorData.speedSet?.toFixed(1) || '0.0'} unit="RPM" info />
+            <ValueDisplay label="Actual speed" value={motorData.speedAct?.toFixed(1) || '0.0'} unit="RPM" info />
+            <ValueDisplay label="Torque setpoint" value={motorData.torqueSet?.toFixed(2) || '0.00'} unit="Nm" info />
+            <ValueDisplay label="Actual torque" value={motorData.torqueAct?.toFixed(2) || '0.00'} unit="Nm" info />
+            <ValueDisplay label="Motor voltage" value={motorData.motorVoltage?.toFixed(0) || '0'} unit="VAC" info />
+            <ValueDisplay label="Motor current" value={motorData.motorCurrent?.toFixed(1) || '0.0'} unit="A" info />
+            <ValueDisplay label="Effective power" value={motorData.effectivePower?.toFixed(2) || '0.00'} unit="kW" info />
+            <ValueDisplay label="Motor load" value={motorData.motorLoad?.toFixed(1) || '0.0'} unit="%" info />
           </div>
 
           {/* Middle Column - Status and Modes */}
@@ -206,34 +281,28 @@ export default function MotorDiagnostics() {
               </h3>
               
               <StatusDisplay 
-                label="QA status word" 
-                value={data.qaStatusWord}
-                active={data.qaStatusWord !== 'Ready to switch on'}
-                type={data.qaStatusWord !== 'Ready to switch on' ? 'warning' : 'success'}
+                label="Motor Status" 
+                value={hasErrors ? 'Error State' : isRunning ? 'Running' : 'Stopped'}
+                active={isRunning}
+                type={hasErrors ? 'danger' : isRunning ? 'success' : 'default'}
               />
               <StatusDisplay 
-                label="Device state" 
-                value={data.deviceState}
+                label="Axis Error" 
+                value={motorData.axisError > 0 ? `Error Code: ${motorData.axisError}` : 'No Error'}
+                active={motorData.axisError > 0}
+                type={motorData.axisError > 0 ? 'danger' : 'success'}
+              />
+              <StatusDisplay 
+                label="Drive Error" 
+                value={motorData.driveError > 0 ? `Error Code: ${motorData.driveError}` : 'No Error'}
+                active={motorData.driveError > 0}
+                type={motorData.driveError > 0 ? 'danger' : 'success'}
+              />
+              <StatusDisplay 
+                label="System Status" 
+                value={`Status: ${motorData.status || 0}`}
                 active={true}
-                type="success"
-              />
-              <StatusDisplay 
-                label="Safe torque off" 
-                value=""
-                active={data.safetyTorqueOff}
-                type="danger"
-              />
-              <StatusDisplay 
-                label="Warning active" 
-                value=""
-                active={data.warningActive}
-                type="warning"
-              />
-              <StatusDisplay 
-                label="FMF" 
-                value=""
-                active={data.fmf}
-                type="danger"
+                type="default"
               />
             </div>
 
@@ -243,10 +312,15 @@ export default function MotorDiagnostics() {
                 Diagnostic Information
               </h3>
               
-              <ValueDisplay label="Cause of disable" value={data.causeOfDisable || '-'} info />
-              <ValueDisplay label="Cause of quick stop" value={data.causeOfQuickStop || '-'} info />
-              <ValueDisplay label="Cause of stop" value={data.causeOfStop} info />
-              <ValueDisplay label="Error code" value={data.errorCode} info warning={data.errorCode !== 'No Error [0]'} />
+              <ValueDisplay label="Inverter Load" value={`${motorData.inverterLoad?.toFixed(1) || '0.0'}%`} info />
+              <ValueDisplay label="Motor Temperature" value={`${motorData.motorTemp?.toFixed(1) || '0.0'}°C`} info />
+              <ValueDisplay label="Heatsink Temperature" value={`${motorData.heatsinkTemp?.toFixed(1) || '0.0'}°C`} info />
+              <ValueDisplay 
+                label="Error Status" 
+                value={hasErrors ? `Axis: ${motorData.axisError}, Drive: ${motorData.driveError}` : 'No Errors'} 
+                info 
+                warning={hasErrors} 
+              />
             </div>
 
             {/* Operation Modes */}
@@ -277,7 +351,7 @@ export default function MotorDiagnostics() {
                   Heatsink temperature
                 </span>
                 <div className="px-3 py-1 rounded border bg-yellow-100 border-yellow-300">
-                  <span className="font-mono text-sm">{data.heatsinkTemperature}</span>
+                  <span className="font-mono text-sm">{motorData.heatsinkTemp?.toFixed(1) || '0.0'}</span>
                 </div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">°C</span>
               </div>
@@ -285,13 +359,13 @@ export default function MotorDiagnostics() {
 
             {/* Utilization Charts */}
             <UtilizationChart 
-              title="Device actual utilization" 
-              value={data.deviceActualUtilization} 
+              title="Inverter Load (%)" 
+              value={motorData.inverterLoad || 0} 
             />
             
             <UtilizationChart 
-              title="Motor utilization (%)" 
-              value={data.motorUtilization} 
+              title="Motor Load (%)" 
+              value={motorData.motorLoad || 0} 
             />
           </div>
         </div>

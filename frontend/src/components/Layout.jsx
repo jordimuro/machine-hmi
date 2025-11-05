@@ -39,10 +39,11 @@ export default function Layout() {
   }, []);
   
   // Obtener estado OPC y alarmas de los datos del WebSocket
-  const opcStatus = data.opcua_status || 'disconnected';
+  const opcStatus = data.opcua_status || {};
   const alarms = data.alarms || [];
   const activeAlarms = alarms.filter(alarm => alarm.active);
-  const opcConnected = opcStatus === 'connected';
+  const opcConnected = opcStatus.connected || false;
+  const opcMockMode = opcStatus.mockMode || false;
 
   const navigation = [
     { name: t('nav.dashboard'), path: '/', icon: LayoutDashboard },
@@ -229,7 +230,7 @@ export default function Layout() {
                 <>
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-green-600 dark:text-green-400 font-medium">
-                    OPC-UA Connected
+                    OPC-UA {opcMockMode ? 'Mock Mode' : 'Connected'}
                   </span>
                 </>
               ) : (

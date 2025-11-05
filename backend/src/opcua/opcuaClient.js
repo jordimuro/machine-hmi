@@ -417,6 +417,16 @@ class OpcuaClient {
       } else {
         return Math.random() < 0.01 ? 1200 + Math.random() * 800 : currentValue;
       }
+    } else if (tagName.includes('speedSet')) {
+      // Velocidad de consigna: similar a la actual pero con menos variación
+      const speedAct = this.mockData[`aAxisDiagnostic_${motorIndex}_speedAct`] || 0;
+      if (speedAct > 100) {
+        // Si el motor está corriendo, el setpoint está cerca de la velocidad actual
+        return Math.max(0, speedAct + (Math.random() - 0.5) * 100);
+      } else {
+        // Motor parado, setpoint también bajo
+        return Math.random() * 50;
+      }
     } else if (tagName.includes('motorTemp') || tagName.includes('heatsinkTemp')) {
       // Temperatura: sigue la velocidad con inercia térmica
       const speed = this.mockData[`aAxisDiagnostic_${motorIndex}_speedAct`] || 0;
