@@ -27,6 +27,7 @@ export default function Layout() {
     { name: 'OPC-UA ActualSpeed', path: '/opcua', icon: Activity },
     { name: t('nav.alarms'), path: '/alarms', icon: Bell },
     { name: t('nav.history'), path: '/history', icon: TrendingUp },
+    { name: t('motorDiagnostics.title'), path: '/motor-diagnostics', icon: Activity },
     ...(user?.role === 'maintenance'
       ? [{ name: t('nav.commands'), path: '/commands', icon: Terminal }]
       : []),

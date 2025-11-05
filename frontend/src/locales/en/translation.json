@@ -159,6 +159,10 @@
     "darkDesc": "Dark theme",
     "systemDesc": "Follow system preference"
   },
+  "motorDiagnostics": {
+    "title": "Motor Diagnostics",
+    "subtitle": "Real-time motor drive diagnostic information"
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",

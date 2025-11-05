@@ -7,6 +7,7 @@ import Alarms from './components/Alarms';
 import Commands from './components/Commands';
 import History from './components/History';
 import OpcuaView from './components/OpcuaView';
+import MotorDiagnostics from './components/MotorDiagnostics';
 
 function PrivateRoute({ children, requireMaintenance = false }) {
   const { isAuthenticated, isMaintenance, loading } = useAuth();
@@ -59,6 +60,7 @@ function AppRoutes() {
         <Route path="alarms" element={<Alarms />} />
         <Route path="history" element={<History />} />
         <Route path="opcua" element={<OpcuaView />} />
+        <Route path="motor-diagnostics" element={<MotorDiagnostics />} />
         <Route
           path="commands"
           element={

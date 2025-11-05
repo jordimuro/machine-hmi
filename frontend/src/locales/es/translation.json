@@ -159,6 +159,10 @@
     "darkDesc": "Tema oscuro",
     "systemDesc": "Seguir preferencia del sistema"
   },
+  "motorDiagnostics": {
+    "title": "Diagnóstico del Motor",
+    "subtitle": "Información de diagnóstico del variador de frecuencia en tiempo real"
+  },
   "common": {
     "loading": "Cargando...",
     "error": "Error",
