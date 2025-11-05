@@ -626,7 +626,15 @@ class OpcuaClient {
    * Check if a variable is an array
    */
   isArrayVariable(variable) {
-    return variable.displayName.toLowerCase().includes('randomvalues') && 
+    const displayName = variable.displayName.toLowerCase();
+    const nodeId = variable.nodeId.toLowerCase();
+    
+    // Detectar arrays por nombre o estructura
+    return (displayName.includes('randomvalues') || 
+            displayName.includes('motor') || 
+            displayName.includes('diagnostic') ||
+            displayName.includes('array') ||
+            nodeId.includes('array')) && 
            !variable.displayName.includes('[');
   }
 
@@ -637,20 +645,43 @@ class OpcuaClient {
     const elements = [];
     const baseName = arrayVariable.displayName;
     const baseNodeId = arrayVariable.nodeId;
+    const lowerName = baseName.toLowerCase();
     
-    // Para RandomValues, intentar expandir elementos del 1 al 20
-    if (baseName.toLowerCase().includes('randomvalues')) {
-      for (let i = 1; i <= 20; i++) {
+    // Determinar el rango del array basado en el nombre
+    let arraySize = 20; // Default
+    let startIndex = 0;
+    
+    if (lowerName.includes('randomvalues')) {
+      arraySize = 20;
+      startIndex = 1; // RandomValues suele empezar en 1
+    } else if (lowerName.includes('motor') || lowerName.includes('diagnostic')) {
+      arraySize = 20; // Array de 20 motores
+      startIndex = 0; // Los arrays de objetos suelen empezar en 0
+    }
+    
+    // Intentar diferentes formatos de indexación
+    const indexFormats = [
+      (i) => `[${i}]`,           // [0], [1], [2]...
+      (i) => `_${i}`,            // _0, _1, _2...
+      (i) => `.${i}`,            // .0, .1, .2...
+    ];
+    
+    for (let i = startIndex; i < startIndex + arraySize; i++) {
+      let elementFound = false;
+      
+      // Probar diferentes formatos de indexación
+      for (const formatFunc of indexFormats) {
         try {
-          const elementNodeId = `${baseNodeId}[${i}]`;
+          const indexSuffix = formatFunc(i);
+          const elementNodeId = `${baseNodeId}${indexSuffix}`;
           
           // Intentar leer el valor del elemento
           const dataValue = await this.session.readVariableValue(elementNodeId);
           
           elements.push({
             nodeId: elementNodeId,
-            browseName: `${baseName}[${i}]`,
-            displayName: `${baseName}[${i}]`,
+            browseName: `${baseName}${indexSuffix}`,
+            displayName: `${baseName}${indexSuffix}`,
             nodeClass: 2, // Variable
             isVariable: true,
             isArrayElement: true,
@@ -661,10 +692,25 @@ class OpcuaClient {
             quality: dataValue.statusCode?.name || 'Unknown',
             accessible: true,
             depth: (arrayVariable.depth || 0) + 1,
-            path: `${arrayVariable.path || baseName}[${i}]`
+            path: `${arrayVariable.path || baseName}${indexSuffix}`
           });
+          
+          elementFound = true;
+          break; // Si encontramos el elemento con este formato, no probar otros
         } catch (error) {
-          // Si no se puede leer, aún agregar el elemento como no accesible
+          // Continuar con el siguiente formato
+          continue;
+        }
+      }
+      
+      // Si no se encontró el elemento con ningún formato, intentar explorar como objeto
+      if (!elementFound) {
+        try {
+          const objectNodeId = `${baseNodeId}[${i}]`;
+          const objectElements = await this.expandObjectMembers(objectNodeId, baseName, i, arrayVariable.depth);
+          elements.push(...objectElements);
+        } catch (error) {
+          // Si tampoco funciona como objeto, agregar como no accesible
           elements.push({
             nodeId: `${baseNodeId}[${i}]`,
             browseName: `${baseName}[${i}]`,
@@ -675,7 +721,7 @@ class OpcuaClient {
             arrayIndex: i,
             parentArray: baseName,
             accessible: false,
-            error: error.message,
+            error: 'Element not accessible',
             depth: (arrayVariable.depth || 0) + 1,
             path: `${arrayVariable.path || baseName}[${i}]`
           });
@@ -684,6 +730,68 @@ class OpcuaClient {
     }
     
     return elements;
+  }
+
+  /**
+   * Expand object members (for array of objects like motor diagnostics)
+   */
+  async expandObjectMembers(objectNodeId, parentArrayName, arrayIndex, parentDepth = 0) {
+    const members = [];
+    
+    try {
+      // Intentar explorar el objeto para encontrar sus miembros
+      const browseResult = await this.session.browse(objectNodeId);
+      
+      if (browseResult.references) {
+        for (const ref of browseResult.references) {
+          if (ref.nodeClass === 2) { // Variable
+            try {
+              const dataValue = await this.session.readVariableValue(ref.nodeId);
+              
+              members.push({
+                nodeId: ref.nodeId.toString(),
+                browseName: ref.browseName.toString(),
+                displayName: `${parentArrayName}[${arrayIndex}].${ref.browseName.toString()}`,
+                nodeClass: 2,
+                isVariable: true,
+                isArrayElement: true,
+                isObjectMember: true,
+                arrayIndex: arrayIndex,
+                parentArray: parentArrayName,
+                memberName: ref.browseName.toString(),
+                dataType: this.getDataTypeName(dataValue.dataType),
+                value: dataValue.value?.value,
+                quality: dataValue.statusCode?.name || 'Unknown',
+                accessible: true,
+                depth: parentDepth + 2,
+                path: `${parentArrayName}[${arrayIndex}].${ref.browseName.toString()}`
+              });
+            } catch (readError) {
+              members.push({
+                nodeId: ref.nodeId.toString(),
+                browseName: ref.browseName.toString(),
+                displayName: `${parentArrayName}[${arrayIndex}].${ref.browseName.toString()}`,
+                nodeClass: 2,
+                isVariable: true,
+                isArrayElement: true,
+                isObjectMember: true,
+                arrayIndex: arrayIndex,
+                parentArray: parentArrayName,
+                memberName: ref.browseName.toString(),
+                accessible: false,
+                error: readError.message,
+                depth: parentDepth + 2,
+                path: `${parentArrayName}[${arrayIndex}].${ref.browseName.toString()}`
+              });
+            }
+          }
+        }
+      }
+    } catch (error) {
+      logger.warn({ err: error, objectNodeId }, 'Failed to browse object members');
+    }
+    
+    return members;
   }
 
   /**

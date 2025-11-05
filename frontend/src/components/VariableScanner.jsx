@@ -26,12 +26,26 @@ export default function VariableScanner({ isOpen, onClose, onVariablesSelected }
       if (a.isArrayElement && !b.isArrayElement) return 1;
       if (!a.isArrayElement && b.isArrayElement) return -1;
       
-      // Si ambos son elementos de array, ordenar por índice
+      // Si ambos son elementos de array
       if (a.isArrayElement && b.isArrayElement) {
-        if (a.parentArray === b.parentArray) {
+        // Primero agrupar por array padre
+        if (a.parentArray !== b.parentArray) {
+          return a.parentArray.localeCompare(b.parentArray);
+        }
+        
+        // Luego por índice de array
+        if (a.arrayIndex !== b.arrayIndex) {
           return (a.arrayIndex || 0) - (b.arrayIndex || 0);
         }
-        return a.parentArray.localeCompare(b.parentArray);
+        
+        // Finalmente por si es miembro de objeto (los miembros van después del objeto)
+        if (a.isObjectMember && !b.isObjectMember) return 1;
+        if (!a.isObjectMember && b.isObjectMember) return -1;
+        
+        // Si ambos son miembros, ordenar por nombre del miembro
+        if (a.isObjectMember && b.isObjectMember) {
+          return (a.memberName || '').localeCompare(b.memberName || '');
+        }
       }
       
       // Ordenar alfabéticamente por nombre
@@ -335,9 +349,9 @@ export default function VariableScanner({ isOpen, onClose, onVariablesSelected }
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <h4 className={`font-medium truncate ${
-                        node.isArrayElement ? 'text-blue-900 ml-4' : 'text-gray-900'
+                        node.isArrayElement ? (node.isObjectMember ? 'text-green-900 ml-8' : 'text-blue-900 ml-4') : 'text-gray-900'
                       }`}>
-                        {node.isArrayElement && '└─ '}
+                        {node.isArrayElement && (node.isObjectMember ? '  └─ ' : '└─ ')}
                         {node.displayName}
                       </h4>
                       {node.dataType && (
@@ -347,7 +361,12 @@ export default function VariableScanner({ isOpen, onClose, onVariablesSelected }
                       )}
                       {node.isArrayElement && (
                         <span className="px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded">
-                          Array[{node.arrayIndex}]
+                          {node.isObjectMember ? `Object[${node.arrayIndex}]` : `Array[${node.arrayIndex}]`}
+                        </span>
+                      )}
+                      {node.isObjectMember && (
+                        <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded">
+                          {node.memberName}
                         </span>
                       )}
                       {node.accessible === false && (
@@ -362,13 +381,14 @@ export default function VariableScanner({ isOpen, onClose, onVariablesSelected }
                       )}
                     </div>
                     <p className={`text-sm truncate ${
-                      node.isArrayElement ? 'text-blue-500 ml-4' : 'text-gray-500'
+                      node.isArrayElement ? (node.isObjectMember ? 'text-green-500 ml-8' : 'text-blue-500 ml-4') : 'text-gray-500'
                     }`}>
                       {node.nodeId}
                     </p>
                     {node.parentArray && (
-                      <p className="text-xs text-purple-600 ml-4">
+                      <p className={`text-xs text-purple-600 ${node.isObjectMember ? 'ml-8' : 'ml-4'}`}>
                         {t('variableScanner.elementOf')}: {node.parentArray}
+                        {node.isObjectMember && ` (${node.memberName})`}
                       </p>
                     )}
                     {node.path && !node.isArrayElement && (
@@ -378,7 +398,7 @@ export default function VariableScanner({ isOpen, onClose, onVariablesSelected }
                     )}
                     {node.value !== undefined && (
                       <p className={`text-xs text-green-600 ${
-                        node.isArrayElement ? 'ml-4' : ''
+                        node.isArrayElement ? (node.isObjectMember ? 'ml-8' : 'ml-4') : ''
                       }`}>
                         {t('variableScanner.currentValue')}: {String(node.value)}
                       </p>
