@@ -160,11 +160,11 @@ export default function OpcPerformance() {
   const tags = data.tags || {};
   const connected = isConnected;
 
-  // Actualizar timestamp cada 250ms para mostrar actividad en tiempo real
+  // Actualizar timestamp cada 500ms sincronizado con OPC-UA
   useEffect(() => {
     const interval = setInterval(() => {
       setLastUpdate(Date.now());
-    }, 250);
+    }, 500);
 
     return () => clearInterval(interval);
   }, []);
@@ -239,7 +239,12 @@ export default function OpcPerformance() {
             </div>
           </div>
           
-          <div className="text-right">
+          <div className="text-right flex flex-col items-end gap-1">
+            <div className="px-3 py-1 bg-primary-100 dark:bg-primary-900 rounded-lg">
+              <span className="text-primary-800 dark:text-primary-200 font-bold text-lg">
+                FPS: {fps}
+              </span>
+            </div>
             <div className="text-sm text-gray-500 dark:text-gray-400">
               Last Update: {new Date(lastUpdate).toLocaleTimeString()}
             </div>
@@ -321,8 +326,7 @@ export default function OpcPerformance() {
         {/* Footer Info */}
         <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
           <p>Showing {Object.keys(variableConfig).length} variables per motor × {totalMotors} motors = {Object.keys(variableConfig).length * totalMotors} total data points</p>
-          <p>Data updates every 250ms (4 Hz) - Performance Test Mode</p>
-          <p className="text-primary-600 dark:text-primary-400 font-medium">FPS: {fps} updates/sec</p>
+          <p>Data updates every 500ms (2 Hz) - Synchronized with OPC-UA</p>
         </div>
       </div>
     </div>

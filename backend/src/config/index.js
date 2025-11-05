@@ -11,7 +11,7 @@ dotenv.config({ path: join(__dirname, '../../.env') });
 export const config = {
   opcua: {
     endpoint: process.env.OPCUA_ENDPOINT || 'opc.tcp://localhost:4840',
-    pollingRateMs: parseInt(process.env.POLLING_RATE_MS || '1000', 10),
+    pollingRateMs: parseInt(process.env.POLLING_RATE_MS || '500', 10),
   },
   logging: {
     logIntervalMs: parseInt(process.env.LOG_INTERVAL_MS || '5000', 10),
