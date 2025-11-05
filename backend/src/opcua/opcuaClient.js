@@ -124,14 +124,30 @@ class OpcuaClient {
       nodeId: tagConfig.nodeId
     }));
 
-    // Dividir en lotes para evitar sobrecargar el servidor OPC-UA
-    const batchSize = 50;
+    // Dividir en lotes más pequeños para el array de motores
+    const batchSize = 25; // Reducir tamaño de lote
     const batches = [];
-    for (let i = 0; i < nodeIds.length; i += batchSize) {
-      batches.push(nodeIds.slice(i, i + batchSize));
+    
+    // Separar tags básicos de tags de motores
+    const basicTags = nodeIds.filter(({ tagName }) => !tagName.includes('aAxisDiagnostic'));
+    const motorTags = nodeIds.filter(({ tagName }) => tagName.includes('aAxisDiagnostic'));
+    
+    // Procesar tags básicos primero (en un lote)
+    if (basicTags.length > 0) {
+      batches.push(basicTags);
     }
+    
+    // Procesar tags de motores en lotes pequeños
+    for (let i = 0; i < motorTags.length; i += batchSize) {
+      batches.push(motorTags.slice(i, i + batchSize));
+    }
+    
+    logger.info(`Reading ${nodeIds.length} tags in ${batches.length} batches (${basicTags.length} basic, ${motorTags.length} motor tags)`);
 
-    for (const batch of batches) {
+    for (let i = 0; i < batches.length; i++) {
+      const batch = batches[i];
+      const isMotorBatch = batch.some(({ tagName }) => tagName.includes('aAxisDiagnostic'));
+      
       try {
         const nodesToRead = batch.map(({ nodeId }) => ({
           nodeId: nodeId,
@@ -158,8 +174,13 @@ class OpcuaClient {
           }
         });
 
+        // Pequeño delay entre lotes de motores para no saturar el servidor
+        if (isMotorBatch && i < batches.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 10));
+        }
+
       } catch (error) {
-        logger.warn({ err: error, batchSize: batch.length }, 'Failed to read tag batch from OPC UA server');
+        logger.warn({ err: error, batchSize: batch.length, batchType: isMotorBatch ? 'motor' : 'basic' }, 'Failed to read tag batch from OPC UA server');
         
         // Marcar todos los tags del lote como inciertos
         batch.forEach(({ tagName }) => {
