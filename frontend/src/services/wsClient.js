@@ -15,6 +15,7 @@ class WSClient {
     this.listeners = {
       tag_update: new Set(),
       alarm_update: new Set(),
+      opcua_status: new Set(),
       connected: new Set(),
       disconnected: new Set(),
       error: new Set(),
@@ -102,6 +103,10 @@ class WSClient {
 
       case 'alarm_update':
         this.notifyListeners('alarm_update', payload);
+        break;
+
+      case 'opcua_status':
+        this.notifyListeners('opcua_status', payload);
         break;
 
       case 'pong':

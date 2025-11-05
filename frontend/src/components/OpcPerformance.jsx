@@ -154,7 +154,9 @@ export default function OpcPerformance() {
   const { t } = useTranslation();
   const [motorsData, setMotorsData] = useState(Array(20).fill({}));
   const [lastUpdate, setLastUpdate] = useState(Date.now());
-  const { tags, connected } = useWebSocket();
+  const { data, isConnected } = useWebSocket();
+  const tags = data.tags || {};
+  const connected = isConnected;
 
   // Actualizar datos de motores cuando cambien los tags
   useEffect(() => {
