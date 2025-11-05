@@ -124,29 +124,52 @@ class OpcuaClient {
       nodeId: tagConfig.nodeId
     }));
 
-    try {
-      const nodesToRead = nodeIds.map(({ nodeId }) => ({
-        nodeId: nodeId,
-        attributeId: 13 // Value attribute
-      }));
+    // Dividir en lotes para evitar sobrecargar el servidor OPC-UA
+    const batchSize = 50;
+    const batches = [];
+    for (let i = 0; i < nodeIds.length; i += batchSize) {
+      batches.push(nodeIds.slice(i, i + batchSize));
+    }
 
-      const dataValues = await this.session.read(nodesToRead);
+    for (const batch of batches) {
+      try {
+        const nodesToRead = batch.map(({ nodeId }) => ({
+          nodeId: nodeId,
+          attributeId: 13 // Value attribute
+        }));
 
-      dataValues.forEach((dataValue, index) => {
-        const { tagName } = nodeIds[index];
+        const dataValues = await this.session.read(nodesToRead);
+
+        dataValues.forEach((dataValue, index) => {
+          const { tagName } = batch[index];
+          
+          if (dataValue.statusCode.isGood()) {
+            const value = dataValue.value.value;
+            tagStore.update(tagName, value, 'good');
+            logger.debug({ tagName, value }, 'Tag read successfully');
+          } else {
+            // Para tags de motor que no existen, usar valor por defecto
+            if (tagName.includes('aAxisDiagnostic')) {
+              tagStore.update(tagName, 0, 'uncertain');
+            } else {
+              tagStore.update(tagName, null, 'bad');
+            }
+            logger.debug({ tagName, statusCode: dataValue.statusCode.toString() }, 'Tag read failed');
+          }
+        });
+
+      } catch (error) {
+        logger.warn({ err: error, batchSize: batch.length }, 'Failed to read tag batch from OPC UA server');
         
-        if (dataValue.statusCode.isGood()) {
-          const value = dataValue.value.value;
-          tagStore.update(tagName, value, 'good');
-          logger.debug({ tagName, value }, 'Tag read successfully');
-        } else {
-          tagStore.update(tagName, null, 'bad');
-          logger.warn({ tagName, statusCode: dataValue.statusCode.toString() }, 'Tag read failed');
-        }
-      });
-
-    } catch (error) {
-      logger.error({ err: error }, 'Failed to read tags from OPC UA server');
+        // Marcar todos los tags del lote como inciertos
+        batch.forEach(({ tagName }) => {
+          if (tagName.includes('aAxisDiagnostic')) {
+            tagStore.update(tagName, 0, 'uncertain');
+          } else {
+            tagStore.update(tagName, null, 'bad');
+          }
+        });
+      }
     }
   }
 
@@ -292,6 +315,23 @@ class OpcuaClient {
    */
   pollTagsMock() {
     Object.entries(this.tagsConfig.tags).forEach(([tagName, tagConfig]) => {
+      // Inicializar valor si no existe
+      if (this.mockData[tagName] === undefined) {
+        if (tagConfig.type === 'boolean') {
+          this.mockData[tagName] = false;
+        } else if (tagConfig.type === 'number') {
+          if (tagName.includes('aAxisDiagnostic')) {
+            this.mockData[tagName] = this.generateRealisticMotorValue(tagName, tagConfig);
+          } else {
+            const min = tagConfig.min || 0;
+            const max = tagConfig.max || 100;
+            this.mockData[tagName] = min + (max - min) * 0.5;
+          }
+        } else {
+          this.mockData[tagName] = '';
+        }
+      }
+
       let newValue = this.mockData[tagName];
 
       if (tagConfig.type === 'boolean') {
