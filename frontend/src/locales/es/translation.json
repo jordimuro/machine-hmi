@@ -150,6 +150,15 @@
     "arrayElement": "Elemento de Array",
     "elementOf": "Elemento de"
   },
+  "theme": {
+    "selectTheme": "Seleccionar Tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema",
+    "lightDesc": "Tema claro",
+    "darkDesc": "Tema oscuro",
+    "systemDesc": "Seguir preferencia del sistema"
+  },
   "common": {
     "loading": "Cargando...",
     "error": "Error",
