@@ -114,7 +114,8 @@ const MotorPanel = ({ motorIndex, motorData, tags }) => {
       <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3">
         {Object.entries(variableConfig).map(([key, config]) => {
           const value = motorData[key];
-          const quality = tags[`aAxisDiagnostic_${motorIndex + 1}_${key}`]?.quality || 'uncertain';
+          const tagName = `aAxisDiagnostic_${motorIndex + 1}_${key}`;
+          const quality = (tags && tags[tagName]) ? tags[tagName].quality : 'uncertain';
           
           return (
             <div key={key} className="flex flex-col items-center">
@@ -157,7 +158,11 @@ export default function OpcPerformance() {
 
   // Actualizar datos de motores cuando cambien los tags
   useEffect(() => {
-    if (!tags || Object.keys(tags).length === 0) return;
+    if (!tags || Object.keys(tags).length === 0) {
+      // Si no hay tags, mostrar datos vacíos
+      setMotorsData(Array(20).fill({}));
+      return;
+    }
 
     const newMotorsData = Array(20).fill(null).map((_, motorIndex) => {
       const motorData = {};
@@ -167,8 +172,10 @@ export default function OpcPerformance() {
         const tagName = `aAxisDiagnostic_${motorIndex + 1}_${variable}`;
         const tag = tags[tagName];
         
-        if (tag) {
+        if (tag && tag.value !== undefined) {
           motorData[variable] = tag.value;
+        } else {
+          motorData[variable] = 0; // Valor por defecto
         }
       });
       

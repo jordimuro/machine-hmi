@@ -164,7 +164,13 @@ class OpcuaClient {
       } else if (tagConfig.type === 'number') {
         const min = tagConfig.min || 0;
         const max = tagConfig.max || 100;
-        this.mockData[tagName] = min + (max - min) * 0.5; // Start at middle
+        
+        // Para tags de motores, generar valores más realistas
+        if (tagName.includes('aAxisDiagnostic')) {
+          this.mockData[tagName] = this.generateRealisticMotorValue(tagName, tagConfig);
+        } else {
+          this.mockData[tagName] = min + (max - min) * 0.5; // Start at middle
+        }
       } else {
         this.mockData[tagName] = '';
       }
@@ -173,11 +179,60 @@ class OpcuaClient {
       tagStore.update(tagName, this.mockData[tagName], 'good');
     });
 
-    logger.info('Mock OPC UA mode enabled with simulated data');
+    logger.info(`Mock OPC UA mode enabled with simulated data for ${Object.keys(this.tagsConfig.tags).length} tags`);
 
     // Start polling and logging
     this.startPolling();
     this.startLogging();
+  }
+
+  /**
+   * Generate realistic values for motor diagnostic tags
+   */
+  generateRealisticMotorValue(tagName, tagConfig) {
+    const min = tagConfig.min || 0;
+    const max = tagConfig.max || 100;
+    
+    // Extraer número de motor del nombre del tag
+    const motorMatch = tagName.match(/aAxisDiagnostic_(\d+)_/);
+    const motorIndex = motorMatch ? parseInt(motorMatch[1]) : 1;
+    
+    // Generar valores basados en el tipo de variable
+    if (tagName.includes('speedAct') || tagName.includes('speedSet')) {
+      // Velocidades: algunos motores corriendo, otros parados
+      return motorIndex <= 5 ? 1200 + Math.random() * 800 : Math.random() * 100;
+    } else if (tagName.includes('torqueAct') || tagName.includes('torqueSet')) {
+      // Torques: proporcional a la velocidad
+      const speed = this.mockData[`aAxisDiagnostic_${motorIndex}_speedAct`] || 0;
+      return speed > 100 ? 20 + Math.random() * 50 : Math.random() * 10;
+    } else if (tagName.includes('motorTemp') || tagName.includes('heatsinkTemp')) {
+      // Temperaturas: más altas si el motor está corriendo
+      const speed = this.mockData[`aAxisDiagnostic_${motorIndex}_speedAct`] || 0;
+      return speed > 100 ? 40 + Math.random() * 40 : 20 + Math.random() * 20;
+    } else if (tagName.includes('motorLoad') || tagName.includes('inverterLoad')) {
+      // Cargas: proporcional a la velocidad
+      const speed = this.mockData[`aAxisDiagnostic_${motorIndex}_speedAct`] || 0;
+      return speed > 100 ? 30 + Math.random() * 50 : Math.random() * 20;
+    } else if (tagName.includes('dcVoltage')) {
+      // Voltajes DC: valores típicos
+      return 580 + Math.random() * 40;
+    } else if (tagName.includes('motorVoltage')) {
+      // Voltajes del motor
+      return 380 + Math.random() * 40;
+    } else if (tagName.includes('motorCurrent')) {
+      // Corriente proporcional a la carga
+      const load = this.mockData[`aAxisDiagnostic_${motorIndex}_motorLoad`] || 0;
+      return (load / 100) * 30 + Math.random() * 5;
+    } else if (tagName.includes('Error')) {
+      // Errores: ocasionalmente algunos motores con errores
+      return Math.random() < 0.1 ? Math.floor(Math.random() * 100) : 0;
+    } else if (tagName.includes('status')) {
+      // Estados: valores típicos de estado
+      return Math.floor(min + Math.random() * (max - min) * 0.1);
+    } else {
+      // Otros valores: distribución normal
+      return min + Math.random() * (max - min);
+    }
   }
 
   /**
@@ -246,18 +301,23 @@ class OpcuaClient {
           this.mockData[tagName] = newValue;
         }
       } else if (tagConfig.type === 'number') {
-        // Add realistic variation to numbers
-        const min = tagConfig.min || 0;
-        const max = tagConfig.max || 100;
-        const variation = (max - min) * 0.02; // 2% variation
+        // Para tags de motores, usar simulación más realista
+        if (tagName.includes('aAxisDiagnostic')) {
+          newValue = this.updateMotorTagValue(tagName, tagConfig, newValue);
+        } else {
+          // Add realistic variation to numbers
+          const min = tagConfig.min || 0;
+          const max = tagConfig.max || 100;
+          const variation = (max - min) * 0.02; // 2% variation
 
-        // Random walk
-        newValue += (Math.random() - 0.5) * variation;
-        newValue = Math.max(min, Math.min(max, newValue));
+          // Random walk
+          newValue += (Math.random() - 0.5) * variation;
+          newValue = Math.max(min, Math.min(max, newValue));
 
-        // Simulate production count incrementing
-        if (tagName === 'ProductionCount' && this.mockData['MachineRunning']) {
-          newValue = Math.floor(newValue + Math.random() * 0.5);
+          // Simulate production count incrementing
+          if (tagName === 'ProductionCount' && this.mockData['MachineRunning']) {
+            newValue = Math.floor(newValue + Math.random() * 0.5);
+          }
         }
 
         this.mockData[tagName] = newValue;
@@ -274,6 +334,42 @@ class OpcuaClient {
 
     // Simulate occasional alarms
     this.simulateAlarms();
+  }
+
+  /**
+   * Update motor tag values with realistic simulation
+   */
+  updateMotorTagValue(tagName, tagConfig, currentValue) {
+    const min = tagConfig.min || 0;
+    const max = tagConfig.max || 100;
+    const variation = (max - min) * 0.01; // 1% variation for motors
+    
+    // Extraer número de motor
+    const motorMatch = tagName.match(/aAxisDiagnostic_(\d+)_/);
+    const motorIndex = motorMatch ? parseInt(motorMatch[1]) : 1;
+    
+    // Simular cambios realistas basados en el tipo de variable
+    if (tagName.includes('speedAct')) {
+      // Velocidad actual: pequeñas variaciones si está corriendo
+      if (currentValue > 100) {
+        return Math.max(0, currentValue + (Math.random() - 0.5) * 50);
+      } else {
+        return Math.random() < 0.01 ? 1200 + Math.random() * 800 : currentValue;
+      }
+    } else if (tagName.includes('motorTemp') || tagName.includes('heatsinkTemp')) {
+      // Temperatura: sigue la velocidad con inercia térmica
+      const speed = this.mockData[`aAxisDiagnostic_${motorIndex}_speedAct`] || 0;
+      const targetTemp = speed > 100 ? 60 + Math.random() * 30 : 25 + Math.random() * 10;
+      return currentValue + (targetTemp - currentValue) * 0.05; // Inercia térmica
+    } else if (tagName.includes('motorLoad')) {
+      // Carga del motor: proporcional a la velocidad
+      const speed = this.mockData[`aAxisDiagnostic_${motorIndex}_speedAct`] || 0;
+      const targetLoad = speed > 100 ? 40 + Math.random() * 40 : Math.random() * 10;
+      return Math.max(0, Math.min(100, targetLoad + (Math.random() - 0.5) * 10));
+    } else {
+      // Otros valores: pequeña variación aleatoria
+      return Math.max(min, Math.min(max, currentValue + (Math.random() - 0.5) * variation));
+    }
   }
 
   /**
