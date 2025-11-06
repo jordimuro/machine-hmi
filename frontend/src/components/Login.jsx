@@ -1,31 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { Lock } from 'lucide-react';
+import { Lock, User, KeyRound } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
 
 export default function Login() {
   const { t } = useTranslation();
-  const [pin, setPin] = useState('');
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
 
-  const handleNumberClick = (num) => {
-    if (pin.length < 8) {
-      setPin(pin + num);
-      setError('');
+  // Redirigir si ya está autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/', { replace: true });
     }
-  };
+  }, [isAuthenticated, navigate]);
 
-  const handleClear = () => {
-    setPin('');
-    setError('');
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!username.trim()) {
+      setError(t('auth.usernameRequired'));
+      return;
+    }
 
-  const handleSubmit = async () => {
-    if (pin.length < 4) {
-      setError(t('auth.pinRequired'));
+    if (!password.trim()) {
+      setError(t('auth.passwordRequired'));
       return;
     }
 
@@ -33,104 +38,111 @@ export default function Login() {
     setError('');
 
     try {
-      await login(pin);
+      await login(username.trim(), password);
+      // La navegación se maneja en el useEffect
     } catch (err) {
-      setError(t('auth.invalidPin'));
-      setPin('');
+      setError(t('auth.invalidCredentials'));
+      setPassword('');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    } else if (e.key === 'Backspace') {
-      setPin(pin.slice(0, -1));
-    } else if (/^\d$/.test(e.key)) {
-      handleNumberClick(e.key);
-    }
+  const handlePasswordChange = (e) => {
+    // Solo permitir números en el campo de contraseña
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    setPassword(value);
+    setError('');
+  };
+
+  const handleUsernameChange = (e) => {
+    // Permitir alfanuméricos en el campo de usuario
+    const value = e.target.value.replace(/[^a-zA-Z0-9]/g, '');
+    setUsername(value);
+    setError('');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative">
+    <div className="login-container min-h-screen bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center p-4">
+      <div className="login-card bg-white rounded-2xl shadow-2xl p-6 sm:p-8 w-full max-w-sm sm:max-w-md relative">
         {/* Language Selector */}
         <div className="absolute top-4 right-4">
           <LanguageSelector />
         </div>
 
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
             <Lock className="w-8 h-8 text-primary-600" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">{t('app.title')}</h1>
-          <p className="text-gray-600">{t('auth.enterPin')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">{t('app.title')}</h1>
+          <p className="text-sm text-gray-600">{t('auth.enterCredentials')}</p>
         </div>
 
-        {/* PIN Display */}
-        <div className="mb-6">
-          <div className="bg-gray-100 rounded-lg p-6 text-center min-h-[80px] flex items-center justify-center">
-            <div className="text-4xl font-mono tracking-widest">
-              {pin ? '•'.repeat(pin.length) : <span className="text-gray-400">••••</span>}
-            </div>
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Username Field */}
+          <div>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+              <User className="w-4 h-4 inline mr-2" />
+              {t('auth.username')}
+            </label>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={handleUsernameChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-lg touch-manipulation"
+              placeholder={t('auth.usernamePlaceholder')}
+              disabled={loading}
+              maxLength={20}
+              autoComplete="username"
+            />
           </div>
+
+          {/* Password Field */}
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <KeyRound className="w-4 h-4 inline mr-2" />
+              {t('auth.password')}
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-lg font-mono tracking-widest touch-manipulation"
+              placeholder={t('auth.passwordPlaceholder')}
+              disabled={loading}
+              maxLength={10}
+              autoComplete="current-password"
+            />
+          </div>
+
+          {/* Error Message */}
           {error && (
-            <div className="mt-3 text-danger-600 text-center font-medium">
+            <div className="text-danger-600 text-center font-medium bg-danger-50 p-3 rounded-lg">
               {error}
             </div>
           )}
-        </div>
 
-        {/* PIN Pad */}
-        <div className="grid grid-cols-3 gap-4 mb-6" onKeyDown={handleKeyPress} tabIndex={0}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-            <button
-              key={num}
-              onClick={() => handleNumberClick(num.toString())}
-              className="pin-btn"
-              disabled={loading}
-            >
-              {num}
-            </button>
-          ))}
+          {/* Submit Button */}
           <button
-            onClick={handleClear}
-            className="pin-btn bg-gray-200 hover:bg-gray-300 text-gray-700"
-            disabled={loading}
+            type="submit"
+            disabled={loading || !username.trim() || !password.trim()}
+            className="w-full bg-primary-600 hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 text-lg touch-manipulation active:scale-95"
           >
-            C
+            {loading ? t('auth.authenticating') : t('auth.login')}
           </button>
-          <button
-            onClick={() => handleNumberClick('0')}
-            className="pin-btn"
-            disabled={loading}
-          >
-            0
-          </button>
-          <button
-            onClick={() => setPin(pin.slice(0, -1))}
-            className="pin-btn bg-gray-200 hover:bg-gray-300 text-gray-700"
-            disabled={loading}
-          >
-            ←
-          </button>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          onClick={handleSubmit}
-          disabled={loading || pin.length < 4}
-          className="btn-primary w-full"
-        >
-          {loading ? t('auth.authenticating') : t('auth.login')}
-        </button>
+        </form>
 
         {/* Info */}
         <div className="mt-6 text-center text-sm text-gray-500">
-          <p>{t('auth.defaultPins')}:</p>
-          <p>{t('auth.operator')}: 1111 | {t('auth.maintenance')}: 2222</p>
+          <p className="mb-2">{t('auth.defaultCredentials')}:</p>
+          <div className="space-y-1">
+            <div><strong>admin</strong> - 2222</div>
+            <div><strong>guest</strong> - 1111</div>
+          </div>
         </div>
       </div>
     </div>

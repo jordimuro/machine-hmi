@@ -73,10 +73,10 @@ class ApiClient {
 
   // Auth endpoints
 
-  async login(pin) {
+  async login(username, password) {
     const data = await this.request('/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ pin }),
+      body: JSON.stringify({ username, password }),
     });
     this.setToken(data.token);
     return data;

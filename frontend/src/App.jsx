@@ -37,18 +37,15 @@ function AppRoutes() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="spinner w-16 h-16" />
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700">
+        <div className="spinner w-16 h-16 border-white border-t-primary-200" />
       </div>
     );
   }
 
-  if (!isAuthenticated) {
-    return <Login />;
-  }
-
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
       <Route
         path="/"
         element={
@@ -72,7 +69,7 @@ function AppRoutes() {
           }
         />
       </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to={isAuthenticated ? "/" : "/login"} replace />} />
     </Routes>
   );
 }

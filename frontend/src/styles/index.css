@@ -13,6 +13,53 @@
     @apply font-sans antialiased bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
     /* Prevent pull-to-refresh on mobile */
     overscroll-behavior-y: contain;
+    /* Better touch experience */
+    touch-action: manipulation;
+  }
+
+  /* Improve touch targets */
+  input, button, select, textarea {
+    touch-action: manipulation;
+  }
+
+  /* Responsive height adjustments */
+  @media (max-height: 700px) {
+    .login-container {
+      padding: 1rem;
+      min-height: 100vh;
+      align-items: flex-start;
+      padding-top: 2rem;
+    }
+    
+    .login-card {
+      margin: 0;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+    }
+  }
+
+  @media (max-height: 600px) {
+    .login-container {
+      padding: 0.5rem;
+      padding-top: 1rem;
+    }
+    
+    .login-card {
+      padding: 1rem;
+      max-height: calc(100vh - 2rem);
+    }
+  }
+
+  @media (max-height: 500px) {
+    .login-container {
+      padding: 0.25rem;
+      padding-top: 0.5rem;
+    }
+    
+    .login-card {
+      padding: 0.75rem;
+      max-height: calc(100vh - 1rem);
+    }
   }
 
   /* Disable text selection for better touch experience */
@@ -29,8 +76,17 @@
   .btn {
     @apply px-6 py-4 rounded-lg font-semibold text-base transition-all duration-200 no-select;
     @apply active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply touch-manipulation;
     min-width: 120px;
     min-height: 60px;
+  }
+
+  @media (max-width: 640px) {
+    .btn {
+      @apply px-4 py-3 text-sm;
+      min-width: 100px;
+      min-height: 50px;
+    }
   }
 
   .btn-primary {

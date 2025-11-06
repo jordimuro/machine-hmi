@@ -7,32 +7,33 @@ import logger from '../config/logger.js';
  */
 
 /**
- * Authenticate user with PIN
+ * Authenticate user with username and password
  */
-export function authenticate(pin) {
+export function authenticate(username, password) {
   let role = null;
 
-  if (pin === config.auth.pinOperator) {
-    role = 'operator';
-  } else if (pin === config.auth.pinMaintenance) {
+  // Fixed credentials
+  if (username === 'admin' && password === '2222') {
     role = 'maintenance';
+  } else if (username === 'guest' && password === '1111') {
+    role = 'operator';
   }
 
   if (!role) {
-    logger.warn({ pin: pin.replace(/./g, '*') }, 'Invalid PIN attempt');
+    logger.warn({ username }, 'Invalid login attempt');
     return null;
   }
 
   // Generate JWT token
   const token = jwt.sign(
-    { role, timestamp: Date.now() },
+    { role, username, timestamp: Date.now() },
     config.auth.jwtSecret,
     { expiresIn: '12h' }
   );
 
-  logger.info({ role }, 'User authenticated');
+  logger.info({ role, username }, 'User authenticated');
 
-  return { token, role };
+  return { token, role, username };
 }
 
 /**

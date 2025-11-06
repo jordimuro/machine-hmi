@@ -37,14 +37,14 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // Login with PIN
-  const login = async (pin) => {
+  // Login with username and password
+  const login = async (username, password) => {
     setError(null);
     setLoading(true);
 
     try {
-      const data = await apiClient.login(pin);
-      setUser({ role: data.role });
+      const data = await apiClient.login(username, password);
+      setUser({ role: data.role, username: data.username });
 
       // Connect WebSocket
       wsClient.connect(data.token);

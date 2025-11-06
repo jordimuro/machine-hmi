@@ -8,22 +8,23 @@ const router = express.Router();
 
 /**
  * POST /api/login
- * Authenticate with PIN
+ * Authenticate with username and password
  */
 router.post(
   '/login',
-  body('pin').isString().isLength({ min: 4, max: 8 }),
+  body('username').isString().isLength({ min: 1, max: 50 }),
+  body('password').isString().isLength({ min: 1, max: 20 }),
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: 'Invalid PIN format' });
+      return res.status(400).json({ error: 'Invalid credentials format' });
     }
 
-    const { pin } = req.body;
-    const result = authService(pin);
+    const { username, password } = req.body;
+    const result = authService(username, password);
 
     if (!result) {
-      return res.status(401).json({ error: 'Invalid PIN' });
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     res.json(result);
